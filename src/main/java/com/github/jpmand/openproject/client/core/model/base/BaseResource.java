@@ -16,9 +16,6 @@ public class BaseResource {
     @JsonProperty("_links")
     private Map<String, List<BaseLink>> links;
 
-    @JsonProperty("_embedded")
-    private Map<String, List<BaseResource>> embedded;
-
     @JsonAnySetter
     @JsonAnyGetter
     private Map<String, Object> properties;
@@ -46,14 +43,6 @@ public class BaseResource {
             }
         }
         this.links = links;
-    }
-
-    public Map<String, List<BaseResource>> getEmbedded() {
-        return embedded;
-    }
-
-    public void setEmbedded(Map<String, List<BaseResource>> embedded) {
-        this.embedded = embedded;
     }
 
     public Map<String, Object> getProperties() {

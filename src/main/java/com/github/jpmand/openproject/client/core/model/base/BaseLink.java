@@ -3,11 +3,13 @@ package com.github.jpmand.openproject.client.core.model.base;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT;
 
 @JsonInclude(NON_ABSENT)
+@JsonPropertyOrder(alphabetic = false)
 public class BaseLink {
     @JsonIgnore
     private String rel;

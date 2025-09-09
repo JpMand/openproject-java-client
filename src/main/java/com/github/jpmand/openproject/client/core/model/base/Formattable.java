@@ -1,7 +1,9 @@
 package com.github.jpmand.openproject.client.core.model.base;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonPropertyOrder(alphabetic = false)
 public class Formattable {
 
     @JsonProperty("format")
