@@ -29,8 +29,8 @@ public class WorkPackage extends BaseResource {
     @JsonProperty("scheduleManually")
     private Boolean scheduleManually;
 
-    @JsonProperty("readOnly")
-    private Boolean readOnly;
+    @JsonProperty("readonly")
+    private Boolean readonly;
 
     @JsonProperty("startDate")
     private LocalDate startDate;
@@ -134,12 +134,12 @@ public class WorkPackage extends BaseResource {
         this.scheduleManually = scheduleManually;
     }
 
-    public Boolean getReadOnly() {
-        return readOnly;
+    public Boolean getReadonly() {
+        return readonly;
     }
 
-    public void setReadOnly(Boolean readOnly) {
-        this.readOnly = readOnly;
+    public void setReadonly(Boolean readonly) {
+        this.readonly = readonly;
     }
 
     public LocalDate getStartDate() {

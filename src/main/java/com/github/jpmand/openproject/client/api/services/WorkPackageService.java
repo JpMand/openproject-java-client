@@ -20,4 +20,16 @@ public interface WorkPackageService {
             @Query("pageSize") Integer pageSize,
             @Query("offset") Integer offset
     );
+
+    @GET("/api/v3/work_packages")
+    Call<PagedCollectionResource<WorkPackage>> listWorkPackages(
+            @Query("offset") Integer offset,
+            @Query("pageSize") Integer pageSize,
+            @Query("filters") String filters,
+            @Query("sortBy") String sortBy,
+            @Query("groupBy") String groupBy,
+            @Query("showSums") Boolean showSums,
+            @Query("select") String select,
+            @Query("timestamps") String timestamps
+    );
 }

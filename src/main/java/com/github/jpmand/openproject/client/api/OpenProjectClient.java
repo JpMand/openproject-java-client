@@ -76,5 +76,19 @@ public class OpenProjectClient {
         Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages(pageSize, offset);
         return call.execute().body();
     }
+
+    public PagedCollectionResource<WorkPackage> listWorkPackages(
+            Integer offset,
+            Integer pageSize,
+            String filters,
+            String sortBy,
+            String groupBy,
+            Boolean showSums,
+            String select,
+            String timestamps) throws IOException {
+        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages(
+                offset, pageSize, filters, sortBy, groupBy, showSums, select, timestamps);
+        return call.execute().body();
+    }
 }
 

@@ -41,6 +41,9 @@ class WorkPackageServiceTest {
         OpenProjectClient.class.getDeclaredMethod("getWorkPackage", long.class);
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages");
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages", Integer.class, Integer.class);
+        OpenProjectClient.class.getDeclaredMethod("listWorkPackages", 
+            Integer.class, Integer.class, String.class, String.class, 
+            String.class, Boolean.class, String.class, String.class);
     }
 
     @Test
@@ -52,7 +55,12 @@ class WorkPackageServiceTest {
         var listMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages");
         assertTrue(listMethod.getReturnType().getTypeName().contains("Call"));
         
-        var listWithParamsMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages", Integer.class, Integer.class);
-        assertTrue(listWithParamsMethod.getReturnType().getTypeName().contains("Call"));
+        var listWithPaginationMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages", Integer.class, Integer.class);
+        assertTrue(listWithPaginationMethod.getReturnType().getTypeName().contains("Call"));
+        
+        var listWithAllParamsMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages",
+            Integer.class, Integer.class, String.class, String.class,
+            String.class, Boolean.class, String.class, String.class);
+        assertTrue(listWithAllParamsMethod.getReturnType().getTypeName().contains("Call"));
     }
 }
