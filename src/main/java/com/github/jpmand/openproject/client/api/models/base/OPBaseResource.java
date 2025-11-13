@@ -21,7 +21,7 @@ public class OPBaseResource {
     private Map<String, List<OPBaseLink>> links;
 
     @JsonProperty("_embedded")
-    private Map<String, List<OPBaseResource>> embedded;
+    private Map<String, List<? extends OPBaseResource>> embedded;
 
     @JsonAnySetter
     @JsonAnyGetter
@@ -60,11 +60,11 @@ public class OPBaseResource {
     }
 
     public List<OPBaseLink> getLink(String rel) {
-        return this.links.getOrDefault(rel, null);
+        return null != this.links? this.links.getOrDefault(rel, null) : null;
     }
 
     public OPBaseLink getSingleLink(String rel) {
-        return this.getLink(rel) == null ? null : this.getLink(rel).get(0);
+        return (this.getLink(rel) == null || this.getLink(rel).isEmpty()) ? null : this.getLink(rel).get(0);
     }
 
     @Override

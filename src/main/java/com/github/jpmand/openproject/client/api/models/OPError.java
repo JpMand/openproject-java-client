@@ -18,7 +18,7 @@ public class OPError extends OPBaseResource {
     @JsonProperty("message")
     private String message;
 
-    private Map<String, Object> parameters = new HashMap<String, Object>();
+    private Map<String, Object> parameters = new HashMap<>();
 
     public OPError() {
     }

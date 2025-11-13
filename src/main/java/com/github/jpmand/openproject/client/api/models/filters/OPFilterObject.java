@@ -14,7 +14,6 @@ public class OPFilterObject {
     @JsonAnyGetter
     private Map<String, OPFilterValue> filterValues = new LinkedHashMap<>();
 
-
     public Map<String, OPFilterValue> getFilterValues() {
         return filterValues;
     }

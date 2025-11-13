@@ -46,9 +46,7 @@ public class OPFilterValue {
     }
 
     public static OPFilterValue of(FilterOperator operator, List<Object> values) {
-        final OPFilterValue filterValue = new OPFilterValue(operator, new ArrayList<>(values.size()));
-        Collections.copy(filterValue.values, values);
-        return filterValue;
+        return new OPFilterValue(operator, values);
     }
 
     public static OPFilterValue of(FilterOperator operator, Object value) {

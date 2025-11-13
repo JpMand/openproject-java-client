@@ -63,6 +63,10 @@ public enum FilterOperator {
 
     private final String value;
 
+    public String value(){
+        return value;
+    }
+
     private FilterOperator(String value){
         this.value = value;
     }

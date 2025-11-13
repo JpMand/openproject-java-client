@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
+import com.github.jpmand.openproject.client.api.models.enums.FilterOperator;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +24,6 @@ public class WorkPackageParsingTest {
             assertEquals(2, wp.getId());
             assertEquals("Organize open source conference", wp.getSubject());
             assertNotNull(wp.getCreatedAt());
-
             assertNotNull(wp.getSingleLink("self"));
             assertEquals("/api/v3/work_packages/2", wp.getSingleLink("self").getHref());
         }

@@ -11,6 +11,10 @@ public enum FilterSpecialValues {
 
     private final String value;
 
+    public String value() {
+        return value;
+    }
+
     private FilterSpecialValues(String value) {
         this.value = value;
     }

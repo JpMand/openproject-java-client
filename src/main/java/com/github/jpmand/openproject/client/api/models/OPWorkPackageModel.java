@@ -285,6 +285,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
+        result = 31 * result + Objects.hashCode(getId());
         result = 31 * result + Objects.hashCode(getSubject());
         result = 31 * result + Objects.hashCode(getDescription());
         result = 31 * result + Objects.hashCode(getScheduleManually());
