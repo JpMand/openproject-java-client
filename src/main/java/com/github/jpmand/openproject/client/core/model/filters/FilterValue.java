@@ -11,8 +11,8 @@ import java.util.List;
  * A FilterValue combines a {@link FilterOperator} with zero or more values to create
  * a complete filter condition. The number and type of values required depends on the operator.
  * </p>
- * 
- * <h3>Usage Examples:</h3>
+ * <p>
+ * <b>Usage Examples:</b>
  * <pre>{@code
  * // Filter for open status
  * FilterValue openStatus = FilterValue.of(FilterOperator.WK_OPEN);

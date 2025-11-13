@@ -15,8 +15,8 @@ import java.util.Map;
  * Each key represents a field name (e.g., "status", "assignee", "type"),
  * and each value is a FilterValue defining the filter criteria for that field.
  * </p>
- * 
- * <h3>Usage Examples:</h3>
+ * <p>
+ * <b>Usage Examples:</b>
  * <pre>{@code
  * // Single filter for open status
  * FilterObject filters = FilterObject.of("status", FilterValue.of(FilterOperator.WK_OPEN));

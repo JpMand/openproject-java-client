@@ -17,8 +17,8 @@ import java.util.Map;
  * Provides methods to convert filter and sort objects into the JSON string format
  * required by the OpenProject API.
  * </p>
- * 
- * <h3>Usage Examples:</h3>
+ * <p>
+ * <b>Usage Examples:</b>
  * <pre>{@code
  * // Build filter JSON
  * FilterObject filters = FilterObject.of("status", FilterValue.of(FilterOperator.WK_OPEN));
