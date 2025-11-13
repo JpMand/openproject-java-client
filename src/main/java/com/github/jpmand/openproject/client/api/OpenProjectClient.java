@@ -4,9 +4,12 @@ import com.github.jpmand.openproject.client.api.services.WorkPackageService;
 import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
 import com.github.jpmand.openproject.client.core.model.WorkPackage;
+import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
+import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 
@@ -55,11 +58,22 @@ public class OpenProjectClient {
         return new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(baseUrl)
+                .addConverterFactory(JacksonConverterFactory.create(HalObjectMapper.get()))
                 .build();
     }
 
     public WorkPackage getWorkPackage(long id) throws IOException {
         Call<WorkPackage> call = workPackageService.getWorkPackage(id);
+        return call.execute().body();
+    }
+
+    public PagedCollectionResource<WorkPackage> listWorkPackages() throws IOException {
+        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages();
+        return call.execute().body();
+    }
+
+    public PagedCollectionResource<WorkPackage> listWorkPackages(Integer pageSize, Integer offset) throws IOException {
+        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages(pageSize, offset);
         return call.execute().body();
     }
 }

@@ -9,12 +9,16 @@ import com.github.jpmand.openproject.client.core.model.base.Formattable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkPackage extends BaseResource {
 
     @JsonProperty("id")
     private Long id;
+
+    @JsonProperty("lockVersion")
+    private Integer lockVersion;
 
     @JsonProperty("subject")
     private String subject;
@@ -33,6 +37,9 @@ public class WorkPackage extends BaseResource {
 
     @JsonProperty("dueDate")
     private LocalDate dueDate;
+
+    @JsonProperty("date")
+    private LocalDate date;
 
     @JsonProperty("derivedStartDate")
     private LocalDate derivedStartDate;
@@ -69,11 +76,23 @@ public class WorkPackage extends BaseResource {
     @JsonProperty("derivedPercentageDone")
     private Integer derivedPercentageDone;
 
+    @JsonProperty("laborCosts")
+    private String laborCosts;
+
+    @JsonProperty("materialCosts")
+    private String materialCosts;
+
+    @JsonProperty("overallCosts")
+    private String overallCosts;
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
+
+    @JsonProperty("_embedded")
+    private Map<String, Object> embedded;
 
     public Long getId() {
         return id;
@@ -81,6 +100,14 @@ public class WorkPackage extends BaseResource {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getLockVersion() {
+        return lockVersion;
+    }
+
+    public void setLockVersion(Integer lockVersion) {
+        this.lockVersion = lockVersion;
     }
 
     public String getSubject() {
@@ -129,6 +156,14 @@ public class WorkPackage extends BaseResource {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalDate getDerivedStartDate() {
@@ -203,6 +238,38 @@ public class WorkPackage extends BaseResource {
         this.derivedPercentageDone = derivedPercentageDone;
     }
 
+    public Duration getDerivedRemainingTime() {
+        return derivedRemainingTime;
+    }
+
+    public void setDerivedRemainingTime(Duration derivedRemainingTime) {
+        this.derivedRemainingTime = derivedRemainingTime;
+    }
+
+    public String getLaborCosts() {
+        return laborCosts;
+    }
+
+    public void setLaborCosts(String laborCosts) {
+        this.laborCosts = laborCosts;
+    }
+
+    public String getMaterialCosts() {
+        return materialCosts;
+    }
+
+    public void setMaterialCosts(String materialCosts) {
+        this.materialCosts = materialCosts;
+    }
+
+    public String getOverallCosts() {
+        return overallCosts;
+    }
+
+    public void setOverallCosts(String overallCosts) {
+        this.overallCosts = overallCosts;
+    }
+
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
@@ -217,5 +284,13 @@ public class WorkPackage extends BaseResource {
 
     public void setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Map<String, Object> getEmbedded() {
+        return embedded;
+    }
+
+    public void setEmbedded(Map<String, Object> embedded) {
+        this.embedded = embedded;
     }
 }
