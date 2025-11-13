@@ -1,12 +1,16 @@
 package com.github.jpmand.openproject.client.api;
 
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
+import com.github.jpmand.openproject.client.core.model.SortEnum;
 import com.github.jpmand.openproject.client.core.model.WorkPackage;
 import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
+import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,6 +48,11 @@ class WorkPackageServiceTest {
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages", 
             Integer.class, Integer.class, String.class, String.class, 
             String.class, Boolean.class, String.class, String.class);
+        // New type-safe methods
+        OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
+            Integer.class, Integer.class, List.class, List.class, List.class);
+        OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
+            Integer.class, Integer.class, FilterObject.class, String.class, SortEnum.class);
     }
 
     @Test
