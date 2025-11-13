@@ -1,10 +1,8 @@
-package com.github.jpmand.openproject.client.core.model.base;
+package com.github.jpmand.openproject.client.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder(alphabetic = false)
-public class Formattable {
+public class OPFormattableText {
 
     @JsonProperty("format")
     private String format;
