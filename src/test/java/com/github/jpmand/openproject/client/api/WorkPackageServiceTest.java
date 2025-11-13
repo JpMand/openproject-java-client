@@ -11,6 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -48,9 +49,9 @@ class WorkPackageServiceTest {
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages", 
             Integer.class, Integer.class, String.class, String.class, 
             String.class, Boolean.class, String.class, String.class);
-        // New type-safe methods
+        // New type-safe methods with Map for sort
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
-            Integer.class, Integer.class, List.class, List.class, List.class);
+            Integer.class, Integer.class, List.class, Map.class);
         OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
             Integer.class, Integer.class, FilterObject.class, String.class, SortEnum.class);
     }

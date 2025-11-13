@@ -13,11 +13,13 @@ import java.util.List;
 /**
  * Retrofit service interface for OpenProject Work Package API endpoints.
  * <p>
- * Provides methods to interact with work packages including listing, filtering, and retrieval.
+ * <strong>Internal Use Only:</strong> This interface is used internally by {@link com.github.jpmand.openproject.client.api.OpenProjectClient}.
+ * External code should not use this interface directly. Instead, use the convenience methods provided by OpenProjectClient.
  * </p>
  * 
  * @see WorkPackage
  * @see FilterObject
+ * @see com.github.jpmand.openproject.client.api.OpenProjectClient
  */
 public interface WorkPackageService {
 

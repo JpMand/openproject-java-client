@@ -6,7 +6,9 @@ import com.github.jpmand.openproject.client.core.model.filters.FilterOperator;
 import com.github.jpmand.openproject.client.core.model.filters.FilterValue;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,24 +51,15 @@ class QueryBuilderTest {
     }
 
     @Test
-    void testBuildSortJsonWithMultipleFields() {
-        List<String> fields = List.of("status", "id");
-        List<SortEnum> directions = List.of(SortEnum.DESC, SortEnum.ASC);
+    void testBuildSortJsonWithMultipleFieldsUsingMap() {
+        Map<String, SortEnum> sortMap = new LinkedHashMap<>();
+        sortMap.put("status", SortEnum.DESC);
+        sortMap.put("id", SortEnum.ASC);
         
-        String json = QueryBuilder.buildSortJson(fields, directions);
+        String json = QueryBuilder.buildSortJson(sortMap);
         
         assertNotNull(json);
         assertEquals("[[\"status\",\"desc\"],[\"id\",\"asc\"]]", json);
-    }
-
-    @Test
-    void testBuildSortJsonThrowsExceptionWhenSizesMismatch() {
-        List<String> fields = List.of("id", "status");
-        List<SortEnum> directions = List.of(SortEnum.ASC); // Different size
-        
-        assertThrows(IllegalArgumentException.class, () -> {
-            QueryBuilder.buildSortJson(fields, directions);
-        });
     }
 
     @Test

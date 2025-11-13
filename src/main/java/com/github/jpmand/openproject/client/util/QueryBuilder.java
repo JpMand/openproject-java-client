@@ -7,7 +7,9 @@ import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Utility class for building OpenProject API query parameters.
@@ -25,11 +27,11 @@ import java.util.List;
  * // Build sort JSON
  * String sortJson = QueryBuilder.buildSortJson("id", SortEnum.ASC);
  * 
- * // Build multi-field sort JSON
- * String multiSort = QueryBuilder.buildSortJson(
- *     List.of("status", "id"),
- *     List.of(SortEnum.DESC, SortEnum.ASC)
- * );
+ * // Build multi-field sort JSON using Map
+ * Map<String, SortEnum> sortMap = new LinkedHashMap<>();
+ * sortMap.put("status", SortEnum.DESC);
+ * sortMap.put("id", SortEnum.ASC);
+ * String multiSort = QueryBuilder.buildSortJson(sortMap);
  * }</pre>
  * 
  * @see FilterObject
@@ -75,27 +77,24 @@ public class QueryBuilder {
      * @throws RuntimeException if JSON serialization fails
      */
     public static String buildSortJson(String field, SortEnum direction) {
-        return buildSortJson(List.of(field), List.of(direction));
+        Map<String, SortEnum> sortMap = new LinkedHashMap<>();
+        sortMap.put(field, direction);
+        return buildSortJson(sortMap);
     }
     
     /**
-     * Builds a sort JSON string for multiple fields.
+     * Builds a sort JSON string for multiple fields using a Map.
+     * Use LinkedHashMap to preserve insertion order if order matters.
      * 
-     * @param fields the list of field names to sort by
-     * @param directions the list of sort directions (must match the size of fields)
+     * @param sortFields map of field names to sort directions
      * @return JSON string representation of the sort criteria
-     * @throws IllegalArgumentException if fields and directions lists have different sizes
      * @throws RuntimeException if JSON serialization fails
      */
-    public static String buildSortJson(List<String> fields, List<SortEnum> directions) {
-        if (fields.size() != directions.size()) {
-            throw new IllegalArgumentException("Fields and directions lists must have the same size");
-        }
-        
+    public static String buildSortJson(Map<String, SortEnum> sortFields) {
         List<List<String>> sortCriteria = new ArrayList<>();
-        for (int i = 0; i < fields.size(); i++) {
-            sortCriteria.add(List.of(fields.get(i), directions.get(i).name().toLowerCase()));
-        }
+        sortFields.forEach((field, direction) -> 
+            sortCriteria.add(List.of(field, direction.name().toLowerCase()))
+        );
         
         try {
             return objectMapper.writeValueAsString(sortCriteria);

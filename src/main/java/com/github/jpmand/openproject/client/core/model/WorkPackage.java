@@ -11,6 +11,21 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
+/**
+ * Represents a work package in OpenProject.
+ * <p>
+ * A work package is the fundamental unit of work in OpenProject, similar to tasks or issues
+ * in other project management systems. It can represent various types of work items including
+ * tasks, milestones, phases, and more depending on the configured type.
+ * </p>
+ * <p>
+ * Work packages contain information about scheduling (start/due dates), effort estimation,
+ * progress tracking, costs, and relationships to other work packages and resources.
+ * </p>
+ * 
+ * @see com.github.jpmand.openproject.client.api.OpenProjectClient#getWorkPackage(long)
+ * @see com.github.jpmand.openproject.client.api.OpenProjectClient#listWorkPackages()
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WorkPackage extends BaseResource {
 

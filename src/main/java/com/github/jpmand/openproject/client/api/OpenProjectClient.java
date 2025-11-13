@@ -16,6 +16,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Main client for interacting with the OpenProject API.
@@ -147,25 +148,22 @@ public class OpenProjectClient {
      * @param offset the page number (starting from 1)
      * @param pageSize the number of elements per page
      * @param filters list of filter objects to apply
-     * @param sortFields list of field names to sort by
-     * @param sortDirections list of sort directions (must match sortFields size)
+     * @param sortFields map of field names to sort directions (use LinkedHashMap to preserve order)
      * @return the paginated work package collection
      * @throws IOException if the request fails
-     * @throws IllegalArgumentException if sortFields and sortDirections sizes don't match
      */
     public PagedCollectionResource<WorkPackage> listWorkPackages(
             Integer offset,
             Integer pageSize,
             List<FilterObject> filters,
-            List<String> sortFields,
-            List<SortEnum> sortDirections) throws IOException {
+            Map<String, SortEnum> sortFields) throws IOException {
         
         String filtersJson = filters != null && !filters.isEmpty() 
                 ? QueryBuilder.buildFilterJson(filters) 
                 : null;
         
         String sortByJson = sortFields != null && !sortFields.isEmpty() 
-                ? QueryBuilder.buildSortJson(sortFields, sortDirections) 
+                ? QueryBuilder.buildSortJson(sortFields) 
                 : null;
         
         return listWorkPackages(offset, pageSize, filtersJson, sortByJson, null, null, null, null);
@@ -190,10 +188,11 @@ public class OpenProjectClient {
             SortEnum sortDirection) throws IOException {
         
         List<FilterObject> filters = filter != null ? List.of(filter) : null;
-        List<String> sortFields = sortField != null ? List.of(sortField) : null;
-        List<SortEnum> sortDirections = sortDirection != null ? List.of(sortDirection) : null;
+        Map<String, SortEnum> sortFields = sortField != null && sortDirection != null 
+                ? Map.of(sortField, sortDirection) 
+                : null;
         
-        return listWorkPackages(offset, pageSize, filters, sortFields, sortDirections);
+        return listWorkPackages(offset, pageSize, filters, sortFields);
     }
 }
 
