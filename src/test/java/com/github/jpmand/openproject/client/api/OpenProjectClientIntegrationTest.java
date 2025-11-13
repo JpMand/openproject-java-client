@@ -1,11 +1,10 @@
 package com.github.jpmand.openproject.client.api;
 
 import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
-import com.github.jpmand.openproject.client.auth.BasicAuth;
 import com.github.jpmand.openproject.client.auth.BearerTokenAuth;
-import com.github.jpmand.openproject.client.http.HttpClientFactory;
-import com.github.jpmand.openproject.client.http.OkHttpClientFactory;
+import okhttp3.OkHttpClient;
 import org.junit.jupiter.api.Test;
+import retrofit2.Retrofit;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -24,22 +23,25 @@ class OpenProjectClientIntegrationTest {
     }
 
     @Test
-    void testCreateClientWithBasicAuth() {
-        OpenProjectClient client = new OpenProjectClient(BASE_URL, new BasicAuth("username", "password"));
-        assertNotNull(client, "Client should be created with basic auth");
-    }
-
-    @Test
     void testCreateClientWithBearerToken() {
         OpenProjectClient client = new OpenProjectClient(BASE_URL, new BearerTokenAuth("jwt-token"));
         assertNotNull(client, "Client should be created with bearer token");
     }
 
     @Test
-    void testCreateClientWithCustomHttpClientFactory() {
-        HttpClientFactory factory = new OkHttpClientFactory(new ApiKeyAuth("test-key"));
-        OpenProjectClient client = new OpenProjectClient(BASE_URL, factory);
-        assertNotNull(client, "Client should be created with custom factory");
+    void testCreateClientWithCustomRetrofit() {
+        // Create custom Retrofit instance for advanced use cases
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new ApiKeyAuth("test-key").getInterceptor())
+                .build();
+        
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(httpClient)
+                .baseUrl(BASE_URL)
+                .build();
+        
+        OpenProjectClient client = new OpenProjectClient(retrofit);
+        assertNotNull(client, "Client should be created with custom Retrofit");
     }
 
     @Test

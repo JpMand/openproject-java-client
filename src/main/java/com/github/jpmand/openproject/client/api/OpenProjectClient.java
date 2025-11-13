@@ -4,8 +4,6 @@ import com.github.jpmand.openproject.client.api.services.WorkPackageService;
 import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
 import com.github.jpmand.openproject.client.core.model.WorkPackage;
-import com.github.jpmand.openproject.client.http.HttpClientFactory;
-import com.github.jpmand.openproject.client.http.OkHttpClientFactory;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -35,20 +33,7 @@ public class OpenProjectClient {
      * @param authProvider the authentication provider to use
      */
     public OpenProjectClient(String baseUrl, AuthProvider authProvider) {
-        this(baseUrl, new OkHttpClientFactory(authProvider));
-    }
-
-    /**
-     * Creates an OpenProjectClient with a custom HTTP client factory.
-     *
-     * @param baseUrl the base URL of the OpenProject instance
-     * @param clientFactory the HTTP client factory to use
-     */
-    public OpenProjectClient(String baseUrl, HttpClientFactory clientFactory) {
-        this(new Retrofit.Builder()
-                .client(clientFactory.createClient())
-                .baseUrl(baseUrl)
-                .build());
+        this(createRetrofit(baseUrl, authProvider));
     }
 
     /**
@@ -60,8 +45,22 @@ public class OpenProjectClient {
         this.workPackageService = retrofit.create(WorkPackageService.class);
     }
 
+    private static Retrofit createRetrofit(String baseUrl, AuthProvider authProvider) {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        
+        if (authProvider != null) {
+            builder.addInterceptor(authProvider.getInterceptor());
+        }
+        
+        return new Retrofit.Builder()
+                .client(builder.build())
+                .baseUrl(baseUrl)
+                .build();
+    }
+
     public WorkPackage getWorkPackage(long id) throws IOException {
         Call<WorkPackage> call = workPackageService.getWorkPackage(id);
         return call.execute().body();
     }
 }
+

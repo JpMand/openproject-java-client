@@ -5,11 +5,12 @@ import okhttp3.OkHttpClient;
 
 /**
  * Default implementation of HttpClientFactory that creates OkHttpClient instances.
+ * This class is package-private as it's an internal implementation detail.
  */
-public class OkHttpClientFactory implements HttpClientFactory {
+class OkHttpClientFactory implements HttpClientFactory {
     private final AuthProvider authProvider;
 
-    public OkHttpClientFactory(AuthProvider authProvider) {
+    OkHttpClientFactory(AuthProvider authProvider) {
         this.authProvider = authProvider;
     }
 

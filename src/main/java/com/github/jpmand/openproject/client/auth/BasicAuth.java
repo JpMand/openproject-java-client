@@ -10,12 +10,14 @@ import java.io.IOException;
 
 /**
  * Authentication provider for HTTP Basic Auth using username and password.
+ * This class is package-private as username/password authentication is no longer allowed in OpenProject.
+ * It's kept for internal use by ApiKeyAuth.
  */
-public class BasicAuth implements AuthProvider {
+class BasicAuth implements AuthProvider {
     private final String username;
     private final String password;
 
-    public BasicAuth(String username, String password) {
+    BasicAuth(String username, String password) {
         this.username = username;
         this.password = password;
     }
