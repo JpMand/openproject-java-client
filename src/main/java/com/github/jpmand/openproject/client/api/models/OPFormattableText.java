@@ -36,4 +36,14 @@ public class OPFormattableText {
     public void setHtml(String html) {
         this.html = html;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("OPFormattableText{");
+        sb.append("format='").append(format).append('\'');
+        sb.append(", raw='").append(raw).append('\'');
+        sb.append(", html='").append(html).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

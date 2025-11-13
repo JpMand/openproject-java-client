@@ -6,7 +6,7 @@ public enum FilterOperator {
 
     /**
      * are equal to one of the given value(s)
-     *At least one typed value
+     * At least one typed value
      */
     @JsonProperty("=")
     EQUALS("="),
@@ -51,7 +51,7 @@ public enum FilterOperator {
     @JsonProperty("t")
     TODAY("t"),
     @JsonProperty("~")
-    COTAINING_SQL_LIKE("~"),
+    CONTAINING_SQL_LIKE("~"),
     @JsonProperty("!~")
     NOT_CONTAINING_SQL_LIKE("!~"),
     @JsonProperty("o")

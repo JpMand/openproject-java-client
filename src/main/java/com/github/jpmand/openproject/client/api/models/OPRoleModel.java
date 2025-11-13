@@ -59,7 +59,7 @@ public class OPRoleModel extends OPBaseResource {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + getId().hashCode();
+        result = 31 * result + Objects.hashCode(getId());
         result = 31 * result + Objects.hashCode(getName());
         result = 31 * result + Objects.hashCode(getTitle());
         return result;
