@@ -1,9 +1,9 @@
 package com.github.jpmand.openproject.client.api;
 
+import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
 import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
-import com.github.jpmand.openproject.client.core.model.WorkPackage;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -58,8 +58,8 @@ public class OpenProjectClient {
                 .build();
     }
 
-    public WorkPackage getWorkPackage(long id) throws IOException {
-        Call<WorkPackage> call = workPackageService.getWorkPackage(id);
+    public OPWorkPackageModel getWorkPackage(long id) throws IOException {
+        Call<OPWorkPackageModel> call = workPackageService.getWorkPackage(id);
         return call.execute().body();
     }
 }

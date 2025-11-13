@@ -1,10 +1,8 @@
-package com.github.jpmand.openproject.client.core.model.base;
+package com.github.jpmand.openproject.client.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-@JsonPropertyOrder(alphabetic = false)
-public class Formattable {
+public class OPFormattableText {
 
     @JsonProperty("format")
     private String format;
@@ -37,5 +35,15 @@ public class Formattable {
 
     public void setHtml(String html) {
         this.html = html;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("OPFormattableText{");
+        sb.append("format='").append(format).append('\'');
+        sb.append(", raw='").append(raw).append('\'');
+        sb.append(", html='").append(html).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
