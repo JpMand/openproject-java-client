@@ -89,6 +89,7 @@ mvn package -DskipTests
 - Add Javadoc comments for public classes and methods
 - Document authentication methods in AUTHENTICATION.md if adding new auth types
 - Update README.md if adding new major features
+- Update CHANGELOG.md following [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format for all changes
 
 ## Dependencies
 
