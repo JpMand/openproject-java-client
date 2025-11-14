@@ -10,14 +10,14 @@ import java.util.Map;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OPFilterObject {
 
-    @JsonAnySetter
-    @JsonAnyGetter
     private Map<String, OPFilterValue> filterValues = new LinkedHashMap<>();
 
+    @JsonAnyGetter
     public Map<String, OPFilterValue> getFilterValues() {
         return filterValues;
     }
 
+    @JsonAnySetter
     public void setFilterValues(Map<String, OPFilterValue> filterValues) {
         this.filterValues = filterValues;
     }

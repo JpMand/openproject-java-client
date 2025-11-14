@@ -2,6 +2,8 @@ package com.github.jpmand.openproject.client.api.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
+
 public class OPFormattableText {
 
     @JsonProperty("format")
@@ -38,11 +40,26 @@ public class OPFormattableText {
     }
 
     @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof OPFormattableText that)) return false;
+
+        return Objects.equals(getRaw(), that.getRaw()) && Objects.equals(getFormat(), that.getFormat()) && Objects.equals(getHtml(), that.getHtml());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(getRaw());
+        result = 31 * result + Objects.hashCode(getFormat());
+        result = 31 * result + Objects.hashCode(getHtml());
+        return result;
+    }
+
+    @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OPFormattableText{");
         sb.append("format='").append(format).append('\'');
         sb.append(", raw='").append(raw).append('\'');
-        sb.append(", html='").append(html).append('\'');
+        //sb.append(", html='").append(html).append('\'');
         sb.append('}');
         return sb.toString();
     }

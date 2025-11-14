@@ -39,7 +39,7 @@ class WorkPackageIntegrationTest {
         mockServer.start();
         
         String baseUrl = mockServer.url("/").toString();
-        client = new OpenProjectClient(baseUrl, (com.github.jpmand.openproject.client.auth.AuthProvider) null);
+        client = new OpenProjectClient(baseUrl, null);
     }
 
     @AfterEach
