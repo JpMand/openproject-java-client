@@ -30,7 +30,7 @@ class OpenProjectClientIntegrationTest {
 
     @Test
     void testCreateClientWithCustomRetrofit() {
-        // Create custom Retrofit instance for advanced use cases
+        // Create a custom Retrofit instance for advanced use cases
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .addInterceptor(new ApiKeyAuth("test-key").getInterceptor())
                 .build();
@@ -42,12 +42,5 @@ class OpenProjectClientIntegrationTest {
         
         OpenProjectClient client = new OpenProjectClient(retrofit);
         assertNotNull(client, "Client should be created with custom Retrofit");
-    }
-
-    @Test
-    void testBackwardCompatibility() {
-        // Legacy constructor still works
-        OpenProjectClient client = new OpenProjectClient(BASE_URL, "api-token");
-        assertNotNull(client, "Client should be created with legacy constructor");
     }
 }

@@ -34,18 +34,6 @@ public class OpenProjectClient {
     private final WorkPackageService workPackageService;
 
     /**
-     * Creates an OpenProjectClient with API key authentication.
-     *
-     * @param baseUrl the base URL of the OpenProject instance
-     * @param apiToken the API token for authentication
-     * @deprecated Use {@link #OpenProjectClient(String, AuthProvider)} or {@link #OpenProjectClient(Retrofit)} instead
-     */
-    @Deprecated
-    public OpenProjectClient(final String baseUrl, final String apiToken) {
-        this(baseUrl, new ApiKeyAuth(apiToken));
-    }
-
-    /**
      * Creates an OpenProjectClient with the specified authentication provider.
      *
      * @param baseUrl the base URL of the OpenProject instance

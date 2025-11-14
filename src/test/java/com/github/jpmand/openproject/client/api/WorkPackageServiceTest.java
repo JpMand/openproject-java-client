@@ -5,6 +5,7 @@ import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
+import com.github.jpmand.openproject.client.auth.AuthProvider;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
@@ -35,13 +36,13 @@ class WorkPackageServiceTest {
 
     @Test
     void testClientCreationWithoutAuth() {
-        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (String) null);
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (AuthProvider) null);
         assertNotNull(client);
     }
 
     @Test
     void testClientMethodsExist() throws Exception {
-        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (String) null);
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (AuthProvider) null);
         
         // Verify all methods exist and return proper types
         assertNotNull(client.getClass().getMethod("getWorkPackage", long.class));

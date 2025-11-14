@@ -7,7 +7,6 @@ import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.models.enums.FilterOperator;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterValue;
-import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -33,7 +32,6 @@ class WorkPackageIntegrationTest {
 
     private MockWebServer mockServer;
     private OpenProjectClient client;
-    private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() throws IOException {
@@ -42,7 +40,6 @@ class WorkPackageIntegrationTest {
         
         String baseUrl = mockServer.url("/").toString();
         client = new OpenProjectClient(baseUrl, (com.github.jpmand.openproject.client.auth.AuthProvider) null);
-        objectMapper = HalObjectMapper.get();
     }
 
     @AfterEach
@@ -79,10 +76,10 @@ class WorkPackageIntegrationTest {
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
 
-        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(20, 5);
+        AbstractOPCollection<OPWorkPackageModel> result = client.listWorkPackages(20, 5);
 
         assertNotNull(result);
-        assertEquals(26L, result.getTotal());
+        assertEquals(26, result.getTotal());
         
         // Verify the request and query parameters
         RecordedRequest request = mockServer.takeRequest();
@@ -105,7 +102,7 @@ class WorkPackageIntegrationTest {
         Map<String, SortEnum> sortFields = new LinkedHashMap<>();
         sortFields.put("id", SortEnum.ASC);
         
-        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<OPWorkPackageModel> result = client.listWorkPackages(
                 1, 10, List.of(statusFilter), sortFields);
 
         assertNotNull(result);
@@ -145,7 +142,7 @@ class WorkPackageIntegrationTest {
         sortFields.put("priority", SortEnum.DESC);
         sortFields.put("id", SortEnum.ASC);
         
-        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<OPWorkPackageModel> result = client.listWorkPackages(
                 0, 20, List.of(filter1, filter2), sortFields);
 
         assertNotNull(result);
@@ -176,7 +173,7 @@ class WorkPackageIntegrationTest {
 
         OPFilterObject filter = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
         
-        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<OPWorkPackageModel> result = client.listWorkPackages(
                 0, 20, filter, "id", SortEnum.ASC);
 
         assertNotNull(result);
@@ -217,12 +214,11 @@ class WorkPackageIntegrationTest {
         assertEquals("Organize open source conference", wp.getSubject());
         assertEquals(83, wp.getDerivedPercentageDone());
     }
-    }
 
     @Test
     void testQueryParametersAreUrlEncoded() throws Exception {
         String json = loadTestResource("/workpackage_collection.json");
-        
+
         mockServer.enqueue(new MockResponse()
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
@@ -230,18 +226,19 @@ class WorkPackageIntegrationTest {
         // Use raw JSON strings to test encoding
         String filters = "[{\"status\":{\"operator\":\"o\",\"values\":null}}]";
         String sortBy = "[[\"id\",\"asc\"]]";
-        
+
         client.listWorkPackages(0, 20, filters, sortBy, null, false, null, null);
-        
+
         // Verify the request
         RecordedRequest request = mockServer.takeRequest();
         String path = request.getPath();
-        
+
         // Path should contain URL-encoded characters
+        assertNotNull(path, "Request path should not be null");
         assertFalse(path.contains("[{"), "Characters should be URL encoded");
         assertTrue(path.contains("filters="), "Should have filters parameter");
         assertTrue(path.contains("sortBy="), "Should have sortBy parameter");
-        
+
         // Decode and verify content
         String decodedPath = URLDecoder.decode(path, StandardCharsets.UTF_8);
         assertTrue(decodedPath.contains(filters));

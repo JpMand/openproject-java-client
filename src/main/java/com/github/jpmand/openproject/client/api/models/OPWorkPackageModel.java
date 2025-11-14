@@ -49,7 +49,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     public static final String WATCHERS_LINK = "watchers";
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
 
     @JsonProperty("subject")
     private String subject;
@@ -109,7 +109,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     public OPWorkPackageModel() {
     }
 
-    public OPWorkPackageModel(Integer id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.subject = subject;
         this.description = description;
@@ -130,11 +130,11 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
