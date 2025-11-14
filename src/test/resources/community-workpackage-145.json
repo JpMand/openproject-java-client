@@ -1,0 +1,304 @@
+{
+  "derivedStartDate": null,
+  "derivedDueDate": null,
+  "_embedded": {
+    "attachments": {
+      "_type": "Collection",
+      "total": 0,
+      "count": 0,
+      "_embedded": {
+        "elements": []
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/145/attachments"
+        }
+      }
+    },
+    "relations": {
+      "_type": "Collection",
+      "total": 0,
+      "count": 0,
+      "_embedded": {
+        "elements": []
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/work_packages/145/relations"
+        }
+      }
+    },
+    "type": {
+      "_type": "Type",
+      "id": 4,
+      "name": "Task",
+      "color": "#31C3F7",
+      "position": 4,
+      "isDefault": true,
+      "isMilestone": false,
+      "createdAt": "2013-11-13T13:11:21.933Z",
+      "updatedAt": "2025-10-10T13:58:25.141Z",
+      "_links": {
+        "self": {
+          "href": "/api/v3/types/4",
+          "title": "Task"
+        }
+      }
+    },
+    "priority": {
+      "_type": "Priority",
+      "id": 4,
+      "name": "Medium",
+      "position": 2,
+      "color": "#51CF66",
+      "isDefault": true,
+      "isActive": true,
+      "_links": {
+        "self": {
+          "href": "/api/v3/priorities/4",
+          "title": "Medium"
+        }
+      }
+    },
+    "project": {
+      "_type": "Project",
+      "id": 14,
+      "identifier": "openproject",
+      "name": "OpenProject",
+      "active": true,
+      "public": true,
+      "description": {
+        "format": "markdown",
+        "raw": "**Welcome to the public development project of OpenProject.**\n\n[**OpenProject**](https://www.openproject.org/) is free and open source project management software, licensed under GNU GPL v3. It supports classic, agile as well as hybrid project management. The source code is publicly available on [GitHub](https://github.com/opf/openproject).\n\nWhat do you want to do?\n\n*   [Report a bug](https://community.openproject.org/projects/openproject/work_packages/new?query_id=2649&type=1)\n*   [Open a new feature request](https://community.openproject.org/projects/openproject/work_packages/new?query_id=180&type=6)\n*   [View or post in OpenProject Community forum](https://community.openproject.org/projects/openproject/forums)\n*   [View the release plan](https://community.openproject.org/projects/openproject/work_packages?query_id=918)\n\nThe Community edition can be downloaded and installed for free. For enterprise customers, OpenProject offers a hosted cloud edition as well as an on-premises edition with support, as well premium features, and additional security features.\n\nPlease [contact us](https://www.openproject.org/contact/) if you have any questions. We are always happy to help!",
+        "html": "<p class=\"op-uc-p\"><strong>Welcome to the public development project of OpenProject.</strong></p>\n<p class=\"op-uc-p\"><a href=\"https://www.openproject.org/\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\"><strong>OpenProject</strong></a> is free and open source project management software, licensed under GNU GPL v3. It supports classic, agile as well as hybrid project management. The source code is publicly available on <a href=\"https://github.com/opf/openproject\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">GitHub</a>.</p>\n<p class=\"op-uc-p\">What do you want to do?</p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\"><a href=\"https://community.openproject.org/projects/openproject/work_packages/new?query_id=2649&amp;type=1\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">Report a bug</a></li>\n<li class=\"op-uc-list--item\"><a href=\"https://community.openproject.org/projects/openproject/work_packages/new?query_id=180&amp;type=6\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">Open a new feature request</a></li>\n<li class=\"op-uc-list--item\"><a href=\"https://community.openproject.org/projects/openproject/forums\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">View or post in OpenProject Community forum</a></li>\n<li class=\"op-uc-list--item\"><a href=\"https://community.openproject.org/projects/openproject/work_packages?query_id=918\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">View the release plan</a></li>\n</ul>\n<p class=\"op-uc-p\">The Community edition can be downloaded and installed for free. For enterprise customers, OpenProject offers a hosted cloud edition as well as an on-premises edition with support, as well premium features, and additional security features.</p>\n<p class=\"op-uc-p\">Please <a href=\"https://www.openproject.org/contact/\" rel=\"noopener noreferrer\" target=\"_top\" class=\"op-uc-link\">contact us</a> if you have any questions. We are always happy to help!</p>"
+      },
+      "createdAt": "2012-09-21T13:37:39.774Z",
+      "updatedAt": "2025-11-07T06:50:11.790Z",
+      "statusExplanation": {
+        "format": "markdown",
+        "raw": "",
+        "html": ""
+      },
+      "_links": {
+        "self": {
+          "href": "/api/v3/projects/14",
+          "title": "OpenProject"
+        },
+        "workPackages": {
+          "href": "/api/v3/projects/14/work_packages"
+        },
+        "storages": [
+          {
+            "href": "/api/v3/storages/34",
+            "title": "nextcloud.openproject.org"
+          }
+        ],
+        "categories": {
+          "href": "/api/v3/projects/14/categories"
+        },
+        "versions": {
+          "href": "/api/v3/projects/14/versions"
+        },
+        "types": {
+          "href": "/api/v3/projects/14/types"
+        },
+        "schema": {
+          "href": "/api/v3/projects/schema"
+        },
+        "status": {
+          "href": "/api/v3/project_statuses/on_track",
+          "title": "On track"
+        },
+        "ancestors": [],
+        "projectStorages": {
+          "href": "/api/v3/project_storages?filters=%5B%7B%22projectId%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%2214%22%5D%7D%7D%5D"
+        },
+        "parent": {
+          "href": null
+        }
+      }
+    },
+    "status": {
+      "_type": "Status",
+      "id": 6,
+      "name": "rejected",
+      "isClosed": true,
+      "color": "#FFA8A8",
+      "isDefault": false,
+      "isReadonly": true,
+      "excludedFromTotals": false,
+      "defaultDoneRatio": 0,
+      "position": 39,
+      "_links": {
+        "self": {
+          "href": "/api/v3/statuses/6",
+          "title": "rejected"
+        }
+      }
+    },
+    "author": {
+      "_type": "User",
+      "id": 5,
+      "name": "Birthe Lindenthal",
+      "avatar": "https://community.openproject.org/users/5/avatar",
+      "_links": {
+        "self": {
+          "href": "/api/v3/users/5",
+          "title": "Birthe Lindenthal"
+        },
+        "showUser": {
+          "href": "/users/5",
+          "type": "text/html"
+        }
+      }
+    },
+    "customActions": [
+      {
+        "_type": "CustomAction",
+        "name": "Assign to me",
+        "description": "Assign this ticket to you",
+        "_links": {
+          "executeImmediately": {
+            "href": "/api/v3/custom_actions/141/execute",
+            "title": "Execute Assign to me",
+            "method": "post"
+          },
+          "self": {
+            "href": "/api/v3/custom_actions/141",
+            "title": "Assign to me"
+          }
+        }
+      }
+    ]
+  },
+  "_type": "WorkPackage",
+  "id": 145,
+  "lockVersion": 13,
+  "subject": "Rails3: rake db:migrate:plugins fehlt und wurde nicht korrekt deprecated ",
+  "description": {
+    "format": "markdown",
+    "raw": "Ticket from Holger from dev.:\n\nIn https://github.com/finnlabs/chiliproject/commit/9fda344c7ee61df0d52e6e0cedbfc84923bd38a8 wurde der rake task `db:migrate_plugins` deprecated, nicht allerdings `db:migrate:plugins`, der von Chef verwendet wird und der (bisher) kanonische rake Task dafür war.\n\n`db:migrate:plugins` funktioniert gar nicht mehr, was zu ein Chef Deployment derzeit unmöglich macht",
+    "html": "<p class=\"op-uc-p\">Ticket from Holger from dev.:</p>\n<p class=\"op-uc-p\">In <a href=\"https://github.com/finnlabs/chiliproject/commit/9fda344c7ee61df0d52e6e0cedbfc84923bd38a8\" class=\"op-uc-link\" rel=\"noopener noreferrer\" target=\"_top\">https://github.com/finnlabs/chiliproject/commit/9fda344c7ee61df0d52e6e0cedbfc84923bd38a8</a> wurde der rake task <code class=\"op-uc-code\">db:migrate_plugins</code> deprecated, nicht allerdings <code class=\"op-uc-code\">db:migrate:plugins</code>, der von Chef verwendet wird und der (bisher) kanonische rake Task dafür war.</p>\n<p class=\"op-uc-p\"><code class=\"op-uc-code\">db:migrate:plugins</code> funktioniert gar nicht mehr, was zu ein Chef Deployment derzeit unmöglich macht</p>"
+  },
+  "scheduleManually": true,
+  "startDate": "2012-10-19",
+  "dueDate": null,
+  "estimatedTime": null,
+  "derivedEstimatedTime": null,
+  "derivedRemainingTime": null,
+  "duration": null,
+  "ignoreNonWorkingDays": true,
+  "percentageDone": null,
+  "derivedPercentageDone": null,
+  "createdAt": "2012-10-19T14:10:42.135Z",
+  "updatedAt": "2025-03-10T15:04:02.884Z",
+  "readonly": true,
+  "customField123": null,
+  "customField124": null,
+  "customField114": null,
+  "customField130": null,
+  "customField354": null,
+  "customField108": null,
+  "customField134": null,
+  "customField387": null,
+  "_links": {
+    "attachments": {
+      "href": "/api/v3/work_packages/145/attachments"
+    },
+    "prepareAttachment": {
+      "href": "/api/v3/work_packages/145/attachments/prepare",
+      "method": "post"
+    },
+    "fileLinks": {
+      "href": "/api/v3/work_packages/145/file_links"
+    },
+    "schema": {
+      "href": "/api/v3/work_packages/schemas/14-4"
+    },
+    "availableRelationCandidates": {
+      "href": "/api/v3/work_packages/145/available_relation_candidates",
+      "title": "Potential work packages to relate to"
+    },
+    "activities": {
+      "href": "/api/v3/work_packages/145/activities"
+    },
+    "relations": {
+      "href": "/api/v3/work_packages/145/relations"
+    },
+    "previewMarkup": {
+      "href": "/api/v3/render/markdown?context=/api/v3/work_packages/145",
+      "method": "post"
+    },
+    "category": {
+      "href": null
+    },
+    "type": {
+      "href": "/api/v3/types/4",
+      "title": "Task"
+    },
+    "priority": {
+      "href": "/api/v3/priorities/4",
+      "title": "Medium"
+    },
+    "project": {
+      "href": "/api/v3/projects/14",
+      "title": "OpenProject"
+    },
+    "projectPhaseDefinition": {
+      "href": null,
+      "title": null
+    },
+    "status": {
+      "href": "/api/v3/statuses/6",
+      "title": "rejected"
+    },
+    "author": {
+      "href": "/api/v3/users/5",
+      "title": "Birthe Lindenthal"
+    },
+    "responsible": {
+      "href": null
+    },
+    "assignee": {
+      "href": null
+    },
+    "version": {
+      "href": null
+    },
+    "github": {
+      "href": "/work_packages/145/tabs/github",
+      "title": "github"
+    },
+    "github_pull_requests": {
+      "href": "/api/v3/work_packages/145/github_pull_requests",
+      "title": "GitHub pull requests"
+    },
+    "gitlab": {
+      "href": "/work_packages/145/tabs/gitlab",
+      "title": "gitlab"
+    },
+    "gitlab_merge_requests": {
+      "href": "/api/v3/work_packages/145/gitlab_merge_requests",
+      "title": "Gitlab merge requests"
+    },
+    "gitlab_issues": {
+      "href": "/api/v3/work_packages/145/gitlab_issues",
+      "title": "Gitlab Issues"
+    },
+    "self": {
+      "href": "/api/v3/work_packages/145",
+      "title": "Rails3: rake db:migrate:plugins fehlt und wurde nicht korrekt deprecated "
+    },
+    "ancestors": [],
+    "parent": {
+      "href": null,
+      "title": null
+    },
+    "customActions": [
+      {
+        "href": "/api/v3/custom_actions/141",
+        "title": "Assign to me"
+      }
+    ]
+  }
+}

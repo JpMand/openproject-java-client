@@ -49,7 +49,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     public static final String WATCHERS_LINK = "watchers";
 
     @JsonProperty("id")
-    private Integer id;
+    private Long id;
 
     @JsonProperty("subject")
     private String subject;
@@ -60,7 +60,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     @JsonProperty("scheduleManually")
     private Boolean scheduleManually;
 
-    @JsonProperty("readOnly")
+    @JsonProperty("readonly")
     private Boolean readOnly;
 
     @JsonProperty("startDate")
@@ -87,6 +87,10 @@ public class OPWorkPackageModel extends OPBaseResource {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Duration derivedEstimatedTime;
 
+    @JsonProperty("derivedRemainingTime")
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
+    private Duration derivedRemainingTime;
+
     @JsonProperty("ignoreNonWorkingDays")
     private Boolean ignoreNonWorkingDays;
 
@@ -109,7 +113,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     public OPWorkPackageModel() {
     }
 
-    public OPWorkPackageModel(Integer id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.subject = subject;
         this.description = description;
@@ -130,11 +134,11 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -226,6 +230,14 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.derivedEstimatedTime = derivedEstimatedTime;
     }
 
+    public Duration getDerivedRemainingTime() {
+        return derivedRemainingTime;
+    }
+
+    public void setDerivedRemainingTime(Duration derivedRemainingTime) {
+        this.derivedRemainingTime = derivedRemainingTime;
+    }
+
     public Boolean getIgnoreNonWorkingDays() {
         return ignoreNonWorkingDays;
     }
@@ -279,13 +291,30 @@ public class OPWorkPackageModel extends OPBaseResource {
         if (!(o instanceof OPWorkPackageModel that)) return false;
         if (!super.equals(o)) return false;
 
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getSubject(), that.getSubject()) && Objects.equals(getDescription(), that.getDescription()) && Objects.equals(getScheduleManually(), that.getScheduleManually()) && Objects.equals(getReadOnly(), that.getReadOnly()) && Objects.equals(getStartDate(), that.getStartDate()) && Objects.equals(getDueDate(), that.getDueDate()) && Objects.equals(getDerivedStartDate(), that.getDerivedStartDate()) && Objects.equals(getDerivedDueDate(), that.getDerivedDueDate()) && Objects.equals(getDuration(), that.getDuration()) && Objects.equals(getEstimatedTime(), that.getEstimatedTime()) && Objects.equals(getDerivedEstimatedTime(), that.getDerivedEstimatedTime()) && Objects.equals(getIgnoreNonWorkingDays(), that.getIgnoreNonWorkingDays()) && Objects.equals(getSpentTime(), that.getSpentTime()) && Objects.equals(getPercentageDone(), that.getPercentageDone()) && Objects.equals(getDerivedPercentageDone(), that.getDerivedPercentageDone()) && Objects.equals(getCreatedAt(), that.getCreatedAt()) && Objects.equals(getUpdatedAt(), that.getUpdatedAt());
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getSubject(), that.getSubject()) &&
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getScheduleManually(), that.getScheduleManually()) &&
+                Objects.equals(getReadOnly(), that.getReadOnly()) &&
+                Objects.equals(getStartDate(), that.getStartDate()) &&
+                Objects.equals(getDueDate(), that.getDueDate()) &&
+                Objects.equals(getDerivedStartDate(), that.getDerivedStartDate()) &&
+                Objects.equals(getDerivedDueDate(), that.getDerivedDueDate()) &&
+                Objects.equals(getDuration(), that.getDuration()) &&
+                Objects.equals(getEstimatedTime(), that.getEstimatedTime()) &&
+                Objects.equals(getDerivedEstimatedTime(), that.getDerivedEstimatedTime()) &&
+                Objects.equals(getDerivedRemainingTime(), that.getDerivedRemainingTime()) &&
+                Objects.equals(getIgnoreNonWorkingDays(), that.getIgnoreNonWorkingDays()) &&
+                Objects.equals(getSpentTime(), that.getSpentTime()) &&
+                Objects.equals(getPercentageDone(), that.getPercentageDone()) &&
+                Objects.equals(getDerivedPercentageDone(), that.getDerivedPercentageDone()) &&
+                Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
+                Objects.equals(getUpdatedAt(), that.getUpdatedAt());
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + Objects.hashCode(getId());
+        int result = Objects.hashCode(getId());
         result = 31 * result + Objects.hashCode(getSubject());
         result = 31 * result + Objects.hashCode(getDescription());
         result = 31 * result + Objects.hashCode(getScheduleManually());
@@ -297,6 +326,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getDuration());
         result = 31 * result + Objects.hashCode(getEstimatedTime());
         result = 31 * result + Objects.hashCode(getDerivedEstimatedTime());
+        result = 31 * result + Objects.hashCode(getDerivedRemainingTime());
         result = 31 * result + Objects.hashCode(getIgnoreNonWorkingDays());
         result = 31 * result + Objects.hashCode(getSpentTime());
         result = 31 * result + Objects.hashCode(getPercentageDone());
@@ -321,6 +351,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         sb.append(", duration='").append(getDuration()).append('\'');
         sb.append(", estimatedTime='").append(getEstimatedTime()).append('\'');
         sb.append(", derivedEstimatedTime='").append(getDerivedEstimatedTime()).append('\'');
+        sb.append(", derivedRemainingTime='").append(getDerivedRemainingTime()).append('\'');
         sb.append(", ignoreNonWorkingDays=").append(getIgnoreNonWorkingDays());
         sb.append(", spentTime='").append(getSpentTime()).append('\'');
         sb.append(", percentageDone=").append(getPercentageDone());

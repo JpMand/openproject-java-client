@@ -71,7 +71,7 @@ public class OPBaseResource {
     public boolean equals(Object o) {
         if (!(o instanceof OPBaseResource that)) return false;
 
-        return Objects.equals(getType(), that.getType()) && Objects.equals(getLinks(), that.getLinks());
+        return Objects.equals(getType(), that.getType()) && Objects.deepEquals(getLinks(), that.getLinks());
     }
 
     @Override
