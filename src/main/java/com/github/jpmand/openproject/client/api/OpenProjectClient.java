@@ -1,12 +1,12 @@
 package com.github.jpmand.openproject.client.api;
 
+import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
+import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
+import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
+import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
 import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
-import com.github.jpmand.openproject.client.core.model.SortEnum;
-import com.github.jpmand.openproject.client.core.model.WorkPackage;
-import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
-import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import com.github.jpmand.openproject.client.util.QueryBuilder;
 import okhttp3.OkHttpClient;
@@ -26,8 +26,8 @@ import java.util.Map;
  * </p>
  * 
  * @see WorkPackageService
- * @see FilterObject
- * @see com.github.jpmand.openproject.client.core.model.filters.FilterValue
+ * @see OPFilterObject
+ * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterValue
  */
 public class OpenProjectClient {
 
@@ -85,8 +85,8 @@ public class OpenProjectClient {
      * @return the work package
      * @throws IOException if the request fails
      */
-    public WorkPackage getWorkPackage(long id) throws IOException {
-        Call<WorkPackage> call = workPackageService.getWorkPackage(id);
+    public OPWorkPackageModel getWorkPackage(long id) throws IOException {
+        Call<OPWorkPackageModel> call = workPackageService.getWorkPackage(id);
         return call.execute().body();
     }
 
@@ -96,8 +96,8 @@ public class OpenProjectClient {
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public PagedCollectionResource<WorkPackage> listWorkPackages() throws IOException {
-        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages();
+    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages() throws IOException {
+        Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages();
         return call.execute().body();
     }
 
@@ -109,8 +109,8 @@ public class OpenProjectClient {
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public PagedCollectionResource<WorkPackage> listWorkPackages(Integer pageSize, Integer offset) throws IOException {
-        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages(pageSize, offset);
+    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(Integer pageSize, Integer offset) throws IOException {
+        Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages(pageSize, offset);
         return call.execute().body();
     }
 
@@ -128,7 +128,7 @@ public class OpenProjectClient {
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public PagedCollectionResource<WorkPackage> listWorkPackages(
+    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
             Integer offset,
             Integer pageSize,
             String filters,
@@ -137,7 +137,7 @@ public class OpenProjectClient {
             Boolean showSums,
             String select,
             String timestamps) throws IOException {
-        Call<PagedCollectionResource<WorkPackage>> call = workPackageService.listWorkPackages(
+        Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages(
                 offset, pageSize, filters, sortBy, groupBy, showSums, select, timestamps);
         return call.execute().body();
     }
@@ -152,10 +152,10 @@ public class OpenProjectClient {
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public PagedCollectionResource<WorkPackage> listWorkPackages(
+    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
             Integer offset,
             Integer pageSize,
-            List<FilterObject> filters,
+            List<OPFilterObject> filters,
             Map<String, SortEnum> sortFields) throws IOException {
         
         String filtersJson = filters != null && !filters.isEmpty() 
@@ -180,14 +180,14 @@ public class OpenProjectClient {
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public PagedCollectionResource<WorkPackage> listWorkPackages(
+    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
             Integer offset,
             Integer pageSize,
-            FilterObject filter,
+            OPFilterObject filter,
             String sortField,
             SortEnum sortDirection) throws IOException {
         
-        List<FilterObject> filters = filter != null ? List.of(filter) : null;
+        List<OPFilterObject> filters = filter != null ? List.of(filter) : null;
         Map<String, SortEnum> sortFields = sortField != null && sortDirection != null 
                 ? Map.of(sortField, sortDirection) 
                 : null;
@@ -195,4 +195,3 @@ public class OpenProjectClient {
         return listWorkPackages(offset, pageSize, filters, sortFields);
     }
 }
-

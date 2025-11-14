@@ -1,14 +1,11 @@
 package com.github.jpmand.openproject.client.api.services;
 
-import com.github.jpmand.openproject.client.core.model.WorkPackage;
-import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
-import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
+import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
+import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-import java.util.List;
 
 /**
  * Retrofit service interface for OpenProject Work Package API endpoints.
@@ -17,8 +14,8 @@ import java.util.List;
  * External code should not use this interface directly. Instead, use the convenience methods provided by OpenProjectClient.
  * </p>
  * 
- * @see WorkPackage
- * @see FilterObject
+ * @see OPWorkPackageModel
+ * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterObject
  * @see com.github.jpmand.openproject.client.api.OpenProjectClient
  */
 public interface WorkPackageService {
@@ -30,7 +27,7 @@ public interface WorkPackageService {
      * @return a Call object that can be executed to retrieve the work package
      */
     @GET("/api/v3/work_packages/{id}")
-    Call<WorkPackage> getWorkPackage(@Path("id") Long id);
+    Call<OPWorkPackageModel> getWorkPackage(@Path("id") Long id);
 
     /**
      * Lists all work packages with default parameters.
@@ -38,7 +35,7 @@ public interface WorkPackageService {
      * @return a Call object that can be executed to retrieve the work package collection
      */
     @GET("/api/v3/work_packages")
-    Call<PagedCollectionResource<WorkPackage>> listWorkPackages();
+    Call<AbstractOPCollection<OPWorkPackageModel>> listWorkPackages();
 
     /**
      * Lists work packages with pagination.
@@ -48,7 +45,7 @@ public interface WorkPackageService {
      * @return a Call object that can be executed to retrieve the work package collection
      */
     @GET("/api/v3/work_packages")
-    Call<PagedCollectionResource<WorkPackage>> listWorkPackages(
+    Call<AbstractOPCollection<OPWorkPackageModel>> listWorkPackages(
             @Query("pageSize") Integer pageSize,
             @Query("offset") Integer offset
     );
@@ -67,7 +64,7 @@ public interface WorkPackageService {
      * @return a Call object that can be executed to retrieve the work package collection
      */
     @GET("/api/v3/work_packages")
-    Call<PagedCollectionResource<WorkPackage>> listWorkPackages(
+    Call<AbstractOPCollection<OPWorkPackageModel>> listWorkPackages(
             @Query("offset") Integer offset,
             @Query("pageSize") Integer pageSize,
             @Query("filters") String filters,

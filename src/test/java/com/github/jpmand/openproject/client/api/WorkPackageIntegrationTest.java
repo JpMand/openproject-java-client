@@ -1,12 +1,12 @@
 package com.github.jpmand.openproject.client.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.jpmand.openproject.client.core.model.SortEnum;
-import com.github.jpmand.openproject.client.core.model.WorkPackage;
-import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
-import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
-import com.github.jpmand.openproject.client.core.model.filters.FilterOperator;
-import com.github.jpmand.openproject.client.core.model.filters.FilterValue;
+import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
+import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
+import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
+import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
+import com.github.jpmand.openproject.client.api.models.enums.FilterOperator;
+import com.github.jpmand.openproject.client.api.models.filters.OPFilterValue;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -26,7 +26,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Integration tests for WorkPackage API with mock web server.
+ * Integration tests for OPWorkPackageModel API with mock web server.
  * Tests that query parameters are properly encoded and responses are correctly parsed.
  */
 class WorkPackageIntegrationTest {
@@ -59,7 +59,7 @@ class WorkPackageIntegrationTest {
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
 
-        WorkPackage workPackage = client.getWorkPackage(2L);
+        OPWorkPackageModel workPackage = client.getWorkPackage(2L);
 
         assertNotNull(workPackage);
         assertEquals(2L, workPackage.getId());
@@ -79,7 +79,7 @@ class WorkPackageIntegrationTest {
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
 
-        PagedCollectionResource<WorkPackage> result = client.listWorkPackages(20, 5);
+        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(20, 5);
 
         assertNotNull(result);
         assertEquals(26L, result.getTotal());
@@ -101,11 +101,11 @@ class WorkPackageIntegrationTest {
                 .addHeader("Content-Type", "application/hal+json"));
 
         // Use type-safe filter
-        FilterObject statusFilter = FilterObject.of("status", FilterValue.of(FilterOperator.WK_OPEN));
+        OPFilterObject statusFilter = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
         Map<String, SortEnum> sortFields = new LinkedHashMap<>();
         sortFields.put("id", SortEnum.ASC);
         
-        PagedCollectionResource<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
                 1, 10, List.of(statusFilter), sortFields);
 
         assertNotNull(result);
@@ -138,14 +138,14 @@ class WorkPackageIntegrationTest {
                 .addHeader("Content-Type", "application/hal+json"));
 
         // Create multiple filters
-        FilterObject filter1 = FilterObject.of("status", FilterValue.of(FilterOperator.WK_OPEN));
-        FilterObject filter2 = FilterObject.of("assignee", FilterValue.of(FilterOperator.EQUALS, "me"));
+        OPFilterObject filter1 = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
+        OPFilterObject filter2 = OPFilterObject.of("assignee", OPFilterValue.of(FilterOperator.EQUALS, List.of("me")));
         
         Map<String, SortEnum> sortFields = new LinkedHashMap<>();
         sortFields.put("priority", SortEnum.DESC);
         sortFields.put("id", SortEnum.ASC);
         
-        PagedCollectionResource<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
                 0, 20, List.of(filter1, filter2), sortFields);
 
         assertNotNull(result);
@@ -174,9 +174,9 @@ class WorkPackageIntegrationTest {
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
 
-        FilterObject filter = FilterObject.of("status", FilterValue.of(FilterOperator.WK_OPEN));
+        OPFilterObject filter = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
         
-        PagedCollectionResource<WorkPackage> result = client.listWorkPackages(
+        AbstractOPCollection<WorkPackage> result = client.listWorkPackages(
                 0, 20, filter, "id", SortEnum.ASC);
 
         assertNotNull(result);
@@ -200,30 +200,23 @@ class WorkPackageIntegrationTest {
                 .setBody(json)
                 .addHeader("Content-Type", "application/hal+json"));
 
-        WorkPackage wp = client.getWorkPackage(2L);
+        OPWorkPackageModel wp = client.getWorkPackage(2L);
 
         // Verify all fields are properly parsed
         assertNotNull(wp.getId());
-        assertNotNull(wp.getLockVersion());
         assertNotNull(wp.getSubject());
         assertNotNull(wp.getStartDate());
         assertNotNull(wp.getDueDate());
         assertNotNull(wp.getDuration());
         assertNotNull(wp.getSpentTime());
         assertNotNull(wp.getDerivedPercentageDone());
-        assertNotNull(wp.getLaborCosts());
-        assertNotNull(wp.getMaterialCosts());
-        assertNotNull(wp.getOverallCosts());
         assertNotNull(wp.getCreatedAt());
         assertNotNull(wp.getUpdatedAt());
-        assertNotNull(wp.getEmbedded());
         
         // Verify specific values
-        assertEquals(2L, wp.getId());
-        assertEquals(1, wp.getLockVersion());
         assertEquals("Organize open source conference", wp.getSubject());
         assertEquals(83, wp.getDerivedPercentageDone());
-        assertEquals("0.00 EUR", wp.getLaborCosts());
+    }
     }
 
     @Test

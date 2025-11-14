@@ -1,15 +1,16 @@
 package com.github.jpmand.openproject.client.api;
 
+import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
+import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
+import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
+import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
-import com.github.jpmand.openproject.client.core.model.SortEnum;
-import com.github.jpmand.openproject.client.core.model.WorkPackage;
-import com.github.jpmand.openproject.client.core.model.base.PagedCollectionResource;
-import com.github.jpmand.openproject.client.core.model.filters.FilterObject;
 import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,55 +23,48 @@ import static org.junit.jupiter.api.Assertions.*;
 class WorkPackageServiceTest {
 
     @Test
-    void testServiceInterfaceIsProperlyDefined() {
-        // Verify that WorkPackageService can be created via Retrofit
+    void testServiceInterfaceCreation() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://example.com/")
+                .baseUrl("https://community.openproject.org")
                 .addConverterFactory(JacksonConverterFactory.create(HalObjectMapper.get()))
                 .build();
         
         WorkPackageService service = retrofit.create(WorkPackageService.class);
-        assertNotNull(service, "WorkPackageService should be created");
+        assertNotNull(service);
     }
 
     @Test
-    void testClientCanBeCreatedWithoutAuth() {
-        // Test that client can be created without authentication for public access
-        OpenProjectClient client = new OpenProjectClient("https://example.com", (com.github.jpmand.openproject.client.auth.AuthProvider) null);
-        assertNotNull(client, "Client should be created without authentication");
+    void testClientCreationWithoutAuth() {
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (String) null);
+        assertNotNull(client);
     }
 
     @Test
-    void testClientMethodsExist() throws NoSuchMethodException {
-        // Verify all expected methods exist on the client
-        OpenProjectClient.class.getDeclaredMethod("getWorkPackage", long.class);
-        OpenProjectClient.class.getDeclaredMethod("listWorkPackages");
-        OpenProjectClient.class.getDeclaredMethod("listWorkPackages", Integer.class, Integer.class);
-        OpenProjectClient.class.getDeclaredMethod("listWorkPackages", 
-            Integer.class, Integer.class, String.class, String.class, 
-            String.class, Boolean.class, String.class, String.class);
-        // New type-safe methods with Map for sort
-        OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
-            Integer.class, Integer.class, List.class, Map.class);
-        OpenProjectClient.class.getDeclaredMethod("listWorkPackages",
-            Integer.class, Integer.class, FilterObject.class, String.class, SortEnum.class);
+    void testClientMethodsExist() throws Exception {
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (String) null);
+        
+        // Verify all methods exist and return proper types
+        assertNotNull(client.getClass().getMethod("getWorkPackage", long.class));
+        assertNotNull(client.getClass().getMethod("listWorkPackages"));
+        assertNotNull(client.getClass().getMethod("listWorkPackages", Integer.class, Integer.class));
+        assertNotNull(client.getClass().getMethod("listWorkPackages", Integer.class, Integer.class, String.class, String.class, String.class, Boolean.class, String.class, String.class));
+        assertNotNull(client.getClass().getMethod("listWorkPackages", Integer.class, Integer.class, List.class, Map.class));
+        assertNotNull(client.getClass().getMethod("listWorkPackages", Integer.class, Integer.class, OPFilterObject.class, String.class, SortEnum.class));
     }
 
     @Test
-    void testServiceMethodsReturnCorrectTypes() throws NoSuchMethodException {
-        // Verify service methods return expected types
-        var getMethod = WorkPackageService.class.getDeclaredMethod("getWorkPackage", Long.class);
-        assertTrue(getMethod.getReturnType().getTypeName().contains("Call"));
+    void testServiceMethodReturnTypes() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://community.openproject.org")
+                .addConverterFactory(JacksonConverterFactory.create(HalObjectMapper.get()))
+                .build();
         
-        var listMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages");
-        assertTrue(listMethod.getReturnType().getTypeName().contains("Call"));
+        WorkPackageService service = retrofit.create(WorkPackageService.class);
         
-        var listWithPaginationMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages", Integer.class, Integer.class);
-        assertTrue(listWithPaginationMethod.getReturnType().getTypeName().contains("Call"));
-        
-        var listWithAllParamsMethod = WorkPackageService.class.getDeclaredMethod("listWorkPackages",
-            Integer.class, Integer.class, String.class, String.class,
-            String.class, Boolean.class, String.class, String.class);
-        assertTrue(listWithAllParamsMethod.getReturnType().getTypeName().contains("Call"));
+        // Verify service methods return Call objects
+        assertNotNull(service.getWorkPackage(1L));
+        assertNotNull(service.listWorkPackages());
+        assertNotNull(service.listWorkPackages(10, 0));
+        assertNotNull(service.listWorkPackages(0, 10, null, null, null, null, null, null));
     }
 }
