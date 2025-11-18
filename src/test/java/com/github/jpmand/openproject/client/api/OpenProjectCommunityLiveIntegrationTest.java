@@ -5,6 +5,7 @@ import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterValue;
+import com.github.jpmand.openproject.client.auth.AnonymousAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -36,7 +37,7 @@ public class OpenProjectCommunityLiveIntegrationTest {
     @BeforeEach
     void setUp() {
         String baseUrl = "https://community.openproject.org";
-        client = new OpenProjectClient(baseUrl, null);
+        client = new OpenProjectClient(baseUrl, new AnonymousAuth());
     }
 
     @Test

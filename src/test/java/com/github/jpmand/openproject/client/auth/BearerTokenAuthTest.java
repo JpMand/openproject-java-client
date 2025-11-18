@@ -1,7 +1,11 @@
 package com.github.jpmand.openproject.client.auth;
 
-import okhttp3.*;
-import org.jetbrains.annotations.NotNull;
+import com.github.jpmand.openproject.client.api.OpenProjectClient;
+import okhttp3.mockwebserver.MockResponse;
+import okhttp3.mockwebserver.MockWebServer;
+import okhttp3.mockwebserver.RecordedRequest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,101 +14,55 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BearerTokenAuthTest {
 
+    private MockWebServer mockServer;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        mockServer = new MockWebServer();
+        mockServer.start();
+        mockServer.enqueue(new MockResponse()
+                .setResponseCode(200)
+                .addHeader("Content-Type", "application/hal+json")
+                .setBody("{\"derivedStartDate\":\"2025-06-09\",\"derivedDueDate\":\"2025-06-23\",\"spentTime\":\"PT2H30M\",\"laborCosts\":\"0.00 EUR\",\"materialCosts\":\"0.00 EUR\",\"overallCosts\":\"0.00 EUR\",\"_embedded\":{\"attachments\":{\"_type\":\"Collection\",\"total\":0,\"count\":0,\"_embedded\":{\"elements\":[]},\"_links\":{\"self\":{\"href\":\"/api/v3/work_packages/2/attachments\"}}},\"fileLinks\":{\"_type\":\"Collection\",\"total\":0,\"count\":0,\"_embedded\":{\"elements\":[]},\"_links\":{\"self\":{\"href\":\"/api/v3/work_packages/2/file_links\"}}},\"relations\":{\"_type\":\"Collection\",\"total\":1,\"count\":1,\"_embedded\":{\"elements\":[{\"_type\":\"Relation\",\"id\":2,\"name\":\"follows\",\"type\":\"follows\",\"reverseType\":\"precedes\",\"lag\":null,\"description\":null,\"_links\":{\"self\":{\"href\":\"/api/v3/relations/2\"},\"updateImmediately\":{\"href\":\"/api/v3/relations/2\",\"method\":\"patch\"},\"delete\":{\"href\":\"/api/v3/relations/2\",\"method\":\"delete\",\"title\":\"Remove relation\"},\"from\":{\"href\":\"/api/v3/work_packages/9\",\"title\":\"Conference\"},\"to\":{\"href\":\"/api/v3/work_packages/2\",\"title\":\"Organize open source conference\"}}}]},\"_links\":{\"self\":{\"href\":\"/api/v3/work_packages/2/relations\"}}},\"type\":{\"_type\":\"Type\",\"id\":3,\"name\":\"Phase\",\"color\":\"#FF922B\",\"position\":3,\"isDefault\":true,\"isMilestone\":false,\"createdAt\":\"2025-06-11T07:21:59.999Z\",\"updatedAt\":\"2025-06-11T07:21:59.999Z\",\"_links\":{\"self\":{\"href\":\"/api/v3/types/3\",\"title\":\"Phase\"}}},\"priority\":{\"_type\":\"Priority\",\"id\":8,\"name\":\"Normal\",\"position\":2,\"color\":\"#74C0FC\",\"isDefault\":true,\"isActive\":true,\"_links\":{\"self\":{\"href\":\"/api/v3/priorities/8\",\"title\":\"Normal\"}}},\"project\":{\"_type\":\"Project\",\"id\":1,\"identifier\":\"demo-project\",\"name\":\"Demo project\",\"active\":true,\"public\":true,\"description\":{\"format\":\"markdown\",\"raw\":\"This is a short summary of the goals of this demo project.\",\"html\":\"<p class=\\\"op-uc-p\\\">This is a short summary of the goals of this demo project.</p>\"},\"createdAt\":\"2025-06-11T07:22:02.191Z\",\"updatedAt\":\"2025-06-13T12:27:37.860Z\",\"statusExplanation\":{\"format\":\"markdown\",\"raw\":\"All tasks are on schedule. The people involved know their tasks. The system is completely set up.\",\"html\":\"<p class=\\\"op-uc-p\\\">All tasks are on schedule. The people involved know their tasks. The system is completely set up.</p>\"},\"_links\":{\"self\":{\"href\":\"/api/v3/projects/1\",\"title\":\"Demo project\"},\"createWorkPackage\":{\"href\":\"/api/v3/projects/1/work_packages/form\",\"method\":\"post\"},\"createWorkPackageImmediately\":{\"href\":\"/api/v3/projects/1/work_packages\",\"method\":\"post\"},\"workPackages\":{\"href\":\"/api/v3/projects/1/work_packages\"},\"storages\":[],\"categories\":{\"href\":\"/api/v3/projects/1/categories\"},\"versions\":{\"href\":\"/api/v3/projects/1/versions\"},\"memberships\":{\"href\":\"/api/v3/memberships?filters=%5B%7B%22project%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D\"},\"types\":{\"href\":\"/api/v3/projects/1/types\"},\"update\":{\"href\":\"/api/v3/projects/1/form\",\"method\":\"post\"},\"updateImmediately\":{\"href\":\"/api/v3/projects/1\",\"method\":\"patch\"},\"delete\":{\"href\":\"/api/v3/projects/1\",\"method\":\"delete\"},\"schema\":{\"href\":\"/api/v3/projects/schema\"},\"status\":{\"href\":\"/api/v3/project_statuses/on_track\",\"title\":\"On track\"},\"ancestors\":[],\"projectStorages\":{\"href\":\"/api/v3/project_storages?filters=%5B%7B%22projectId%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%221%22%5D%7D%7D%5D\"},\"parent\":{\"href\":null}}},\"status\":{\"_type\":\"Status\",\"id\":7,\"name\":\"In progress\",\"isClosed\":false,\"color\":\"#CC5DE8\",\"isDefault\":false,\"isReadonly\":false,\"defaultDoneRatio\":40,\"position\":7,\"_links\":{\"self\":{\"href\":\"/api/v3/statuses/7\",\"title\":\"In progress\"}}},\"author\":{\"_type\":\"User\",\"id\":4,\"name\":\"OpenProject Admin\",\"createdAt\":\"2025-06-11T07:22:01.732Z\",\"updatedAt\":\"2025-06-13T10:39:09.189Z\",\"login\":\"admin\",\"admin\":true,\"firstName\":\"OpenProject\",\"lastName\":\"Admin\",\"email\":\"admin@example.net\",\"avatar\":\"http://gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?default=404&secure=false\",\"status\":\"active\",\"identityUrl\":null,\"language\":\"en\",\"_links\":{\"self\":{\"href\":\"/api/v3/users/4\",\"title\":\"OpenProject Admin\"},\"memberships\":{\"href\":\"/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%5D%7D%7D%5D\",\"title\":\"Memberships\"},\"showUser\":{\"href\":\"/users/4\",\"type\":\"text/html\"},\"updateImmediately\":{\"href\":\"/api/v3/users/4\",\"title\":\"Update admin\",\"method\":\"patch\"},\"lock\":{\"href\":\"/api/v3/users/4/lock\",\"title\":\"Set lock on admin\",\"method\":\"post\"}}},\"assignee\":{\"_type\":\"User\",\"id\":4,\"name\":\"OpenProject Admin\",\"createdAt\":\"2025-06-11T07:22:01.732Z\",\"updatedAt\":\"2025-06-13T10:39:09.189Z\",\"login\":\"admin\",\"admin\":true,\"firstName\":\"OpenProject\",\"lastName\":\"Admin\",\"email\":\"admin@example.net\",\"avatar\":\"http://gravatar.com/avatar/cb4f282fed12016bd18a879c1f27ff97?default=404&secure=false\",\"status\":\"active\",\"identityUrl\":null,\"language\":\"en\",\"_links\":{\"self\":{\"href\":\"/api/v3/users/4\",\"title\":\"OpenProject Admin\"},\"memberships\":{\"href\":\"/api/v3/memberships?filters=%5B%7B%22principal%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%224%22%5D%7D%7D%5D\",\"title\":\"Memberships\"},\"showUser\":{\"href\":\"/users/4\",\"type\":\"text/html\"},\"updateImmediately\":{\"href\":\"/api/v3/users/4\",\"title\":\"Update admin\",\"method\":\"patch\"},\"lock\":{\"href\":\"/api/v3/users/4/lock\",\"title\":\"Set lock on admin\",\"method\":\"post\"}}},\"customActions\":[],\"costsByType\":{\"_type\":\"Collection\",\"total\":0,\"count\":0,\"_embedded\":{\"elements\":[]},\"_links\":{\"self\":{\"href\":\"/api/v3/work_packages/2/summarized_costs_by_type\"}}}},\"_type\":\"WorkPackage\",\"id\":2,\"lockVersion\":1,\"subject\":\"Organize open source conference\",\"description\":{\"format\":\"markdown\",\"raw\":\"\",\"html\":\"\"},\"scheduleManually\":false,\"startDate\":\"2025-06-09\",\"dueDate\":\"2025-06-23\",\"estimatedTime\":null,\"derivedEstimatedTime\":\"PT3H\",\"derivedRemainingTime\":\"PT30M\",\"duration\":\"P11D\",\"ignoreNonWorkingDays\":false,\"percentageDone\":null,\"derivedPercentageDone\":83,\"createdAt\":\"2025-06-11T07:22:03.219Z\",\"updatedAt\":\"2025-06-13T12:27:11.946Z\",\"_links\":{\"attachments\":{\"href\":\"/api/v3/work_packages/2/attachments\"},\"addAttachment\":{\"href\":\"/api/v3/work_packages/2/attachments\",\"method\":\"post\"},\"fileLinks\":{\"href\":\"/api/v3/work_packages/2/file_links\"},\"addFileLink\":{\"href\":\"/api/v3/work_packages/2/file_links\",\"method\":\"post\"},\"update\":{\"href\":\"/api/v3/work_packages/2/form\",\"method\":\"post\"},\"schema\":{\"href\":\"/api/v3/work_packages/schemas/1-3\"},\"updateImmediately\":{\"href\":\"/api/v3/work_packages/2\",\"method\":\"patch\"},\"delete\":{\"href\":\"/api/v3/work_packages/2\",\"method\":\"delete\"},\"logTime\":{\"href\":\"/api/v3/time_entries\",\"title\":\"Log time on Organize open source conference\"},\"move\":{\"href\":\"/work_packages/2/move/new\",\"type\":\"text/html\",\"title\":\"Move Organize open source conference\"},\"copy\":{\"href\":\"/work_packages/2/copy\",\"title\":\"Copy Organize open source conference\"},\"pdf\":{\"href\":\"/work_packages/2.pdf\",\"type\":\"application/pdf\",\"title\":\"Export as PDF\"},\"atom\":{\"href\":\"/work_packages/2.atom\",\"type\":\"application/rss+xml\",\"title\":\"Atom feed\"},\"availableRelationCandidates\":{\"href\":\"/api/v3/work_packages/2/available_relation_candidates\",\"title\":\"Potential work packages to relate to\"},\"customFields\":{\"href\":\"/projects/demo-project/settings/custom_fields\",\"type\":\"text/html\",\"title\":\"Custom fields\"},\"configureForm\":{\"href\":\"/types/3/edit?tab=form_configuration\",\"type\":\"text/html\",\"title\":\"Configure form\"},\"activities\":{\"href\":\"/api/v3/work_packages/2/activities\"},\"availableWatchers\":{\"href\":\"/api/v3/work_packages/2/available_watchers\"},\"relations\":{\"href\":\"/api/v3/work_packages/2/relations\"},\"watchers\":{\"href\":\"/api/v3/work_packages/2/watchers\"},\"addWatcher\":{\"href\":\"/api/v3/work_packages/2/watchers\",\"method\":\"post\",\"payload\":{\"user\":{\"href\":\"/api/v3/users/{user_id}\"}},\"templated\":true},\"removeWatcher\":{\"href\":\"/api/v3/work_packages/2/watchers/{user_id}\",\"method\":\"delete\",\"templated\":true},\"addRelation\":{\"href\":\"/api/v3/work_packages/2/relations\",\"method\":\"post\",\"title\":\"Add relation\"},\"addChild\":{\"href\":\"/api/v3/projects/demo-project/work_packages\",\"method\":\"post\",\"title\":\"Add child of Organize open source conference\"},\"changeParent\":{\"href\":\"/api/v3/work_packages/2\",\"method\":\"patch\",\"title\":\"Change parent of Organize open source conference\"},\"addComment\":{\"href\":\"/api/v3/work_packages/2/activities\",\"method\":\"post\",\"title\":\"Add comment\"},\"previewMarkup\":{\"href\":\"/api/v3/render/markdown?context=/api/v3/work_packages/2\",\"method\":\"post\"},\"timeEntries\":{\"href\":\"/api/v3/time_entries?filters=%5B%7B%22work_package_id%22%3A%7B%22operator%22%3A%22%3D%22%2C%22values%22%3A%5B%222%22%5D%7D%7D%5D\",\"title\":\"Time entries\"},\"category\":{\"href\":null},\"type\":{\"href\":\"/api/v3/types/3\",\"title\":\"Phase\"},\"priority\":{\"href\":\"/api/v3/priorities/8\",\"title\":\"Normal\"},\"project\":{\"href\":\"/api/v3/projects/1\",\"title\":\"Demo project\"},\"status\":{\"href\":\"/api/v3/statuses/7\",\"title\":\"In progress\"},\"author\":{\"href\":\"/api/v3/users/4\",\"title\":\"OpenProject Admin\"},\"responsible\":{\"href\":null},\"assignee\":{\"href\":\"/api/v3/users/4\",\"title\":\"OpenProject Admin\"},\"version\":{\"href\":null},\"logCosts\":{\"href\":\"/work_packages/2/cost_entries/new\",\"type\":\"text/html\",\"title\":\"Log costs on Organize open source conference\"},\"showCosts\":{\"href\":\"/projects/1/cost_reports?fields%5B%5D=WorkPackageId&operators%5BWorkPackageId%5D=%3D&set_filter=1&values%5BWorkPackageId%5D=2\",\"type\":\"text/html\",\"title\":\"Show cost entries\"},\"costsByType\":{\"href\":\"/api/v3/work_packages/2/summarized_costs_by_type\"},\"meetings\":{\"href\":\"/work_packages/2/tabs/meetings\",\"title\":\"meetings\"},\"github_pull_requests\":{\"href\":\"/api/v3/work_packages/2/github_pull_requests\",\"title\":\"GitHub pull requests\"},\"gitlab_merge_requests\":{\"href\":\"/api/v3/work_packages/2/gitlab_merge_requests\",\"title\":\"Gitlab merge requests\"},\"gitlab_issues\":{\"href\":\"/api/v3/work_packages/2/gitlab_issues\",\"title\":\"Gitlab Issues\"},\"self\":{\"href\":\"/api/v3/work_packages/2\",\"title\":\"Organize open source conference\"},\"watch\":{\"href\":\"/api/v3/work_packages/2/watchers\",\"method\":\"post\",\"payload\":{\"user\":{\"href\":\"/api/v3/users/4\"}}},\"children\":[{\"href\":\"/api/v3/work_packages/8\",\"title\":\"Setup conference website\"},{\"href\":\"/api/v3/work_packages/7\",\"title\":\"Invite attendees to conference\"},{\"href\":\"/api/v3/work_packages/3\",\"title\":\"Set date and location of conference\"}],\"ancestors\":[],\"parent\":{\"href\":null,\"title\":null},\"customActions\":[]}}"));
+    }
+
+    @AfterEach
+    void tearDown() throws IOException {
+        mockServer.shutdown();
+    }
+
     @Test
-    void testBearerTokenAuthAddsAuthorizationHeader() throws IOException {
+    void testBearerTokenAuthAddsAuthorizationHeader() throws Exception {
         BearerTokenAuth auth = new BearerTokenAuth("test-jwt-token");
-        Interceptor interceptor = auth.getInterceptor();
 
-        TestChain chain = new TestChain();
-        interceptor.intercept(chain);
+        OpenProjectClient client = new OpenProjectClient(
+                mockServer.url("/").toString(),
+                auth
+        );
+        client.getWorkPackage(123L); // Trigger a request
 
-        String authHeader = chain.processedRequest.header("Authorization");
+        RecordedRequest recorded = mockServer.takeRequest();
+        String authHeader = recorded.getHeader("Authorization");
+
         assertNotNull(authHeader, "Authorization header should be present");
         assertEquals("Bearer test-jwt-token", authHeader);
     }
 
     @Test
-    void testBearerTokenAuthWithJWT() throws IOException {
+    void testBearerTokenAuthWithJWT() throws Exception {
         String jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+
         BearerTokenAuth auth = new BearerTokenAuth(jwtToken);
-        Interceptor interceptor = auth.getInterceptor();
+        OpenProjectClient client = new OpenProjectClient(
+                mockServer.url("/").toString(),
+                auth
+        );
+        client.getWorkPackage(123L); // Trigger a request
 
-        TestChain chain = new TestChain();
-        interceptor.intercept(chain);
+        RecordedRequest recorded = mockServer.takeRequest();
+        String authHeader = recorded.getHeader("Authorization");
 
-        String authHeader = chain.processedRequest.header("Authorization");
         assertNotNull(authHeader, "Authorization header should be present");
         assertEquals("Bearer " + jwtToken, authHeader);
-    }
-
-    private static class TestChain implements Interceptor.Chain {
-        private final Request originalRequest = new Request.Builder()
-                .url("https://example.com/api/test")
-                .build();
-        private Request processedRequest;
-
-        @NotNull
-        @Override
-        public Request request() {
-            return originalRequest;
-        }
-
-        @NotNull
-        @Override
-        public Response proceed(@NotNull Request request) throws IOException {
-            this.processedRequest = request;
-            return new Response.Builder()
-                    .request(request)
-                    .protocol(Protocol.HTTP_1_1)
-                    .code(200)
-                    .message("OK")
-                    .body(ResponseBody.create("", null))
-                    .build();
-        }
-
-        @NotNull
-        @Override
-        public Connection connection() {
-            return null;
-        }
-
-        @NotNull
-        @Override
-        public Call call() {
-            return null;
-        }
-
-        @Override
-        public int connectTimeoutMillis() {
-            return 0;
-        }
-
-        @NotNull
-        @Override
-        public Interceptor.Chain withConnectTimeout(int timeout, @NotNull java.util.concurrent.TimeUnit unit) {
-            return this;
-        }
-
-        @Override
-        public int readTimeoutMillis() {
-            return 0;
-        }
-
-        @NotNull
-        @Override
-        public Interceptor.Chain withReadTimeout(int timeout, @NotNull java.util.concurrent.TimeUnit unit) {
-            return this;
-        }
-
-        @Override
-        public int writeTimeoutMillis() {
-            return 0;
-        }
-
-        @NotNull
-        @Override
-        public Interceptor.Chain withWriteTimeout(int timeout, @NotNull java.util.concurrent.TimeUnit unit) {
-            return this;
-        }
     }
 }

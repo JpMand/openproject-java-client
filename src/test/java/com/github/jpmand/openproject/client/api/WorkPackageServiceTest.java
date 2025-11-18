@@ -1,17 +1,13 @@
 package com.github.jpmand.openproject.client.api;
 
-import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
-import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
-import com.github.jpmand.openproject.client.auth.AuthProvider;
-import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
+import com.github.jpmand.openproject.client.http.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,13 +32,13 @@ class WorkPackageServiceTest {
 
     @Test
     void testClientCreationWithoutAuth() {
-        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (AuthProvider) null);
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org");
         assertNotNull(client);
     }
 
     @Test
     void testClientMethodsExist() throws Exception {
-        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org", (AuthProvider) null);
+        OpenProjectClient client = new OpenProjectClient("https://community.openproject.org");
         
         // Verify all methods exist and return proper types
         assertNotNull(client.getClass().getMethod("getWorkPackage", long.class));

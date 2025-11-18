@@ -5,9 +5,10 @@ import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
 import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
-import com.github.jpmand.openproject.client.auth.ApiKeyAuth;
+import com.github.jpmand.openproject.client.auth.AnonymousAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
-import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
+import com.github.jpmand.openproject.client.http.UserAgentInterceptor;
+import com.github.jpmand.openproject.client.http.serialization.HalObjectMapper;
 import com.github.jpmand.openproject.client.util.QueryBuilder;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -24,7 +25,7 @@ import java.util.Map;
  * Provides high-level methods for working with work packages and other OpenProject resources.
  * Supports multiple authentication methods and flexible configuration via Retrofit.
  * </p>
- * 
+ *
  * @see WorkPackageService
  * @see OPFilterObject
  * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterValue
@@ -34,9 +35,18 @@ public class OpenProjectClient {
     private final WorkPackageService workPackageService;
 
     /**
-     * Creates an OpenProjectClient with the specified authentication provider.
+     * Creates an OpenProjectClient with anonymous access.
      *
      * @param baseUrl the base URL of the OpenProject instance
+     */
+    public OpenProjectClient(String baseUrl) {
+        this(baseUrl, new AnonymousAuth());
+    }
+
+    /**
+     * Creates an OpenProjectClient with the specified authentication provider.
+     *
+     * @param baseUrl      the base URL of the OpenProject instance
      * @param authProvider the authentication provider to use
      */
     public OpenProjectClient(String baseUrl, AuthProvider authProvider) {
@@ -48,17 +58,18 @@ public class OpenProjectClient {
      *
      * @param retrofit the configured Retrofit instance
      */
-    public OpenProjectClient(Retrofit retrofit) {
+    private OpenProjectClient(Retrofit retrofit) {
         this.workPackageService = retrofit.create(WorkPackageService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl, AuthProvider authProvider) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        
+
+        builder.addInterceptor(new UserAgentInterceptor(null));
         if (authProvider != null) {
             builder.addInterceptor(authProvider.getInterceptor());
         }
-        
+
         return new Retrofit.Builder()
                 .client(builder.build())
                 .baseUrl(baseUrl)
@@ -68,7 +79,7 @@ public class OpenProjectClient {
 
     /**
      * Gets a single work package by ID.
-     * 
+     *
      * @param id the work package ID
      * @return the work package
      * @throws IOException if the request fails
@@ -80,7 +91,7 @@ public class OpenProjectClient {
 
     /**
      * Lists all work packages with default parameters.
-     * 
+     *
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
@@ -91,9 +102,9 @@ public class OpenProjectClient {
 
     /**
      * Lists work packages with pagination.
-     * 
+     *
      * @param pageSize the number of elements per page
-     * @param offset the page number (starting from 1)
+     * @param offset   the page number (starting from 1)
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
@@ -104,14 +115,14 @@ public class OpenProjectClient {
 
     /**
      * Lists work packages with full query parameter support using raw JSON strings.
-     * 
-     * @param offset the page number (starting from 1)
-     * @param pageSize the number of elements per page
-     * @param filters JSON string specifying filter conditions
-     * @param sortBy JSON string specifying sort criteria
-     * @param groupBy the column to group by
-     * @param showSums whether to show property sums
-     * @param select comma-separated list of properties to include
+     *
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    JSON string specifying filter conditions
+     * @param sortBy     JSON string specifying sort criteria
+     * @param groupBy    the column to group by
+     * @param showSums   whether to show property sums
+     * @param select     comma-separated list of properties to include
      * @param timestamps comma-separated timestamps for baseline comparisons
      * @return the paginated work package collection
      * @throws IOException if the request fails
@@ -132,10 +143,10 @@ public class OpenProjectClient {
 
     /**
      * Lists work packages with type-safe filter and sort parameters.
-     * 
-     * @param offset the page number (starting from 1)
-     * @param pageSize the number of elements per page
-     * @param filters list of filter objects to apply
+     *
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    list of filter objects to apply
      * @param sortFields map of field names to sort directions (use LinkedHashMap to preserve order)
      * @return the paginated work package collection
      * @throws IOException if the request fails
@@ -145,25 +156,25 @@ public class OpenProjectClient {
             Integer pageSize,
             List<OPFilterObject> filters,
             Map<String, SortEnum> sortFields) throws IOException {
-        
-        String filtersJson = filters != null && !filters.isEmpty() 
-                ? QueryBuilder.buildFilterJson(filters) 
+
+        String filtersJson = filters != null && !filters.isEmpty()
+                ? QueryBuilder.buildFilterJson(filters)
                 : null;
-        
-        String sortByJson = sortFields != null && !sortFields.isEmpty() 
-                ? QueryBuilder.buildSortJson(sortFields) 
+
+        String sortByJson = sortFields != null && !sortFields.isEmpty()
+                ? QueryBuilder.buildSortJson(sortFields)
                 : null;
-        
+
         return listWorkPackages(offset, pageSize, filtersJson, sortByJson, null, null, null, null);
     }
 
     /**
      * Lists work packages with a single filter and sort field.
-     * 
-     * @param offset the page number (starting from 1)
-     * @param pageSize the number of elements per page
-     * @param filter the filter object to apply
-     * @param sortField the field name to sort by
+     *
+     * @param offset        the page number (starting from 1)
+     * @param pageSize      the number of elements per page
+     * @param filter        the filter object to apply
+     * @param sortField     the field name to sort by
      * @param sortDirection the sort direction
      * @return the paginated work package collection
      * @throws IOException if the request fails
@@ -174,12 +185,12 @@ public class OpenProjectClient {
             OPFilterObject filter,
             String sortField,
             SortEnum sortDirection) throws IOException {
-        
+
         List<OPFilterObject> filters = filter != null ? List.of(filter) : null;
-        Map<String, SortEnum> sortFields = sortField != null && sortDirection != null 
-                ? Map.of(sortField, sortDirection) 
+        Map<String, SortEnum> sortFields = sortField != null && sortDirection != null
+                ? Map.of(sortField, sortDirection)
                 : null;
-        
+
         return listWorkPackages(offset, pageSize, filters, sortFields);
     }
 }

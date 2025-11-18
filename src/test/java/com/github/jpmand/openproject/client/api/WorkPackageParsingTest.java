@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
-import com.github.jpmand.openproject.client.api.models.enums.FilterOperator;
-import com.github.jpmand.openproject.client.core.serialization.HalObjectMapper;
+import com.github.jpmand.openproject.client.http.serialization.HalObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -34,7 +33,7 @@ public class WorkPackageParsingTest {
         ObjectMapper mapper = HalObjectMapper.get();
         try (InputStream inputStream = getClass().getResourceAsStream("/workpackage_collection.json")) {
             assertNotNull(inputStream, "workpackage_collection.json not found in test resources");
-            AbstractOPCollection<OPWorkPackageModel> wp = mapper.readValue(inputStream, new TypeReference<AbstractOPCollection<OPWorkPackageModel>>() {
+            AbstractOPCollection<OPWorkPackageModel> wp = mapper.readValue(inputStream, new TypeReference<>() {
             });
             assertNotNull(wp);
             assertEquals(5, wp.getCount());
