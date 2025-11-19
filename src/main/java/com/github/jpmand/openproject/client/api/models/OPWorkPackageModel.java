@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+/**
+ * Work Package Model
+ */
 public class OPWorkPackageModel extends OPBaseResource {
 
     public static final String ADDATTACHMENT_ACTION = "addAttachment";

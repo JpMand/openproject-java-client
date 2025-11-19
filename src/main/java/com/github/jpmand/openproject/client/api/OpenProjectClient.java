@@ -3,7 +3,8 @@ package com.github.jpmand.openproject.client.api;
 import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilter;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
 import com.github.jpmand.openproject.client.auth.AnonymousAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
@@ -27,8 +28,8 @@ import java.util.Map;
  * </p>
  *
  * @see WorkPackageService
- * @see OPFilterObject
- * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterValue
+ * @see OPQueryFilterInstance
+ * @see OPQueryFilter
  */
 public class OpenProjectClient {
 
@@ -90,30 +91,6 @@ public class OpenProjectClient {
     }
 
     /**
-     * Lists all work packages with default parameters.
-     *
-     * @return the paginated work package collection
-     * @throws IOException if the request fails
-     */
-    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages() throws IOException {
-        Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages();
-        return call.execute().body();
-    }
-
-    /**
-     * Lists work packages with pagination.
-     *
-     * @param pageSize the number of elements per page
-     * @param offset   the page number (starting from 1)
-     * @return the paginated work package collection
-     * @throws IOException if the request fails
-     */
-    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(Integer pageSize, Integer offset) throws IOException {
-        Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages(pageSize, offset);
-        return call.execute().body();
-    }
-
-    /**
      * Lists work packages with full query parameter support using raw JSON strings.
      *
      * @param offset     the page number (starting from 1)
@@ -123,21 +100,19 @@ public class OpenProjectClient {
      * @param groupBy    the column to group by
      * @param showSums   whether to show property sums
      * @param select     comma-separated list of properties to include
-     * @param timestamps comma-separated timestamps for baseline comparisons
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
-    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
+    private AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
             Integer offset,
             Integer pageSize,
             String filters,
             String sortBy,
             String groupBy,
             Boolean showSums,
-            String select,
-            String timestamps) throws IOException {
+            String select) throws IOException {
         Call<AbstractOPCollection<OPWorkPackageModel>> call = workPackageService.listWorkPackages(
-                offset, pageSize, filters, sortBy, groupBy, showSums, select, timestamps);
+                offset, pageSize, filters, sortBy, groupBy, showSums, select);
         return call.execute().body();
     }
 
@@ -147,50 +122,30 @@ public class OpenProjectClient {
      * @param offset     the page number (starting from 1)
      * @param pageSize   the number of elements per page
      * @param filters    list of filter objects to apply
-     * @param sortFields map of field names to sort directions (use LinkedHashMap to preserve order)
+     * @param sorts map of field names to sort directions (use LinkedHashMap to preserve order)
+     * @param groupBy    the column to group by
+     * @param showSums   whether to show property sums
+     * @param select     comma-separated list of properties to include
      * @return the paginated work package collection
      * @throws IOException if the request fails
      */
     public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
             Integer offset,
             Integer pageSize,
-            List<OPFilterObject> filters,
-            Map<String, SortEnum> sortFields) throws IOException {
+            List<OPQueryFilterInstance> filters,
+            Map<String, SortEnum> sorts,
+            String groupBy,
+            Boolean showSums,
+            String select) throws IOException {
 
         String filtersJson = filters != null && !filters.isEmpty()
                 ? QueryBuilder.buildFilterJson(filters)
                 : null;
 
-        String sortByJson = sortFields != null && !sortFields.isEmpty()
-                ? QueryBuilder.buildSortJson(sortFields)
+        String sortByJson = sorts != null && !sorts.isEmpty()
+                ? QueryBuilder.buildSortJson(sorts)
                 : null;
 
-        return listWorkPackages(offset, pageSize, filtersJson, sortByJson, null, null, null, null);
-    }
-
-    /**
-     * Lists work packages with a single filter and sort field.
-     *
-     * @param offset        the page number (starting from 1)
-     * @param pageSize      the number of elements per page
-     * @param filter        the filter object to apply
-     * @param sortField     the field name to sort by
-     * @param sortDirection the sort direction
-     * @return the paginated work package collection
-     * @throws IOException if the request fails
-     */
-    public AbstractOPCollection<OPWorkPackageModel> listWorkPackages(
-            Integer offset,
-            Integer pageSize,
-            OPFilterObject filter,
-            String sortField,
-            SortEnum sortDirection) throws IOException {
-
-        List<OPFilterObject> filters = filter != null ? List.of(filter) : null;
-        Map<String, SortEnum> sortFields = sortField != null && sortDirection != null
-                ? Map.of(sortField, sortDirection)
-                : null;
-
-        return listWorkPackages(offset, pageSize, filters, sortFields);
+        return listWorkPackages(offset, pageSize, filtersJson, sortByJson, groupBy, showSums, select);
     }
 }

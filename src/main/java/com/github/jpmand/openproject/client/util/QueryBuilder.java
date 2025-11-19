@@ -3,7 +3,8 @@ package com.github.jpmand.openproject.client.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilter;
 import com.github.jpmand.openproject.client.http.serialization.HalObjectMapper;
 
 import java.util.ArrayList;
@@ -34,8 +35,8 @@ import java.util.Map;
  * String multiSort = QueryBuilder.buildSortJson(sortMap);
  * }</pre>
  * 
- * @see OPFilterObject
- * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterValue
+ * @see OPQueryFilterInstance
+ * @see OPQueryFilter
  * @see SortEnum
  */
 public class QueryBuilder {
@@ -49,7 +50,7 @@ public class QueryBuilder {
      * @return JSON string representation of the filters
      * @throws RuntimeException if JSON serialization fails
      */
-    public static String buildFilterJson(List<OPFilterObject> filters) {
+    public static String buildFilterJson(List<OPQueryFilterInstance> filters) {
         try {
             return objectMapper.writeValueAsString(filters);
         } catch (JsonProcessingException e) {
@@ -64,7 +65,7 @@ public class QueryBuilder {
      * @return JSON string representation of the filter
      * @throws RuntimeException if JSON serialization fails
      */
-    public static String buildFilterJson(OPFilterObject filter) {
+    public static String buildFilterJson(OPQueryFilterInstance filter) {
         return buildFilterJson(List.of(filter));
     }
     

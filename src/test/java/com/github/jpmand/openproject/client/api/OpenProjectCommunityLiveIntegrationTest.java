@@ -3,8 +3,8 @@ package com.github.jpmand.openproject.client.api;
 import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterValue;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilter;
 import com.github.jpmand.openproject.client.auth.AnonymousAuth;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -52,11 +52,11 @@ public class OpenProjectCommunityLiveIntegrationTest {
     void testListWorkPackagesWithFilterSortAndPagination() throws Exception {
         int offset = 6;
         int pageSize = 4;
-        OPFilterObject filters = OPFilterObject.of("status", OPFilterValue.WK_OPEN_FILTER);
+        OPQueryFilterInstance filters = OPQueryFilterInstance.of("status", OPQueryFilter.WK_OPEN_FILTER);
         Map<String, SortEnum> sorts = new LinkedHashMap<>();
         sorts.put("id", SortEnum.ASC);
 
-        AbstractOPCollection<OPWorkPackageModel> workPackageList = client.listWorkPackages(offset, pageSize, List.of(filters), sorts);
+        AbstractOPCollection<OPWorkPackageModel> workPackageList = client.listWorkPackages(offset, pageSize, List.of(filters), sorts, null, null, null);
         assertNotNull(workPackageList, "Work package list should not be null");
         assertNotNull(workPackageList.getElements(), "Work package list elements should not be null");
 
