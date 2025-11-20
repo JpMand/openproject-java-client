@@ -1,0 +1,210 @@
+{
+  "_embedded": {
+    "author": {
+      "_type": "User",
+      "id": 3762,
+      "name": "Robin Wagner",
+      "avatar": "https://community.openproject.org/users/3762/avatar",
+      "_links": {
+        "self": {
+          "href": "/api/v3/users/3762",
+          "title": "Robin Wagner"
+        },
+        "showUser": {
+          "href": "/users/3762",
+          "type": "text/html"
+        }
+      }
+    },
+    "container": {
+      "derivedStartDate": null,
+      "derivedDueDate": null,
+      "_type": "WorkPackage",
+      "id": 3893,
+      "lockVersion": 53,
+      "subject": "Delete project via project settings by non admins",
+      "description": {
+        "format": "markdown",
+        "raw": "**As** a project admin  \n**I want** to delete my project myself  \n**so that** I don’t need to ask the admin to do that.\n\n**Acceptance criteria**\n\n*   Delete link in project settings\n*   Deletion only possible for users having the “delete\\_project” permission\n*   Deletion possible through APIv3\n*   In case subprojects are present:\n    *   If the user has the “delete\\_project” permission in all of the subprojects, the user is notified (a statement listing all the projects that are going to be deleted) and asked again whether he wants to delete all the projects\n    *   In case the user lacks the “delete\\_project” permission in any of the subprojects, the user is notified that a deletion is currently impossible as he is lacking permissions in one of the subprojects\n*   “manager” role in default data receives “delete\\_project” permission by default\n\n**Wireframes**\n\n*   See attachments",
+        "html": "<p class=\"op-uc-p\"><strong>As</strong> a project admin<br>\n<strong>I want</strong> to delete my project myself<br>\n<strong>so that</strong> I don’t need to ask the admin to do that.</p>\n<p class=\"op-uc-p\"><strong>Acceptance criteria</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">Delete link in project settings</li>\n<li class=\"op-uc-list--item\">Deletion only possible for users having the “delete_project” permission</li>\n<li class=\"op-uc-list--item\">Deletion possible through APIv3</li>\n<li class=\"op-uc-list--item\">In case subprojects are present:\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">If the user has the “delete_project” permission in all of the subprojects, the user is notified (a statement listing all the projects that are going to be deleted) and asked again whether he wants to delete all the projects</li>\n<li class=\"op-uc-list--item\">In case the user lacks the “delete_project” permission in any of the subprojects, the user is notified that a deletion is currently impossible as he is lacking permissions in one of the subprojects</li>\n</ul>\n</li>\n<li class=\"op-uc-list--item\">“manager” role in default data receives “delete_project” permission by default</li>\n</ul>\n<p class=\"op-uc-p\"><strong>Wireframes</strong></p>\n<ul class=\"op-uc-list\">\n<li class=\"op-uc-list--item\">See attachments</li>\n</ul>"
+      },
+      "scheduleManually": true,
+      "startDate": null,
+      "dueDate": null,
+      "estimatedTime": null,
+      "derivedEstimatedTime": null,
+      "derivedRemainingTime": null,
+      "duration": null,
+      "ignoreNonWorkingDays": true,
+      "percentageDone": null,
+      "derivedPercentageDone": null,
+      "createdAt": "2014-01-23T08:19:54.939Z",
+      "updatedAt": "2025-09-22T07:51:59.289Z",
+      "readonly": false,
+      "position": 201,
+      "storyPoints": 3,
+      "customField108": null,
+      "customField354": null,
+      "customField130": 22,
+      "customField124": null,
+      "customField123": null,
+      "customField134": null,
+      "customField387": null,
+      "_links": {
+        "attachments": {
+          "href": "/api/v3/work_packages/3893/attachments"
+        },
+        "prepareAttachment": {
+          "href": "/api/v3/work_packages/3893/attachments/prepare",
+          "method": "post"
+        },
+        "fileLinks": {
+          "href": "/api/v3/work_packages/3893/file_links"
+        },
+        "schema": {
+          "href": "/api/v3/work_packages/schemas/14-6"
+        },
+        "availableRelationCandidates": {
+          "href": "/api/v3/work_packages/3893/available_relation_candidates",
+          "title": "Potential work packages to relate to"
+        },
+        "activities": {
+          "href": "/api/v3/work_packages/3893/activities"
+        },
+        "relations": {
+          "href": "/api/v3/work_packages/3893/relations"
+        },
+        "previewMarkup": {
+          "href": "/api/v3/render/markdown?context=/api/v3/work_packages/3893",
+          "method": "post"
+        },
+        "category": {
+          "href": null
+        },
+        "type": {
+          "href": "/api/v3/types/6",
+          "title": "Feature"
+        },
+        "priority": {
+          "href": "/api/v3/priorities/4",
+          "title": "Medium"
+        },
+        "project": {
+          "href": "/api/v3/projects/14",
+          "title": "OpenProject"
+        },
+        "projectPhaseDefinition": {
+          "href": null,
+          "title": null
+        },
+        "status": {
+          "href": "/api/v3/statuses/1",
+          "title": "new"
+        },
+        "author": {
+          "href": "/api/v3/users/87",
+          "title": "Jens Ulferts"
+        },
+        "responsible": {
+          "href": null
+        },
+        "assignee": {
+          "href": null
+        },
+        "version": {
+          "href": "/api/v3/versions/26",
+          "title": "Wish List"
+        },
+        "github": {
+          "href": "/work_packages/3893/tabs/github",
+          "title": "github"
+        },
+        "github_pull_requests": {
+          "href": "/api/v3/work_packages/3893/github_pull_requests",
+          "title": "GitHub pull requests"
+        },
+        "gitlab": {
+          "href": "/work_packages/3893/tabs/gitlab",
+          "title": "gitlab"
+        },
+        "gitlab_merge_requests": {
+          "href": "/api/v3/work_packages/3893/gitlab_merge_requests",
+          "title": "Gitlab merge requests"
+        },
+        "gitlab_issues": {
+          "href": "/api/v3/work_packages/3893/gitlab_issues",
+          "title": "Gitlab Issues"
+        },
+        "customField473": [],
+        "customField136": {
+          "href": null,
+          "title": null
+        },
+        "customField429": [],
+        "customField129": {
+          "href": null,
+          "title": null
+        },
+        "customField102": [],
+        "customField426": {
+          "href": null,
+          "title": null
+        },
+        "customField392": [],
+        "customField338": [],
+        "customField270": [],
+        "self": {
+          "href": "/api/v3/work_packages/3893",
+          "title": "Delete project via project settings by non admins"
+        },
+        "ancestors": [],
+        "parent": {
+          "href": null,
+          "title": null
+        },
+        "customActions": [
+          {
+            "href": "/api/v3/custom_actions/141",
+            "title": "Assign to me"
+          }
+        ]
+      }
+    }
+  },
+  "_type": "Attachment",
+  "id": 1612,
+  "fileName": "Wireframe_ProjectSettings-DeleteProject.pdf",
+  "fileSize": 141101,
+  "description": {
+    "format": "plain",
+    "raw": "",
+    "html": ""
+  },
+  "status": "uploaded",
+  "contentType": "application/pdf",
+  "digest": {
+    "algorithm": "md5",
+    "hash": "d519d08637b7b28353130684938ffd56"
+  },
+  "createdAt": "2014-02-17T09:57:24.514Z",
+  "_links": {
+    "self": {
+      "href": "/api/v3/attachments/1612",
+      "title": "Wireframe_ProjectSettings-DeleteProject.pdf"
+    },
+    "author": {
+      "href": "/api/v3/users/3762",
+      "title": "Robin Wagner"
+    },
+    "container": {
+      "href": "/api/v3/work_packages/3893",
+      "title": "Delete project via project settings by non admins"
+    },
+    "staticDownloadLocation": {
+      "href": "/api/v3/attachments/1612/content"
+    },
+    "downloadLocation": {
+      "href": "https://saas-openproject-aws-de-community-20241119075553009700000002.s3.eu-central-1.amazonaws.com/community/attachment/file/1612/Wireframe_ProjectSettings-DeleteProject.pdf?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20251120T135349Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUF2KCI5YFBI7C3EF%2F20251120%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=eb64603bcc0bfcf3edcaa2eeab1a83a4bc628833e3ab416de6d326448dbe8450"
+    }
+  }
+}

@@ -20,9 +20,6 @@ public class OPBaseResource {
     @JsonProperty("_links")
     private Map<String, List<OPBaseLink>> links;
 
-    @JsonProperty("_embedded")
-    private Map<String, List<? extends OPBaseResource>> embedded;
-
     @JsonAnySetter
     @JsonAnyGetter
     private Map<String, Object> properties;

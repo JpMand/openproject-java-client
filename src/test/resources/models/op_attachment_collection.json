@@ -1,0 +1,90 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Attachment",
+        "id": 1612,
+        "fileName": "Wireframe_ProjectSettings-DeleteProject.pdf",
+        "fileSize": 141101,
+        "description": {
+          "format": "plain",
+          "raw": "",
+          "html": ""
+        },
+        "status": "uploaded",
+        "contentType": "application/pdf",
+        "digest": {
+          "algorithm": "md5",
+          "hash": "d519d08637b7b28353130684938ffd56"
+        },
+        "createdAt": "2014-02-17T09:57:24.514Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/attachments/1612",
+            "title": "Wireframe_ProjectSettings-DeleteProject.pdf"
+          },
+          "author": {
+            "href": "/api/v3/users/3762",
+            "title": "Robin Wagner"
+          },
+          "container": {
+            "href": "/api/v3/work_packages/3893",
+            "title": "Delete project via project settings by non admins"
+          },
+          "staticDownloadLocation": {
+            "href": "/api/v3/attachments/1612/content"
+          },
+          "downloadLocation": {
+            "href": "https://saas-openproject-aws-de-community-20241119075553009700000002.s3.eu-central-1.amazonaws.com/community/attachment/file/1612/Wireframe_ProjectSettings-DeleteProject.pdf?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20251120T135349Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUF2KCI5YFBI7C3EF%2F20251120%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=eb64603bcc0bfcf3edcaa2eeab1a83a4bc628833e3ab416de6d326448dbe8450"
+          }
+        }
+      },
+      {
+        "_type": "Attachment",
+        "id": 1611,
+        "fileName": "Wireframe_ProjectSettings-DeleteProject.pptx",
+        "fileSize": 163305,
+        "description": {
+          "format": "plain",
+          "raw": "",
+          "html": ""
+        },
+        "status": "uploaded",
+        "contentType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "digest": {
+          "algorithm": "md5",
+          "hash": "1ce4d3bce0a78192a546bd3568e9455b"
+        },
+        "createdAt": "2014-02-17T09:57:24.147Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/attachments/1611",
+            "title": "Wireframe_ProjectSettings-DeleteProject.pptx"
+          },
+          "author": {
+            "href": "/api/v3/users/3762",
+            "title": "Robin Wagner"
+          },
+          "container": {
+            "href": "/api/v3/work_packages/3893",
+            "title": "Delete project via project settings by non admins"
+          },
+          "staticDownloadLocation": {
+            "href": "/api/v3/attachments/1611/content"
+          },
+          "downloadLocation": {
+            "href": "https://saas-openproject-aws-de-community-20241119075553009700000002.s3.eu-central-1.amazonaws.com/community/attachment/file/1611/Wireframe_ProjectSettings-DeleteProject.pptx?response-content-disposition=attachment&X-Amz-Expires=600&X-Amz-Date=20251120T135349Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUF2KCI5YFBI7C3EF%2F20251120%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=077fba1da471cbe30993217aaeac8b9ed275773163a4c52e140de4c09233af15"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/work_packages/3893/attachments"
+    }
+  }
+}
