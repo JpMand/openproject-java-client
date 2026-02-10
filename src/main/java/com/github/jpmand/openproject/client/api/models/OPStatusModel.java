@@ -157,9 +157,6 @@ public class OPStatusModel extends OPBaseResource {
         sb.append(", excludedFromTotals=").append(getExcludedFromTotals());
         sb.append(", defaultDoneRatio=").append(getDefaultDoneRatio());
         sb.append(", position=").append(getPosition());
-        sb.append(", closed=").append(getClosed());
-        sb.append(", default=").append(getDefault());
-        sb.append(", readonly=").append(getReadonly());
         sb.append(", links=").append(getLinks());
         sb.append('}');
         return sb.toString();
