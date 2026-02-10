@@ -1,0 +1,38 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Budget",
+        "id": 1,
+        "subject": "Q1 Budget 2025",
+        "_links": {
+          "self": {
+            "href": "/api/v3/budgets/1",
+            "title": "Q1 Budget 2025"
+          }
+        }
+      },
+      {
+        "_type": "Budget",
+        "id": 2,
+        "subject": "Q2 Budget 2025",
+        "_links": {
+          "self": {
+            "href": "/api/v3/budgets/2",
+            "title": "Q2 Budget 2025"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/budgets"
+    }
+  }
+}

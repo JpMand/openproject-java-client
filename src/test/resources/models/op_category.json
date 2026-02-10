@@ -1,0 +1,15 @@
+{
+  "_type": "Category",
+  "id": 1,
+  "name": "Bug Category",
+  "_links": {
+    "self": {
+      "href": "/api/v3/categories/1",
+      "title": "Bug Category"
+    },
+    "project": {
+      "href": "/api/v3/projects/1",
+      "title": "Demo project"
+    }
+  }
+}

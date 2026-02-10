@@ -1,0 +1,15 @@
+{
+  "_type": "Budget",
+  "id": 1,
+  "subject": "Q1 Budget 2025",
+  "_links": {
+    "self": {
+      "href": "/api/v3/budgets/1",
+      "title": "Q1 Budget 2025"
+    },
+    "project": {
+      "href": "/api/v3/projects/1",
+      "title": "Demo project"
+    }
+  }
+}
