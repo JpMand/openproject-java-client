@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * Represents formattable text with format, raw content, and HTML representation.
+ */
 public class OPFormattableText {
 
     @JsonProperty("format")
@@ -15,26 +18,50 @@ public class OPFormattableText {
     @JsonProperty("html")
     private String html;
 
+    /**
+     * Gets the text format.
+     * @return the format
+     */
     public String getFormat() {
         return format;
     }
 
+    /**
+     * Sets the text format.
+     * @param format the format
+     */
     public void setFormat(String format) {
         this.format = format;
     }
 
+    /**
+     * Gets the raw text content.
+     * @return the raw text
+     */
     public String getRaw() {
         return raw;
     }
 
+    /**
+     * Sets the raw text content.
+     * @param raw the raw text
+     */
     public void setRaw(String raw) {
         this.raw = raw;
     }
 
+    /**
+     * Gets the HTML representation.
+     * @return the HTML
+     */
     public String getHtml() {
         return html;
     }
 
+    /**
+     * Sets the HTML representation.
+     * @param html the HTML
+     */
     public void setHtml(String html) {
         this.html = html;
     }

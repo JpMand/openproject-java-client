@@ -5,6 +5,9 @@ import com.github.jpmand.openproject.client.api.models.base.OPBaseResource;
 
 import java.util.Objects;
 
+/**
+ * Represents a budget resource in OpenProject.
+ */
 public class OPBudgetModel extends OPBaseResource {
 
     @JsonProperty("id")
@@ -13,26 +16,50 @@ public class OPBudgetModel extends OPBaseResource {
     @JsonProperty("subject")
     private String subject;
 
+    /**
+     * Default constructor.
+     */
     public OPBudgetModel() {
     }
 
+    /**
+     * Constructs a budget with id and subject.
+     * @param id the budget ID
+     * @param subject the budget subject
+     */
     public OPBudgetModel(Long id, String subject) {
         this.id = id;
         this.subject = subject;
     }
 
+    /**
+     * Gets the budget ID.
+     * @return the budget ID
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets the budget ID.
+     * @param id the budget ID
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the budget subject.
+     * @return the budget subject
+     */
     public String getSubject() {
         return subject;
     }
 
+    /**
+     * Sets the budget subject.
+     * @param subject the budget subject
+     */
     public void setSubject(String subject) {
         this.subject = subject;
     }

@@ -5,7 +5,6 @@ import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
  * Retrofit service interface for OpenProject Priority API endpoints.
@@ -19,7 +18,6 @@ import retrofit2.http.Query;
  *   <li>GET /api/v3/priorities - List priorities</li>
  *   <li>GET /api/v3/priorities/{id} - Get priority</li>
  * </ul>
- * </p>
  * 
  * @see OPPriorityModel
  * @see com.github.jpmand.openproject.client.api.OpenProjectClient

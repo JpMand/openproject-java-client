@@ -5,6 +5,9 @@ import com.github.jpmand.openproject.client.api.models.base.OPBaseResource;
 
 import java.util.Objects;
 
+/**
+ * Represents a category resource in OpenProject.
+ */
 public class OPCategoryModel extends OPBaseResource {
 
     @JsonProperty("id")
@@ -13,26 +16,50 @@ public class OPCategoryModel extends OPBaseResource {
     @JsonProperty("name")
     private String name;
 
+    /**
+     * Default constructor.
+     */
     public OPCategoryModel() {
     }
 
+    /**
+     * Constructs a category with id and name.
+     * @param id the category ID
+     * @param name the category name
+     */
     public OPCategoryModel(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
+    /**
+     * Gets the category ID.
+     * @return the category ID
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets the category ID.
+     * @param id the category ID
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the category name.
+     * @return the category name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets the category name.
+     * @param name the category name
+     */
     public void setName(String name) {
         this.name = name;
     }

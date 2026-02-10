@@ -21,10 +21,23 @@ public class OAuth2ClientCredentialsAuth implements AuthProvider {
     private long tokenExpiresAt;
     private final Lock tokenLock = new ReentrantLock();
 
+    /**
+     * Constructs an OAuth2 client credentials authentication provider.
+     * @param tokenUrl the OAuth2 token endpoint URL
+     * @param clientId the OAuth2 client identifier
+     * @param clientSecret the OAuth2 client secret
+     */
     public OAuth2ClientCredentialsAuth(String tokenUrl, String clientId, String clientSecret) {
         this(tokenUrl, clientId, clientSecret, null);
     }
 
+    /**
+     * Constructs an OAuth2 client credentials authentication provider with a scope.
+     * @param tokenUrl the OAuth2 token endpoint URL
+     * @param clientId the OAuth2 client identifier
+     * @param clientSecret the OAuth2 client secret
+     * @param scope the OAuth2 scope to request (optional)
+     */
     public OAuth2ClientCredentialsAuth(String tokenUrl, String clientId, String clientSecret, String scope) {
         this.tokenUrl = tokenUrl;
         this.clientId = clientId;

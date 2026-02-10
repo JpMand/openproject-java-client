@@ -6,8 +6,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
+/**
+ * Anonymous authentication provider that performs no authentication.
+ */
 public class AnonymousAuth implements AuthProvider {
 
+    /**
+     * Default constructor.
+     */
     public AnonymousAuth() {
     }
 

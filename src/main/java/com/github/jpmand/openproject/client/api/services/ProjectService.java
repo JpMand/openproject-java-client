@@ -35,7 +35,6 @@ import retrofit2.http.Query;
  *   <li>GET /api/v3/projects/{id}/versions - Project versions</li>
  *   <li>GET /api/v3/projects/{id}/work_packages - Project work packages</li>
  * </ul>
- * </p>
  * 
  * @see OPProjectModel
  * @see com.github.jpmand.openproject.client.api.OpenProjectClient

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
+/**
+ * Represents a digest with algorithm and hash information.
+ */
 public class OPDigest {
 
     @JsonProperty("algorithm")
@@ -12,18 +15,34 @@ public class OPDigest {
     @JsonProperty("hash")
     private String hash;
 
+    /**
+     * Gets the digest algorithm.
+     * @return the algorithm
+     */
     public String getAlgorithm() {
         return algorithm;
     }
 
+    /**
+     * Sets the digest algorithm.
+     * @param algorithm the algorithm
+     */
     public void setAlgorithm(String algorithm) {
         this.algorithm = algorithm;
     }
 
+    /**
+     * Gets the hash value.
+     * @return the hash
+     */
     public String getHash() {
         return hash;
     }
 
+    /**
+     * Sets the hash value.
+     * @param hash the hash
+     */
     public void setHash(String hash) {
         this.hash = hash;
     }

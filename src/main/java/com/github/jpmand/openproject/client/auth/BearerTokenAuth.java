@@ -14,6 +14,10 @@ import java.io.IOException;
 public class BearerTokenAuth implements AuthProvider {
     private final String token;
 
+    /**
+     * Constructs a bearer token auth provider.
+     * @param token the bearer token
+     */
     public BearerTokenAuth(String token) {
         this.token = token;
     }
