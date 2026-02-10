@@ -1,0 +1,14 @@
+{
+  "_type": "Priority",
+  "id": 8,
+  "name": "Normal",
+  "position": 2,
+  "isDefault": true,
+  "isActive": true,
+  "_links": {
+    "self": {
+      "href": "/api/v3/priorities/8",
+      "title": "Normal"
+    }
+  }
+}

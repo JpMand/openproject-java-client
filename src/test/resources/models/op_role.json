@@ -1,0 +1,12 @@
+{
+  "_type": "Role",
+  "id": 4,
+  "name": "Member",
+  "title": "Project Member",
+  "_links": {
+    "self": {
+      "href": "/api/v3/roles/4",
+      "title": "Member"
+    }
+  }
+}

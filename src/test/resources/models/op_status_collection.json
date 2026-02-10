@@ -1,0 +1,67 @@
+{
+  "_type": "Collection",
+  "total": 3,
+  "count": 3,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Status",
+        "id": 1,
+        "name": "New",
+        "isClosed": false,
+        "color": "#1976D2",
+        "isDefault": true,
+        "isReadonly": false,
+        "defaultDoneRatio": 0,
+        "position": 1,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/1",
+            "title": "New"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 7,
+        "name": "In progress",
+        "isClosed": false,
+        "color": "#CC5DE8",
+        "isDefault": false,
+        "isReadonly": false,
+        "defaultDoneRatio": 40,
+        "position": 7,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/7",
+            "title": "In progress"
+          }
+        }
+      },
+      {
+        "_type": "Status",
+        "id": 12,
+        "name": "Closed",
+        "isClosed": true,
+        "color": "#059669",
+        "isDefault": false,
+        "isReadonly": true,
+        "defaultDoneRatio": 100,
+        "position": 12,
+        "_links": {
+          "self": {
+            "href": "/api/v3/statuses/12",
+            "title": "Closed"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/statuses"
+    }
+  }
+}
