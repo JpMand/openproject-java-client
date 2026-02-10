@@ -35,7 +35,6 @@ import java.util.Map;
  * }</pre>
  * 
  * @see OPQueryFilterInstance
- * @see OPQueryFilter
  * @see SortEnum
  */
 public class QueryBuilder {
