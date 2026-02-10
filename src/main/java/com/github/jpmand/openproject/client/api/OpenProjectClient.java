@@ -68,7 +68,7 @@ public class OpenProjectClient {
      *
      * @param retrofit the configured Retrofit instance
      */
-    private OpenProjectClient(Retrofit retrofit) {
+    public OpenProjectClient(Retrofit retrofit) {
         this.workPackageService = retrofit.create(WorkPackageService.class);
         this.projectService = retrofit.create(ProjectService.class);
         this.statusService = retrofit.create(StatusService.class);

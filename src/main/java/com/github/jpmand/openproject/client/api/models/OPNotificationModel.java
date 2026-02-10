@@ -130,7 +130,7 @@ public class OPNotificationModel extends OPBaseResource {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OPNotificationModel{");
-        sb.append("id='").append(getId());
+        sb.append("id='").append(getId()).append('\'');
         sb.append(", type='").append(getType()).append('\'');
         sb.append(", subject='").append(getSubject()).append('\'');
         sb.append(", reason='").append(getReason()).append('\'');

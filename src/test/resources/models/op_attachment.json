@@ -204,7 +204,7 @@
       "href": "/api/v3/attachments/1612/content"
     },
     "downloadLocation": {
-      "href": "https://saas-openproject-aws-de-community-20241119075553009700000002.s3.eu-central-1.amazonaws.com/community/attachment/file/1612/Wireframe_ProjectSettings-DeleteProject.pdf?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20251120T135349Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUF2KCI5YFBI7C3EF%2F20251120%2Feu-central-1%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=eb64603bcc0bfcf3edcaa2eeab1a83a4bc628833e3ab416de6d326448dbe8450"
+      "href": "https://example.com/community/attachment/file/1612/Wireframe_ProjectSettings-DeleteProject.pdf?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20250101T000000Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250101%2Fexample-region%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=EXAMPLESIGNATURE0000000000000000000000000000000000000000000000000000"
     }
   }
 }

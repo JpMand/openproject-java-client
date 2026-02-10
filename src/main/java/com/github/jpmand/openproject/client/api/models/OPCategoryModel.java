@@ -83,7 +83,7 @@ public class OPCategoryModel extends OPBaseResource {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OPCategoryModel{");
-        sb.append("id='").append(getId());
+        sb.append("id='").append(getId()).append('\'');
         sb.append(", type='").append(getType()).append('\'');
         sb.append(", name='").append(getName()).append('\'');
         sb.append(", links=").append(getLinks());
