@@ -6,6 +6,10 @@ package com.github.jpmand.openproject.client.auth;
  */
 public class ApiKeyAuth extends BasicAuth {
     
+    /**
+     * Constructs an API key auth provider.
+     * @param apiKey the API key
+     */
     public ApiKeyAuth(String apiKey) {
         super("apikey", apiKey);
     }

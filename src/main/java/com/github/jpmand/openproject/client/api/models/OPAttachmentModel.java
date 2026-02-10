@@ -6,6 +6,9 @@ import com.github.jpmand.openproject.client.api.models.base.OPBaseResource;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+/**
+ * Represents an attachment resource in the OpenProject API.
+ */
 public class OPAttachmentModel extends OPBaseResource {
 
     @JsonProperty("id")
@@ -33,9 +36,23 @@ public class OPAttachmentModel extends OPBaseResource {
     private OffsetDateTime createdAt;
 
 
+    /**
+     * Default constructor.
+     */
     public OPAttachmentModel() {
     }
 
+    /**
+     * Constructs an attachment with all properties.
+     * @param id the attachment ID
+     * @param title the attachment title
+     * @param fileName the file name
+     * @param fileSize the file size in bytes
+     * @param description the attachment description
+     * @param contentType the MIME content type
+     * @param digest the file digest information
+     * @param createdAt the creation timestamp
+     */
     public OPAttachmentModel(Long id, String title, String fileName, Integer fileSize, OPFormattableText description, String contentType, OPDigest digest, OffsetDateTime createdAt) {
         this.id = id;
         this.title = title;
@@ -47,71 +64,139 @@ public class OPAttachmentModel extends OPBaseResource {
         this.createdAt = createdAt;
     }
 
+    /**
+     * Gets the attachment ID.
+     * @return the attachment ID
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets the attachment ID.
+     * @param id the attachment ID
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the attachment title.
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets the attachment title.
+     * @param title the title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets the file name.
+     * @return the file name
+     */
     public String getFileName() {
         return fileName;
     }
 
+    /**
+     * Sets the file name.
+     * @param fileName the file name
+     */
     public void setFileName(String fileName) {
         this.fileName = fileName;
     }
 
+    /**
+     * Gets the file size in bytes.
+     * @return the file size
+     */
     public Integer getFileSize() {
         return fileSize;
     }
 
+    /**
+     * Sets the file size in bytes.
+     * @param fileSize the file size
+     */
     public void setFileSize(Integer fileSize) {
         this.fileSize = fileSize;
     }
 
+    /**
+     * Gets the attachment description.
+     * @return the description
+     */
     public OPFormattableText getDescription() {
         return description;
     }
 
+    /**
+     * Sets the attachment description.
+     * @param description the description
+     */
     public void setDescription(OPFormattableText description) {
         this.description = description;
     }
 
+    /**
+     * Gets the MIME content type.
+     * @return the content type
+     */
     public String getContentType() {
         return contentType;
     }
 
+    /**
+     * Sets the MIME content type.
+     * @param contentType the content type
+     */
     public void setContentType(String contentType) {
         this.contentType = contentType;
     }
 
+    /**
+     * Gets the file digest information.
+     * @return the digest
+     */
     public OPDigest getDigest() {
         return digest;
     }
 
+    /**
+     * Sets the file digest information.
+     * @param digest the digest
+     */
     public void setDigest(OPDigest digest) {
         this.digest = digest;
     }
 
+    /**
+     * Gets the creation timestamp.
+     * @return the creation timestamp
+     */
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
+    /**
+     * Sets the creation timestamp.
+     * @param createdAt the creation timestamp
+     */
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
 
+    /**
+     * Gets the download location URL from the HAL links.
+     * @return the download location URL, or null if not available
+     */
     public String getDownloadLocationLink(){
         return null != this.getSingleLink("downloadLocation")? this.getSingleLink("downloadLocation").getHref() : null;
     }

@@ -7,6 +7,10 @@ import com.github.jpmand.openproject.client.api.models.base.OPBaseResource;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Represents the embedded data in a form resource.
+ * @param <T> the type of resource in the payload
+ */
 public class OPFormEmbedded<T extends OPBaseResource> {
 
     @JsonProperty("payload")
@@ -18,35 +22,68 @@ public class OPFormEmbedded<T extends OPBaseResource> {
     @JsonProperty("validationErrors")
     private Map<String, OPError> validationErrors;
 
+    /**
+     * Default constructor.
+     */
     public OPFormEmbedded() {
     }
 
+    /**
+     * Constructs a form embedded with payload, schema, and validation errors.
+     * @param payload the form payload
+     * @param schema the form schema
+     * @param validationErrors the validation errors
+     */
     public OPFormEmbedded(T payload, Object schema, Map<String, OPError> validationErrors) {
         this.payload = payload;
         this.schema = schema;
         this.validationErrors = validationErrors;
     }
 
+    /**
+     * Gets the form payload.
+     * @return the payload
+     */
     public T getPayload() {
         return payload;
     }
 
+    /**
+     * Sets the form payload.
+     * @param payload the payload
+     */
     public void setPayload(T payload) {
         this.payload = payload;
     }
 
+    /**
+     * Gets the form schema.
+     * @return the schema
+     */
     public Object getSchema() {
         return schema;
     }
 
+    /**
+     * Sets the form schema.
+     * @param schema the schema
+     */
     public void setSchema(Object schema) {
         this.schema = schema;
     }
 
+    /**
+     * Gets the validation errors.
+     * @return the validation errors map
+     */
     public Map<String, OPError> getValidationErrors() {
         return validationErrors;
     }
 
+    /**
+     * Sets the validation errors.
+     * @param validationErrors the validation errors map
+     */
     public void setValidationErrors(Map<String, OPError> validationErrors) {
         this.validationErrors = validationErrors;
     }
