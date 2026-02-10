@@ -22,9 +22,8 @@ public class OPCapabilityModel extends OPBaseResource {
     /**
      * Constructs a capability with id.
      * @param id the capability ID
-     * @param name unused parameter (legacy)
      */
-    public OPCapabilityModel(String id, String name) {
+    public OPCapabilityModel(String id) {
         this.id = id;
     }
 
