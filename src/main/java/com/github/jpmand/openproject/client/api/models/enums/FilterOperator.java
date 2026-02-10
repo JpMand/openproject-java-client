@@ -23,10 +23,6 @@ public enum FilterOperator {
      * are not equal one of the given value(s)
      * At least one typed value
      */
-    /**
-     * are not equal one of the given value(s)
-     * At least one typed value
-     */
     @JsonProperty("!")
     NOT_EQUALS("!"),
     /**
