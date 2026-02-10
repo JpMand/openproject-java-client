@@ -36,21 +36,13 @@ public interface StatusService {
     Call<OPStatusModel> getStatus(@Path("id") Long id);
 
     /**
-     * Lists all statuses with full query parameter support.
+     * Lists all statuses.
      * 
-     * @param offset the page number (starting from 1)
-     * @param pageSize the number of elements per page
-     * @param filters JSON string specifying filter conditions
-     * @param sortBy JSON string specifying sort criteria
-     * @param select comma-separated list of properties to include
+     * Note: According to the OpenAPI specification, this endpoint does not support
+     * any query parameters (filters, sortBy, select, offset, pageSize).
+     * 
      * @return a Call object that can be executed to retrieve the status collection
      */
     @GET("/api/v3/statuses")
-    Call<AbstractOPCollection<OPStatusModel>> listStatuses(
-            @Query("offset") Integer offset,
-            @Query("pageSize") Integer pageSize,
-            @Query("filters") String filters,
-            @Query("sortBy") String sortBy,
-            @Query("select") String select
-    );
+    Call<AbstractOPCollection<OPStatusModel>> listStatuses();
 }

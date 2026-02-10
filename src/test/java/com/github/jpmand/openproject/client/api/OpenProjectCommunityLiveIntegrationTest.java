@@ -100,19 +100,16 @@ public class OpenProjectCommunityLiveIntegrationTest {
     }
 
     @Test
-    void testSetupListProjectsWithFilterSortAndPagination() {
-        // This test validates the client setup for listing projects with filters, sorting, and pagination
+    void testSetupListProjectsWithFilterSortAndSelect() {
+        // This test validates the client setup for listing projects with filters, sorting, and select
+        // Note: Projects endpoint does NOT support offset/pageSize according to OpenAPI spec
         // To actually run the test against the live API, uncomment the following lines:
-        // int offset = 1;
-        // int pageSize = 10;
         // Map<String, SortEnum> sorts = new LinkedHashMap<>();
         // sorts.put("name", SortEnum.ASC);
         //
-        // AbstractOPCollection<OPProjectModel> projects = client.listProjects(offset, pageSize, null, sorts, null);
+        // AbstractOPCollection<OPProjectModel> projects = client.listProjects(null, sorts, null);
         // assertNotNull(projects, "Projects list should not be null");
         // assertNotNull(projects.getElements(), "Projects elements should not be null");
-        // assertEquals(offset, projects.getOffset(), "Offset should match");
-        // assertEquals(pageSize, projects.getPageSize(), "Page size should match");
         //
         // OPProjectModel firstProject = projects.getElements().get(0);
         // assertNotNull(firstProject, "First project should not be null");
@@ -136,15 +133,11 @@ public class OpenProjectCommunityLiveIntegrationTest {
     }
 
     @Test
-    void testSetupListStatusesWithFilterSortAndPagination() {
-        // This test validates the client setup for listing statuses with filters, sorting, and pagination
+    void testSetupListStatuses() {
+        // This test validates the client setup for listing statuses
+        // Note: Statuses endpoint does NOT support any query parameters according to OpenAPI spec
         // To actually run the test against the live API, uncomment the following lines:
-        // int offset = 1;
-        // int pageSize = 10;
-        // Map<String, SortEnum> sorts = new LinkedHashMap<>();
-        // sorts.put("position", SortEnum.ASC);
-        //
-        // AbstractOPCollection<OPStatusModel> statuses = client.listStatuses(offset, pageSize, null, sorts, null);
+        // AbstractOPCollection<OPStatusModel> statuses = client.listStatuses();
         // assertNotNull(statuses, "Statuses list should not be null");
         // assertNotNull(statuses.getElements(), "Statuses elements should not be null");
         //
@@ -170,15 +163,11 @@ public class OpenProjectCommunityLiveIntegrationTest {
     }
 
     @Test
-    void testSetupListPrioritiesWithFilterSortAndPagination() {
-        // This test validates the client setup for listing priorities with filters, sorting, and pagination
+    void testSetupListPriorities() {
+        // This test validates the client setup for listing priorities
+        // Note: Priorities endpoint does NOT support any query parameters according to OpenAPI spec
         // To actually run the test against the live API, uncomment the following lines:
-        // int offset = 1;
-        // int pageSize = 10;
-        // Map<String, SortEnum> sorts = new LinkedHashMap<>();
-        // sorts.put("position", SortEnum.ASC);
-        //
-        // AbstractOPCollection<OPPriorityModel> priorities = client.listPriorities(offset, pageSize, null, sorts, null);
+        // AbstractOPCollection<OPPriorityModel> priorities = client.listPriorities();
         // assertNotNull(priorities, "Priorities list should not be null");
         // assertNotNull(priorities.getElements(), "Priorities elements should not be null");
         //

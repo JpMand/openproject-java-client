@@ -52,19 +52,18 @@ public interface ProjectService {
     Call<OPProjectModel> getProject(@Path("id") Long id);
 
     /**
-     * Lists all projects with full query parameter support.
+     * Lists all projects with query parameter support.
      * 
-     * @param offset the page number (starting from 1)
-     * @param pageSize the number of elements per page
+     * Note: According to the OpenAPI specification, this endpoint supports:
+     * filters, sortBy, and select. It does NOT support offset or pageSize parameters.
+     * 
      * @param filters JSON string specifying filter conditions
-     * @param sortBy JSON string specifying sort criteria
+     * @param sortBy JSON string specifying sort criteria (supported orders: id, name, type_id, public, created_at, latest_activity_at, required_disk_space, parent_id, identifier)
      * @param select comma-separated list of properties to include
      * @return a Call object that can be executed to retrieve the project collection
      */
     @GET("/api/v3/projects")
     Call<AbstractOPCollection<OPProjectModel>> listProjects(
-            @Query("offset") Integer offset,
-            @Query("pageSize") Integer pageSize,
             @Query("filters") String filters,
             @Query("sortBy") String sortBy,
             @Query("select") String select
