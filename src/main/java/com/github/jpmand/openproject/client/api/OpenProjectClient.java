@@ -174,14 +174,54 @@ public class OpenProjectClient {
     }
 
     /**
-     * Lists all projects.
+     * Lists projects with full query parameter support using raw JSON strings.
      *
-     * @return the project collection
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    JSON string specifying filter conditions
+     * @param sortBy     JSON string specifying sort criteria
+     * @param select     comma-separated list of properties to include
+     * @return the paginated project collection
      * @throws IOException if the request fails
      */
-    public AbstractOPCollection<OPProjectModel> listProjects() throws IOException {
-        Call<AbstractOPCollection<OPProjectModel>> call = projectService.listProjects();
+    private AbstractOPCollection<OPProjectModel> listProjects(
+            Integer offset,
+            Integer pageSize,
+            String filters,
+            String sortBy,
+            String select) throws IOException {
+        Call<AbstractOPCollection<OPProjectModel>> call = projectService.listProjects(
+                offset, pageSize, filters, sortBy, select);
         return call.execute().body();
+    }
+
+    /**
+     * Lists projects with type-safe filter and sort parameters.
+     *
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    list of filter objects to apply
+     * @param sorts      map of field names to sort directions (use LinkedHashMap to preserve order)
+     * @param select     comma-separated list of properties to include
+     * @return the paginated project collection
+     * @throws IOException if the request fails
+     */
+    public AbstractOPCollection<OPProjectModel> listProjects(
+            Integer offset,
+            Integer pageSize,
+            List<OPQueryFilterInstance> filters,
+            Map<String, SortEnum> sorts,
+            String select) throws IOException {
+
+        String filtersJson = filters != null && !filters.isEmpty()
+                ? QueryBuilder.buildFilterJson(filters)
+                : null;
+
+        String sortByJson = sorts != null && !sorts.isEmpty()
+                ? QueryBuilder.buildSortJson(sorts)
+                : null;
+
+        return listProjects(offset, pageSize, filtersJson, sortByJson, select);
     }
 
     /**
@@ -197,14 +237,54 @@ public class OpenProjectClient {
     }
 
     /**
-     * Lists all statuses.
+     * Lists statuses with full query parameter support using raw JSON strings.
      *
-     * @return the status collection
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    JSON string specifying filter conditions
+     * @param sortBy     JSON string specifying sort criteria
+     * @param select     comma-separated list of properties to include
+     * @return the paginated status collection
      * @throws IOException if the request fails
      */
-    public AbstractOPCollection<OPStatusModel> listStatuses() throws IOException {
-        Call<AbstractOPCollection<OPStatusModel>> call = statusService.listStatuses();
+    private AbstractOPCollection<OPStatusModel> listStatuses(
+            Integer offset,
+            Integer pageSize,
+            String filters,
+            String sortBy,
+            String select) throws IOException {
+        Call<AbstractOPCollection<OPStatusModel>> call = statusService.listStatuses(
+                offset, pageSize, filters, sortBy, select);
         return call.execute().body();
+    }
+
+    /**
+     * Lists statuses with type-safe filter and sort parameters.
+     *
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    list of filter objects to apply
+     * @param sorts      map of field names to sort directions (use LinkedHashMap to preserve order)
+     * @param select     comma-separated list of properties to include
+     * @return the paginated status collection
+     * @throws IOException if the request fails
+     */
+    public AbstractOPCollection<OPStatusModel> listStatuses(
+            Integer offset,
+            Integer pageSize,
+            List<OPQueryFilterInstance> filters,
+            Map<String, SortEnum> sorts,
+            String select) throws IOException {
+
+        String filtersJson = filters != null && !filters.isEmpty()
+                ? QueryBuilder.buildFilterJson(filters)
+                : null;
+
+        String sortByJson = sorts != null && !sorts.isEmpty()
+                ? QueryBuilder.buildSortJson(sorts)
+                : null;
+
+        return listStatuses(offset, pageSize, filtersJson, sortByJson, select);
     }
 
     /**
@@ -220,13 +300,53 @@ public class OpenProjectClient {
     }
 
     /**
-     * Lists all priorities.
+     * Lists priorities with full query parameter support using raw JSON strings.
      *
-     * @return the priority collection
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    JSON string specifying filter conditions
+     * @param sortBy     JSON string specifying sort criteria
+     * @param select     comma-separated list of properties to include
+     * @return the paginated priority collection
      * @throws IOException if the request fails
      */
-    public AbstractOPCollection<OPPriorityModel> listPriorities() throws IOException {
-        Call<AbstractOPCollection<OPPriorityModel>> call = priorityService.listPriorities();
+    private AbstractOPCollection<OPPriorityModel> listPriorities(
+            Integer offset,
+            Integer pageSize,
+            String filters,
+            String sortBy,
+            String select) throws IOException {
+        Call<AbstractOPCollection<OPPriorityModel>> call = priorityService.listPriorities(
+                offset, pageSize, filters, sortBy, select);
         return call.execute().body();
+    }
+
+    /**
+     * Lists priorities with type-safe filter and sort parameters.
+     *
+     * @param offset     the page number (starting from 1)
+     * @param pageSize   the number of elements per page
+     * @param filters    list of filter objects to apply
+     * @param sorts      map of field names to sort directions (use LinkedHashMap to preserve order)
+     * @param select     comma-separated list of properties to include
+     * @return the paginated priority collection
+     * @throws IOException if the request fails
+     */
+    public AbstractOPCollection<OPPriorityModel> listPriorities(
+            Integer offset,
+            Integer pageSize,
+            List<OPQueryFilterInstance> filters,
+            Map<String, SortEnum> sorts,
+            String select) throws IOException {
+
+        String filtersJson = filters != null && !filters.isEmpty()
+                ? QueryBuilder.buildFilterJson(filters)
+                : null;
+
+        String sortByJson = sorts != null && !sorts.isEmpty()
+                ? QueryBuilder.buildSortJson(sorts)
+                : null;
+
+        return listPriorities(offset, pageSize, filtersJson, sortByJson, select);
     }
 }
