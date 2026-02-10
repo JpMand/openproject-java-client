@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
 import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
-import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilter;
 import com.github.jpmand.openproject.client.http.serialization.HalObjectMapper;
 
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ import java.util.Map;
  * }</pre>
  * 
  * @see OPQueryFilterInstance
- * @see OPQueryFilter
  * @see SortEnum
  */
 public class QueryBuilder {

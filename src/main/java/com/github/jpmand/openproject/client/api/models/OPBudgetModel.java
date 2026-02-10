@@ -83,7 +83,7 @@ public class OPBudgetModel extends OPBaseResource {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OPBudgetModel{");
-        sb.append("id='").append(getId());
+        sb.append("id='").append(getId()).append('\'');
         sb.append(", type='").append(getType()).append('\'');
         sb.append(", subject='").append(getSubject()).append('\'');
         sb.append(", links=").append(getLinks());

@@ -99,7 +99,7 @@ public class OPPriorityModel extends OPBaseResource {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OPPriorityModel{");
-        sb.append("id='").append(getId());
+        sb.append("id='").append(getId()).append('\'');
         sb.append(", type='").append(getType()).append('\'');
         sb.append(", name='").append(getName()).append('\'');
         sb.append(", position=").append(getPosition());
