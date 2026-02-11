@@ -10,11 +10,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - GitHub Copilot instructions for repository context in `.github/copilot-instructions.md`
 - New OpenProject API model classes:
+  - `OPUserModel` for user resources
+  - `OPTypeModel` for work package types
+  - `OPVersionModel` for versions/milestones
   - `OPActivityModel` for work package activities/comments
   - `OPRelationModel` for work package relations
   - `OPTimeEntryModel` for time entries
   - `OPWatcherModel` for watchers (extends OPUserModel)
   - `OPRevisionModel` for revision history
+- New service interfaces for comprehensive API coverage:
+  - `UserService` for user operations
+  - `TypeService` for work package type operations
+  - `VersionService` for version/milestone CRUD operations
+  - `ActivityService` for activity/comment management
+  - `RelationService` for work package relationship management
+  - `TimeEntryService` for time tracking CRUD operations
+- Full work package endpoint support in `WorkPackageService`:
+  - `POST /api/v3/work_packages` - Create work package
+  - `POST /api/v3/projects/{id}/work_packages` - Create work package in project
+  - `PATCH /api/v3/work_packages/{id}` - Update work package
+  - `DELETE /api/v3/work_packages/{id}` - Delete work package
+  - `POST /api/v3/work_packages/{id}/form` - Form validation for updates
+  - `POST /api/v3/work_packages/form` - Form validation for creation
+  - `POST /api/v3/projects/{id}/work_packages/form` - Form validation for project creation
+- Concurrency control support via `lockVersion` field in `OPWorkPackageModel`
+- Form validation support through `OPForm` and `OPFormEmbedded` classes
+- Service getter methods in `OpenProjectClient`:
+  - `users()` - Access user operations
+  - `types()` - Access type operations
+  - `versions()` - Access version operations
+  - `activities()` - Access activity operations
+  - `relations()` - Access relation operations
+  - `timeEntries()` - Access time entry operations
+
+### Changed
+- Enhanced README.md with comprehensive usage examples for:
+  - Work package creation, update, deletion
+  - Form validation workflows
+  - User, type, and version management
+  - Relations and time entry management
 
 ## [0.1.0-SNAPSHOT] - 2025-11-13
 
