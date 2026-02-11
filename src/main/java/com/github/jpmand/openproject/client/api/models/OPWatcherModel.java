@@ -11,7 +11,6 @@ public class OPWatcherModel extends OPUserModel {
      * Default constructor.
      */
     public OPWatcherModel() {
-        super();
     }
 
     @Override
