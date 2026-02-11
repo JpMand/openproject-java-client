@@ -20,7 +20,7 @@ public class OPActivityModel extends OPBaseResource {
     private OPFormattableText comment;
 
     @JsonProperty("details")
-    private List<OPDigest> details;
+    private List<OPFormattableText> details;
 
     @JsonProperty("version")
     private Integer version;
@@ -51,7 +51,7 @@ public class OPActivityModel extends OPBaseResource {
      * @param createdAt when the activity was created
      * @param updatedAt when the activity was last updated
      */
-    public OPActivityModel(Long id, OPFormattableText comment, List<OPDigest> details,
+    public OPActivityModel(Long id, OPFormattableText comment, List<OPFormattableText> details,
                            Integer version, Boolean internal, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.comment = comment;
@@ -78,11 +78,11 @@ public class OPActivityModel extends OPBaseResource {
         this.comment = comment;
     }
 
-    public List<OPDigest> getDetails() {
+    public List<OPFormattableText> getDetails() {
         return details;
     }
 
-    public void setDetails(List<OPDigest> details) {
+    public void setDetails(List<OPFormattableText> details) {
         this.details = details;
     }
 

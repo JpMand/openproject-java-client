@@ -1,0 +1,32 @@
+{
+  "_type": "Relation",
+  "id": 1,
+  "name": "precedes",
+  "type": "precedes",
+  "description": "This task precedes the other",
+  "lag": 2,
+  "reverseType": "follows",
+  "createdAt": "2023-03-15T10:00:00Z",
+  "updatedAt": "2023-03-15T10:00:00Z",
+  "_embedded": {
+    "from": {
+      "_type": "WorkPackage",
+      "id": 100
+    },
+    "to": {
+      "_type": "WorkPackage",
+      "id": 101
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/relations/1"
+    },
+    "from": {
+      "href": "/api/v3/work_packages/100"
+    },
+    "to": {
+      "href": "/api/v3/work_packages/101"
+    }
+  }
+}

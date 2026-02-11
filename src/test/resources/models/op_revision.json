@@ -1,0 +1,21 @@
+{
+  "_type": "Revision",
+  "id": "abc123def456",
+  "identifier": "abc123def456",
+  "formattedIdentifier": "abc123d",
+  "authorName": "John Doe",
+  "message": {
+    "format": "plain",
+    "raw": "Fix bug in user authentication",
+    "html": "<p>Fix bug in user authentication</p>"
+  },
+  "createdAt": "2023-04-20T16:45:00Z",
+  "_links": {
+    "self": {
+      "href": "/api/v3/revisions/abc123def456"
+    },
+    "author": {
+      "href": "/api/v3/users/2"
+    }
+  }
+}
