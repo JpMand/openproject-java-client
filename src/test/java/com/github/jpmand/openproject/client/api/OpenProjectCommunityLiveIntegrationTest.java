@@ -111,6 +111,7 @@ public class OpenProjectCommunityLiveIntegrationTest {
         AbstractOPCollection<OPProjectModel> projects = client.listProjects(null, sorts, null);
         assertNotNull(projects, "Projects list should not be null");
         assertNotNull(projects.getElements(), "Projects elements should not be null");
+        assertFalse(projects.getElements().isEmpty(), "Projects list should not be empty");
 
         OPProjectModel firstProject = projects.getElements().get(0);
         assertNotNull(firstProject, "First project should not be null");
@@ -135,6 +136,7 @@ public class OpenProjectCommunityLiveIntegrationTest {
         AbstractOPCollection<OPStatusModel> statuses = client.listStatuses();
         assertNotNull(statuses, "Statuses list should not be null");
         assertNotNull(statuses.getElements(), "Statuses elements should not be null");
+        assertFalse(statuses.getElements().isEmpty(), "Statuses list should not be empty");
 
         OPStatusModel firstStatus = statuses.getElements().get(0);
         assertNotNull(firstStatus, "First status should not be null");
@@ -159,6 +161,7 @@ public class OpenProjectCommunityLiveIntegrationTest {
         AbstractOPCollection<OPPriorityModel> priorities = client.listPriorities();
         assertNotNull(priorities, "Priorities list should not be null");
         assertNotNull(priorities.getElements(), "Priorities elements should not be null");
+        assertFalse(priorities.getElements().isEmpty(), "Priorities list should not be empty");
 
         OPPriorityModel firstPriority = priorities.getElements().get(0);
         assertNotNull(firstPriority, "First priority should not be null");
