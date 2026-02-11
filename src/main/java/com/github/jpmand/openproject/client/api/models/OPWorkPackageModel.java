@@ -78,6 +78,9 @@ public class OPWorkPackageModel extends OPBaseResource {
     @JsonProperty("derivedDueDate")
     private LocalDate derivedDueDate;
 
+    @JsonProperty("date")
+    private LocalDate date;
+
     @JsonProperty("duration")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Duration duration;
@@ -89,10 +92,6 @@ public class OPWorkPackageModel extends OPBaseResource {
     @JsonProperty("derivedEstimatedTime")
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     private Duration derivedEstimatedTime;
-
-    @JsonProperty("derivedRemainingTime")
-    @JsonFormat(shape = JsonFormat.Shape.STRING)
-    private Duration derivedRemainingTime;
 
     @JsonProperty("ignoreNonWorkingDays")
     private Boolean ignoreNonWorkingDays;
@@ -119,7 +118,7 @@ public class OPWorkPackageModel extends OPBaseResource {
     public OPWorkPackageModel() {
     }
 
-    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt, Integer lockVersion) {
+    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, LocalDate date, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt, Integer lockVersion) {
         this.id = id;
         this.subject = subject;
         this.description = description;
@@ -129,6 +128,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.dueDate = dueDate;
         this.derivedStartDate = derivedStartDate;
         this.derivedDueDate = derivedDueDate;
+        this.date = date;
         this.duration = duration;
         this.estimatedTime = estimatedTime;
         this.derivedEstimatedTime = derivedEstimatedTime;
@@ -213,6 +213,14 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.derivedDueDate = derivedDueDate;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public Duration getDuration() {
         return duration;
     }
@@ -235,14 +243,6 @@ public class OPWorkPackageModel extends OPBaseResource {
 
     public void setDerivedEstimatedTime(Duration derivedEstimatedTime) {
         this.derivedEstimatedTime = derivedEstimatedTime;
-    }
-
-    public Duration getDerivedRemainingTime() {
-        return derivedRemainingTime;
-    }
-
-    public void setDerivedRemainingTime(Duration derivedRemainingTime) {
-        this.derivedRemainingTime = derivedRemainingTime;
     }
 
     public Boolean getIgnoreNonWorkingDays() {
@@ -315,10 +315,10 @@ public class OPWorkPackageModel extends OPBaseResource {
                 Objects.equals(getDueDate(), that.getDueDate()) &&
                 Objects.equals(getDerivedStartDate(), that.getDerivedStartDate()) &&
                 Objects.equals(getDerivedDueDate(), that.getDerivedDueDate()) &&
+                Objects.equals(getDate(), that.getDate()) &&
                 Objects.equals(getDuration(), that.getDuration()) &&
                 Objects.equals(getEstimatedTime(), that.getEstimatedTime()) &&
                 Objects.equals(getDerivedEstimatedTime(), that.getDerivedEstimatedTime()) &&
-                Objects.equals(getDerivedRemainingTime(), that.getDerivedRemainingTime()) &&
                 Objects.equals(getIgnoreNonWorkingDays(), that.getIgnoreNonWorkingDays()) &&
                 Objects.equals(getSpentTime(), that.getSpentTime()) &&
                 Objects.equals(getPercentageDone(), that.getPercentageDone()) &&
@@ -339,10 +339,10 @@ public class OPWorkPackageModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getDueDate());
         result = 31 * result + Objects.hashCode(getDerivedStartDate());
         result = 31 * result + Objects.hashCode(getDerivedDueDate());
+        result = 31 * result + Objects.hashCode(getDate());
         result = 31 * result + Objects.hashCode(getDuration());
         result = 31 * result + Objects.hashCode(getEstimatedTime());
         result = 31 * result + Objects.hashCode(getDerivedEstimatedTime());
-        result = 31 * result + Objects.hashCode(getDerivedRemainingTime());
         result = 31 * result + Objects.hashCode(getIgnoreNonWorkingDays());
         result = 31 * result + Objects.hashCode(getSpentTime());
         result = 31 * result + Objects.hashCode(getPercentageDone());
@@ -365,10 +365,10 @@ public class OPWorkPackageModel extends OPBaseResource {
         sb.append(", dueDate=").append(getDueDate());
         sb.append(", derivedStartDate=").append(getDerivedStartDate());
         sb.append(", derivedDueDate=").append(getDerivedDueDate());
+        sb.append(", date=").append(getDate());
         sb.append(", duration='").append(getDuration()).append('\'');
         sb.append(", estimatedTime='").append(getEstimatedTime()).append('\'');
         sb.append(", derivedEstimatedTime='").append(getDerivedEstimatedTime()).append('\'');
-        sb.append(", derivedRemainingTime='").append(getDerivedRemainingTime()).append('\'');
         sb.append(", ignoreNonWorkingDays=").append(getIgnoreNonWorkingDays());
         sb.append(", spentTime='").append(getSpentTime()).append('\'');
         sb.append(", percentageDone=").append(getPercentageDone());

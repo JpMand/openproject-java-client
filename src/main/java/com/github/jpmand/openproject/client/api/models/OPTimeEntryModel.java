@@ -26,6 +26,15 @@ public class OPTimeEntryModel extends OPBaseResource {
     @JsonProperty("spentOn")
     private LocalDate spentOn;
 
+    @JsonProperty("ongoing")
+    private Boolean ongoing;
+
+    @JsonProperty("startTime")
+    private OffsetDateTime startTime;
+
+    @JsonProperty("endTime")
+    private OffsetDateTime endTime;
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -45,15 +54,22 @@ public class OPTimeEntryModel extends OPBaseResource {
      * @param comment the comment or description of the work done
      * @param hours the duration of time spent (ISO 8601 duration format)
      * @param spentOn the date for which time is booked
+     * @param ongoing whether the time entry is actively tracking time
+     * @param startTime the time the time entry was started (nullable)
+     * @param endTime the time the time entry was ended (nullable)
      * @param createdAt when the time entry was created
      * @param updatedAt when the time entry was last updated
      */
     public OPTimeEntryModel(Long id, OPFormattableText comment, Duration hours,
-                            LocalDate spentOn, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+                            LocalDate spentOn, Boolean ongoing, OffsetDateTime startTime,
+                            OffsetDateTime endTime, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.comment = comment;
         this.hours = hours;
         this.spentOn = spentOn;
+        this.ongoing = ongoing;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -90,6 +106,30 @@ public class OPTimeEntryModel extends OPBaseResource {
         this.spentOn = spentOn;
     }
 
+    public Boolean getOngoing() {
+        return ongoing;
+    }
+
+    public void setOngoing(Boolean ongoing) {
+        this.ongoing = ongoing;
+    }
+
+    public OffsetDateTime getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(OffsetDateTime startTime) {
+        this.startTime = startTime;
+    }
+
+    public OffsetDateTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(OffsetDateTime endTime) {
+        this.endTime = endTime;
+    }
+
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
@@ -115,6 +155,9 @@ public class OPTimeEntryModel extends OPBaseResource {
                 Objects.equals(getComment(), that.getComment()) &&
                 Objects.equals(getHours(), that.getHours()) &&
                 Objects.equals(getSpentOn(), that.getSpentOn()) &&
+                Objects.equals(getOngoing(), that.getOngoing()) &&
+                Objects.equals(getStartTime(), that.getStartTime()) &&
+                Objects.equals(getEndTime(), that.getEndTime()) &&
                 Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
                 Objects.equals(getUpdatedAt(), that.getUpdatedAt());
     }
@@ -125,6 +168,9 @@ public class OPTimeEntryModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getComment());
         result = 31 * result + Objects.hashCode(getHours());
         result = 31 * result + Objects.hashCode(getSpentOn());
+        result = 31 * result + Objects.hashCode(getOngoing());
+        result = 31 * result + Objects.hashCode(getStartTime());
+        result = 31 * result + Objects.hashCode(getEndTime());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + Objects.hashCode(getUpdatedAt());
         return result;
@@ -137,6 +183,9 @@ public class OPTimeEntryModel extends OPBaseResource {
         sb.append(", comment=").append(getComment());
         sb.append(", hours=").append(getHours());
         sb.append(", spentOn=").append(getSpentOn());
+        sb.append(", ongoing=").append(getOngoing());
+        sb.append(", startTime=").append(getStartTime());
+        sb.append(", endTime=").append(getEndTime());
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());
         sb.append(", type='").append(getType()).append('\'');

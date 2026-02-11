@@ -25,6 +25,9 @@ public class OPActivityModel extends OPBaseResource {
     @JsonProperty("version")
     private Integer version;
 
+    @JsonProperty("internal")
+    private Boolean internal;
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -44,15 +47,17 @@ public class OPActivityModel extends OPBaseResource {
      * @param comment the comment content
      * @param details array describing property changes
      * @param version internal version indicator
+     * @param internal whether the comment is internal (not visible to all users)
      * @param createdAt when the activity was created
      * @param updatedAt when the activity was last updated
      */
     public OPActivityModel(Long id, OPFormattableText comment, List<OPDigest> details,
-                           Integer version, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+                           Integer version, Boolean internal, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.comment = comment;
         this.details = details;
         this.version = version;
+        this.internal = internal;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -89,6 +94,14 @@ public class OPActivityModel extends OPBaseResource {
         this.version = version;
     }
 
+    public Boolean getInternal() {
+        return internal;
+    }
+
+    public void setInternal(Boolean internal) {
+        this.internal = internal;
+    }
+
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
@@ -114,6 +127,7 @@ public class OPActivityModel extends OPBaseResource {
                 Objects.equals(getComment(), that.getComment()) &&
                 Objects.equals(getDetails(), that.getDetails()) &&
                 Objects.equals(getVersion(), that.getVersion()) &&
+                Objects.equals(getInternal(), that.getInternal()) &&
                 Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
                 Objects.equals(getUpdatedAt(), that.getUpdatedAt());
     }
@@ -124,6 +138,7 @@ public class OPActivityModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getComment());
         result = 31 * result + Objects.hashCode(getDetails());
         result = 31 * result + Objects.hashCode(getVersion());
+        result = 31 * result + Objects.hashCode(getInternal());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + Objects.hashCode(getUpdatedAt());
         return result;
@@ -136,6 +151,7 @@ public class OPActivityModel extends OPBaseResource {
         sb.append(", comment=").append(getComment());
         sb.append(", details=").append(getDetails());
         sb.append(", version=").append(getVersion());
+        sb.append(", internal=").append(getInternal());
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());
         sb.append(", type='").append(getType()).append('\'');

@@ -24,8 +24,8 @@ public class OPRelationModel extends OPBaseResource {
     @JsonProperty("description")
     private String description;
 
-    @JsonProperty("delay")
-    private Integer delay;
+    @JsonProperty("lag")
+    private Integer lag;
 
     @JsonProperty("reverseType")
     private String reverseType;
@@ -49,19 +49,19 @@ public class OPRelationModel extends OPBaseResource {
      * @param name the user-friendly name of the relation type
      * @param relationType the relation type (blocks, precedes, relates, etc.)
      * @param description short text describing the relation
-     * @param delay the time delay between related work packages (in days)
+     * @param lag the time lag between related work packages (in days)
      * @param reverseType the relation type as seen from the target work package's side
      * @param createdAt when the relation was created
      * @param updatedAt when the relation was last updated
      */
     public OPRelationModel(Long id, String name, String relationType, String description,
-                           Integer delay, String reverseType,
+                           Integer lag, String reverseType,
                            OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.relationType = relationType;
         this.description = description;
-        this.delay = delay;
+        this.lag = lag;
         this.reverseType = reverseType;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -100,11 +100,11 @@ public class OPRelationModel extends OPBaseResource {
     }
 
     public Integer getDelay() {
-        return delay;
+        return lag;
     }
 
-    public void setDelay(Integer delay) {
-        this.delay = delay;
+    public void setDelay(Integer lag) {
+        this.lag = lag;
     }
 
     public String getReverseType() {
@@ -166,7 +166,7 @@ public class OPRelationModel extends OPBaseResource {
         sb.append(", name='").append(getName()).append('\'');
         sb.append(", relationType='").append(getRelationType()).append('\'');
         sb.append(", description='").append(getDescription()).append('\'');
-        sb.append(", delay=").append(getDelay());
+        sb.append(", lag=").append(getDelay());
         sb.append(", reverseType='").append(getReverseType()).append('\'');
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());

@@ -38,6 +38,9 @@ public class OPUserModel extends OPBaseResource {
     @JsonProperty("login")
     private String login;
 
+    @JsonProperty("language")
+    private String language;
+
     @JsonProperty("createdAt")
     private OffsetDateTime createdAt;
 
@@ -62,12 +65,13 @@ public class OPUserModel extends OPBaseResource {
      * @param firstName the user's first name
      * @param lastName the user's last name
      * @param login the user's login name
+     * @param language the user's language (ISO 639-1 format)
      * @param createdAt when the user was created
      * @param updatedAt when the user was last updated
      */
     public OPUserModel(Long id, String name, String email, String status, Boolean admin,
                        String avatar, String firstName, String lastName, String login,
-                       OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+                       String language, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -77,6 +81,7 @@ public class OPUserModel extends OPBaseResource {
         this.firstName = firstName;
         this.lastName = lastName;
         this.login = login;
+        this.language = language;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -153,6 +158,14 @@ public class OPUserModel extends OPBaseResource {
         this.login = login;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
@@ -183,6 +196,7 @@ public class OPUserModel extends OPBaseResource {
                 Objects.equals(getFirstName(), that.getFirstName()) &&
                 Objects.equals(getLastName(), that.getLastName()) &&
                 Objects.equals(getLogin(), that.getLogin()) &&
+                Objects.equals(getLanguage(), that.getLanguage()) &&
                 Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
                 Objects.equals(getUpdatedAt(), that.getUpdatedAt());
     }
@@ -198,6 +212,7 @@ public class OPUserModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getFirstName());
         result = 31 * result + Objects.hashCode(getLastName());
         result = 31 * result + Objects.hashCode(getLogin());
+        result = 31 * result + Objects.hashCode(getLanguage());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + Objects.hashCode(getUpdatedAt());
         return result;
@@ -215,6 +230,7 @@ public class OPUserModel extends OPBaseResource {
         sb.append(", firstName='").append(getFirstName()).append('\'');
         sb.append(", lastName='").append(getLastName()).append('\'');
         sb.append(", login='").append(getLogin()).append('\'');
+        sb.append(", language='").append(getLanguage()).append('\'');
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());
         sb.append(", type='").append(getType()).append('\'');
