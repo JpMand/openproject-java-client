@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - GitHub Copilot instructions for repository context in `.github/copilot-instructions.md`
+- New OpenProject API model classes:
+  - `OPActivityModel` for work package activities/comments
+  - `OPRelationModel` for work package relations
+  - `OPTimeEntryModel` for time entries
+  - `OPWatcherModel` for watchers (extends OPUserModel)
+  - `OPRevisionModel` for revision history
 
 ## [0.1.0-SNAPSHOT] - 2025-11-13
 

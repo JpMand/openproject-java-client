@@ -113,10 +113,13 @@ public class OPWorkPackageModel extends OPBaseResource {
     @JsonProperty("updatedAt")
     private OffsetDateTime updatedAt;
 
+    @JsonProperty("lockVersion")
+    private Integer lockVersion;
+
     public OPWorkPackageModel() {
     }
 
-    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt) {
+    public OPWorkPackageModel(Long id, String subject, OPFormattableText description, Boolean scheduleManually, Boolean readOnly, LocalDate startDate, LocalDate dueDate, LocalDate derivedStartDate, LocalDate derivedDueDate, Duration duration, Duration estimatedTime, Duration derivedEstimatedTime, Boolean ignoreNonWorkingDays, Duration spentTime, Integer percentageDone, Integer derivedPercentageDone, OffsetDateTime createdAt, OffsetDateTime updatedAt, Integer lockVersion) {
         this.id = id;
         this.subject = subject;
         this.description = description;
@@ -135,6 +138,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.derivedPercentageDone = derivedPercentageDone;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.lockVersion = lockVersion;
     }
 
     public Long getId() {
@@ -289,6 +293,14 @@ public class OPWorkPackageModel extends OPBaseResource {
         this.updatedAt = updatedAt;
     }
 
+    public Integer getLockVersion() {
+        return lockVersion;
+    }
+
+    public void setLockVersion(Integer lockVersion) {
+        this.lockVersion = lockVersion;
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (!(o instanceof OPWorkPackageModel that)) return false;
@@ -312,7 +324,8 @@ public class OPWorkPackageModel extends OPBaseResource {
                 Objects.equals(getPercentageDone(), that.getPercentageDone()) &&
                 Objects.equals(getDerivedPercentageDone(), that.getDerivedPercentageDone()) &&
                 Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
-                Objects.equals(getUpdatedAt(), that.getUpdatedAt());
+                Objects.equals(getUpdatedAt(), that.getUpdatedAt()) &&
+                Objects.equals(getLockVersion(), that.getLockVersion());
     }
 
     @Override
@@ -336,6 +349,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getDerivedPercentageDone());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + Objects.hashCode(getUpdatedAt());
+        result = 31 * result + Objects.hashCode(getLockVersion());
         return result;
     }
 
@@ -361,6 +375,7 @@ public class OPWorkPackageModel extends OPBaseResource {
         sb.append(", derivedPercentageDone=").append(getDerivedPercentageDone());
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());
+        sb.append(", lockVersion=").append(getLockVersion());
         sb.append(", type='").append(getType()).append('\'');
         sb.append(", links=").append(getLinks());
         sb.append('}');
