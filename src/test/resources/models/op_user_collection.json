@@ -1,0 +1,56 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "User",
+        "id": 1,
+        "name": "OpenProject Admin",
+        "email": "admin@example.com",
+        "status": "active",
+        "admin": true,
+        "avatar": "https://example.com/avatar1.png",
+        "firstName": "OpenProject",
+        "lastName": "Admin",
+        "login": "admin",
+        "language": "en",
+        "createdAt": "2023-01-15T12:00:00Z",
+        "updatedAt": "2023-06-20T14:30:00Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/users/1"
+          }
+        }
+      },
+      {
+        "_type": "User",
+        "id": 2,
+        "name": "John Doe",
+        "email": "john@example.com",
+        "status": "active",
+        "admin": false,
+        "avatar": "https://example.com/avatar2.png",
+        "firstName": "John",
+        "lastName": "Doe",
+        "login": "jdoe",
+        "language": "de",
+        "createdAt": "2023-02-10T10:00:00Z",
+        "updatedAt": "2023-07-15T09:00:00Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/users/2"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/users"
+    }
+  }
+}

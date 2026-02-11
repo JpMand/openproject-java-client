@@ -1,0 +1,22 @@
+{
+  "_type": "Version",
+  "id": 1,
+  "name": "Version 1.0",
+  "description": {
+    "format": "markdown",
+    "raw": "Initial Release",
+    "html": "<p>Initial Release</p>"
+  },
+  "startDate": "2024-01-01",
+  "endDate": "2024-03-31",
+  "status": "open",
+  "sharing": "system",
+  "createdAt": "2024-01-01T12:00:00Z",
+  "updatedAt": "2024-01-05T08:00:00Z",
+  "_links": {
+    "self": {
+      "href": "/api/v3/versions/1",
+      "title": "Version 1.0"
+    }
+  }
+}

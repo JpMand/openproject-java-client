@@ -12,6 +12,12 @@ import com.github.jpmand.openproject.client.api.services.PriorityService;
 import com.github.jpmand.openproject.client.api.services.ProjectService;
 import com.github.jpmand.openproject.client.api.services.StatusService;
 import com.github.jpmand.openproject.client.api.services.WorkPackageService;
+import com.github.jpmand.openproject.client.api.services.UserService;
+import com.github.jpmand.openproject.client.api.services.TypeService;
+import com.github.jpmand.openproject.client.api.services.VersionService;
+import com.github.jpmand.openproject.client.api.services.ActivityService;
+import com.github.jpmand.openproject.client.api.services.RelationService;
+import com.github.jpmand.openproject.client.api.services.TimeEntryService;
 import com.github.jpmand.openproject.client.auth.AnonymousAuth;
 import com.github.jpmand.openproject.client.auth.AuthProvider;
 import com.github.jpmand.openproject.client.http.UserAgentInterceptor;
@@ -43,6 +49,12 @@ public class OpenProjectClient {
     private final ProjectService projectService;
     private final StatusService statusService;
     private final PriorityService priorityService;
+    private final UserService userService;
+    private final TypeService typeService;
+    private final VersionService versionService;
+    private final ActivityService activityService;
+    private final RelationService relationService;
+    private final TimeEntryService timeEntryService;
 
     /**
      * Creates an OpenProjectClient with anonymous access.
@@ -73,6 +85,12 @@ public class OpenProjectClient {
         this.projectService = retrofit.create(ProjectService.class);
         this.statusService = retrofit.create(StatusService.class);
         this.priorityService = retrofit.create(PriorityService.class);
+        this.userService = retrofit.create(UserService.class);
+        this.typeService = retrofit.create(TypeService.class);
+        this.versionService = retrofit.create(VersionService.class);
+        this.activityService = retrofit.create(ActivityService.class);
+        this.relationService = retrofit.create(RelationService.class);
+        this.timeEntryService = retrofit.create(TimeEntryService.class);
     }
 
     private static Retrofit createRetrofit(String baseUrl, AuthProvider authProvider) {
@@ -268,5 +286,59 @@ public class OpenProjectClient {
     public AbstractOPCollection<OPPriorityModel> listPriorities() throws IOException {
         Call<AbstractOPCollection<OPPriorityModel>> call = priorityService.listPriorities();
         return call.execute().body();
+    }
+
+    /**
+     * Gets the UserService for making user-related API calls.
+     * 
+     * @return the user service
+     */
+    public UserService users() {
+        return userService;
+    }
+
+    /**
+     * Gets the TypeService for making type-related API calls.
+     * 
+     * @return the type service
+     */
+    public TypeService types() {
+        return typeService;
+    }
+
+    /**
+     * Gets the VersionService for making version-related API calls.
+     * 
+     * @return the version service
+     */
+    public VersionService versions() {
+        return versionService;
+    }
+
+    /**
+     * Gets the ActivityService for making activity-related API calls.
+     * 
+     * @return the activity service
+     */
+    public ActivityService activities() {
+        return activityService;
+    }
+
+    /**
+     * Gets the RelationService for making relation-related API calls.
+     * 
+     * @return the relation service
+     */
+    public RelationService relations() {
+        return relationService;
+    }
+
+    /**
+     * Gets the TimeEntryService for making time entry-related API calls.
+     * 
+     * @return the time entry service
+     */
+    public TimeEntryService timeEntries() {
+        return timeEntryService;
     }
 }
