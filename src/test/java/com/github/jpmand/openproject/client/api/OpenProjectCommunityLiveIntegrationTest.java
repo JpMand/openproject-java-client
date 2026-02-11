@@ -42,9 +42,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * <p>
  * <strong>To run these tests:</strong>
  * <ul>
- * <li>Remove the {@code @Disabled} annotation from individual tests</li>
- * <li>Run with: {@code mvn test -Dgroups=live-integration}</li>
- * <li>Or run individual tests from your IDE</li>
+ * <li>Remove the {@code @Disabled} annotation from the test(s) you want to run</li>
+ * <li>Run with: {@code mvn test -DexcludedGroups=}</li>
+ * <li>Or run individual tests from your IDE after removing {@code @Disabled}</li>
  * </ul>
  * </p>
  */
