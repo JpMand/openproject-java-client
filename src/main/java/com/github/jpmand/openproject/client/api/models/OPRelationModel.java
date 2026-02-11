@@ -99,11 +99,11 @@ public class OPRelationModel extends OPBaseResource {
         this.description = description;
     }
 
-    public Integer getDelay() {
+    public Integer getLag() {
         return lag;
     }
 
-    public void setDelay(Integer lag) {
+    public void setLag(Integer lag) {
         this.lag = lag;
     }
 
@@ -140,7 +140,7 @@ public class OPRelationModel extends OPBaseResource {
                 Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getRelationType(), that.getRelationType()) &&
                 Objects.equals(getDescription(), that.getDescription()) &&
-                Objects.equals(getDelay(), that.getDelay()) &&
+                Objects.equals(getLag(), that.getLag()) &&
                 Objects.equals(getReverseType(), that.getReverseType()) &&
                 Objects.equals(getCreatedAt(), that.getCreatedAt()) &&
                 Objects.equals(getUpdatedAt(), that.getUpdatedAt());
@@ -152,7 +152,7 @@ public class OPRelationModel extends OPBaseResource {
         result = 31 * result + Objects.hashCode(getName());
         result = 31 * result + Objects.hashCode(getRelationType());
         result = 31 * result + Objects.hashCode(getDescription());
-        result = 31 * result + Objects.hashCode(getDelay());
+        result = 31 * result + Objects.hashCode(getLag());
         result = 31 * result + Objects.hashCode(getReverseType());
         result = 31 * result + Objects.hashCode(getCreatedAt());
         result = 31 * result + Objects.hashCode(getUpdatedAt());
@@ -166,7 +166,7 @@ public class OPRelationModel extends OPBaseResource {
         sb.append(", name='").append(getName()).append('\'');
         sb.append(", relationType='").append(getRelationType()).append('\'');
         sb.append(", description='").append(getDescription()).append('\'');
-        sb.append(", lag=").append(getDelay());
+        sb.append(", lag=").append(getLag());
         sb.append(", reverseType='").append(getReverseType()).append('\'');
         sb.append(", createdAt=").append(getCreatedAt());
         sb.append(", updatedAt=").append(getUpdatedAt());
