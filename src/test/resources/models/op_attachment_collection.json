@@ -1,0 +1,90 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Attachment",
+        "id": 1612,
+        "fileName": "Wireframe_ProjectSettings-DeleteProject.pdf",
+        "fileSize": 141101,
+        "description": {
+          "format": "plain",
+          "raw": "",
+          "html": ""
+        },
+        "status": "uploaded",
+        "contentType": "application/pdf",
+        "digest": {
+          "algorithm": "md5",
+          "hash": "d519d08637b7b28353130684938ffd56"
+        },
+        "createdAt": "2014-02-17T09:57:24.514Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/attachments/1612",
+            "title": "Wireframe_ProjectSettings-DeleteProject.pdf"
+          },
+          "author": {
+            "href": "/api/v3/users/3762",
+            "title": "Robin Wagner"
+          },
+          "container": {
+            "href": "/api/v3/work_packages/3893",
+            "title": "Delete project via project settings by non admins"
+          },
+          "staticDownloadLocation": {
+            "href": "/api/v3/attachments/1612/content"
+          },
+          "downloadLocation": {
+            "href": "https://example.com/community/attachment/file/1612/Wireframe_ProjectSettings-DeleteProject.pdf?response-content-disposition=inline&X-Amz-Expires=600&X-Amz-Date=20250101T000000Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250101%2Fexample-region%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=EXAMPLESIGNATURE0000000000000000000000000000000000000000000000000000"
+          }
+        }
+      },
+      {
+        "_type": "Attachment",
+        "id": 1611,
+        "fileName": "Wireframe_ProjectSettings-DeleteProject.pptx",
+        "fileSize": 163305,
+        "description": {
+          "format": "plain",
+          "raw": "",
+          "html": ""
+        },
+        "status": "uploaded",
+        "contentType": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "digest": {
+          "algorithm": "md5",
+          "hash": "1ce4d3bce0a78192a546bd3568e9455b"
+        },
+        "createdAt": "2014-02-17T09:57:24.147Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/attachments/1611",
+            "title": "Wireframe_ProjectSettings-DeleteProject.pptx"
+          },
+          "author": {
+            "href": "/api/v3/users/3762",
+            "title": "Robin Wagner"
+          },
+          "container": {
+            "href": "/api/v3/work_packages/3893",
+            "title": "Delete project via project settings by non admins"
+          },
+          "staticDownloadLocation": {
+            "href": "/api/v3/attachments/1611/content"
+          },
+          "downloadLocation": {
+            "href": "https://example.com/community/attachment/file/1611/Wireframe_ProjectSettings-DeleteProject.pptx?response-content-disposition=attachment&X-Amz-Expires=600&X-Amz-Date=20250101T000000Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=EXAMPLEACCESSKEY%2F20250101%2Fexample-region%2Fs3%2Faws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=EXAMPLESIGNATURE1111111111111111111111111111111111111111111111111111"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/work_packages/3893/attachments"
+    }
+  }
+}

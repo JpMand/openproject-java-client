@@ -1,0 +1,58 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Project",
+        "id": 1,
+        "identifier": "demo-project",
+        "name": "Demo project",
+        "active": true,
+        "public": true,
+        "description": {
+          "format": "markdown",
+          "raw": "This is a demo project.",
+          "html": "<p class=\"op-uc-p\">This is a demo project.</p>"
+        },
+        "createdAt": "2025-06-11T07:22:02.191Z",
+        "updatedAt": "2025-06-13T12:27:37.860Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/projects/1",
+            "title": "Demo project"
+          }
+        }
+      },
+      {
+        "_type": "Project",
+        "id": 2,
+        "identifier": "test-project",
+        "name": "Test Project",
+        "active": true,
+        "public": false,
+        "description": {
+          "format": "plain",
+          "raw": "A test project",
+          "html": "<p>A test project</p>"
+        },
+        "createdAt": "2025-06-12T08:00:00.000Z",
+        "updatedAt": "2025-06-12T08:00:00.000Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/projects/2",
+            "title": "Test Project"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/projects"
+    }
+  }
+}

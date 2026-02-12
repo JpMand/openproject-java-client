@@ -2,8 +2,8 @@ package com.github.jpmand.openproject.client.util;
 
 import com.github.jpmand.openproject.client.api.models.enums.FilterOperator;
 import com.github.jpmand.openproject.client.api.models.enums.SortEnum;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterObject;
-import com.github.jpmand.openproject.client.api.models.filters.OPFilterValue;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilter;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedHashMap;
@@ -20,26 +20,24 @@ class QueryBuilderTest {
     @Test
     void testBuildFilterJsonWithSingleFilter() {
         // Create a filter for open status
-        OPFilterObject filter = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
+        OPQueryFilterInstance filter = OPQueryFilterInstance.of("status", OPQueryFilter.of(FilterOperator.WK_OPEN, List.of()));
         
         String json = QueryBuilder.buildFilterJson(filter);
         
         assertNotNull(json);
-        assertTrue(json.contains("status"));
-        assertTrue(json.contains("o")); // operator value
+        assertEquals("[{\"status\":{\"operator\":\"o\",\"values\":[]}}]", json.strip(), "Filter JSON does not match expected format");
     }
 
     @Test
     void testBuildFilterJsonWithMultipleFilters() {
         // Create multiple filters
-        OPFilterObject filter1 = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.WK_OPEN, List.of()));
-        OPFilterObject filter2 = OPFilterObject.of("assignee", OPFilterValue.of(FilterOperator.EQUALS, List.of("me")));
+        OPQueryFilterInstance filter1 = OPQueryFilterInstance.of("status", OPQueryFilter.of(FilterOperator.WK_OPEN, List.of()));
+        OPQueryFilterInstance filter2 = OPQueryFilterInstance.of("assignee", OPQueryFilter.of(FilterOperator.EQUALS, List.of("me")));
         
         String json = QueryBuilder.buildFilterJson(List.of(filter1, filter2));
         
         assertNotNull(json);
-        assertTrue(json.contains("status"));
-        assertTrue(json.contains("assignee"));
+        assertEquals("[{\"status\":{\"operator\":\"o\",\"values\":[]}},{\"assignee\":{\"operator\":\"=\",\"values\":[\"me\"]}}]", json.strip(), "Filter JSON does not match expected format");
     }
 
     @Test
@@ -47,8 +45,7 @@ class QueryBuilderTest {
         String json = QueryBuilder.buildSortJson("id", SortEnum.ASC);
         
         assertNotNull(json);
-        assertTrue(json.contains("id"));
-        assertTrue(json.contains("asc"));
+        assertEquals("[[\"id\",\"asc\"]]", json.strip(), "Sort JSON does not match expected format");
     }
 
     @Test
@@ -60,20 +57,17 @@ class QueryBuilderTest {
         String json = QueryBuilder.buildSortJson(sortFields);
         
         assertNotNull(json);
-        assertTrue(json.contains("priority"));
-        assertTrue(json.contains("desc"));
-        assertTrue(json.contains("id"));
-        assertTrue(json.contains("asc"));
+        assertEquals("[[\"priority\",\"desc\"],[\"id\",\"asc\"]]", json.strip(), "Sort JSON does not match expected format");
     }
 
     @Test
     void testBuildFilterJsonWithMultipleValues() {
         // Create a filter with multiple values
-        OPFilterObject filter = OPFilterObject.of("status", OPFilterValue.of(FilterOperator.EQUALS, List.of("1", "2", "3")));
+        OPQueryFilterInstance filter = OPQueryFilterInstance.of("status", OPQueryFilter.of(FilterOperator.EQUALS, List.of("1", "2", "3")));
         
         String json = QueryBuilder.buildFilterJson(filter);
         
         assertNotNull(json);
-        assertTrue(json.contains("status"));
+        assertEquals("[{\"status\":{\"operator\":\"=\",\"values\":[\"1\",\"2\",\"3\"]}}]", json.strip(), "Filter JSON does not match expected format");
     }
 }

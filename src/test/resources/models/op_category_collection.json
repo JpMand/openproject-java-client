@@ -1,0 +1,38 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Category",
+        "id": 1,
+        "name": "Bug Category",
+        "_links": {
+          "self": {
+            "href": "/api/v3/categories/1",
+            "title": "Bug Category"
+          }
+        }
+      },
+      {
+        "_type": "Category",
+        "id": 2,
+        "name": "Feature Category",
+        "_links": {
+          "self": {
+            "href": "/api/v3/categories/2",
+            "title": "Feature Category"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/categories"
+    }
+  }
+}

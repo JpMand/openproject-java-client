@@ -1,0 +1,38 @@
+{
+  "_type": "Activity",
+  "id": 1,
+  "comment": {
+    "format": "markdown",
+    "raw": "This is a comment",
+    "html": "<p>This is a comment</p>"
+  },
+  "details": [
+    {
+      "format": "markdown",
+      "raw": "**Status** changed from *New* to *In Progress*",
+      "html": "<strong>Status</strong> changed from <em>New</em> to <em>In Progress</em>"
+    }
+  ],
+  "version": 2,
+  "internal": false,
+  "createdAt": "2023-05-10T14:30:00Z",
+  "updatedAt": "2023-05-10T14:35:00Z",
+  "_embedded": {
+    "user": {
+      "_type": "User",
+      "id": 1,
+      "name": "OpenProject Admin"
+    }
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/activities/1"
+    },
+    "workPackage": {
+      "href": "/api/v3/work_packages/123"
+    },
+    "user": {
+      "href": "/api/v3/users/1"
+    }
+  }
+}

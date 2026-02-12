@@ -1,0 +1,39 @@
+{
+  "_type": "Project",
+  "id": 1,
+  "identifier": "demo-project",
+  "name": "Demo project",
+  "active": true,
+  "public": true,
+  "description": {
+    "format": "markdown",
+    "raw": "This is a short summary of the goals of this demo project.",
+    "html": "<p class=\"op-uc-p\">This is a short summary of the goals of this demo project.</p>"
+  },
+  "createdAt": "2025-06-11T07:22:02.191Z",
+  "updatedAt": "2025-06-13T12:27:37.860Z",
+  "statusExplanation": {
+    "format": "markdown",
+    "raw": "All tasks are on schedule. The people involved know their tasks. The system is completely set up.",
+    "html": "<p class=\"op-uc-p\">All tasks are on schedule. The people involved know their tasks. The system is completely set up.</p>"
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/projects/1",
+      "title": "Demo project"
+    },
+    "createWorkPackage": {
+      "href": "/api/v3/projects/1/work_packages/form",
+      "method": "post"
+    },
+    "workPackages": {
+      "href": "/api/v3/projects/1/work_packages"
+    },
+    "categories": {
+      "href": "/api/v3/projects/1/categories"
+    },
+    "versions": {
+      "href": "/api/v3/projects/1/versions"
+    }
+  }
+}

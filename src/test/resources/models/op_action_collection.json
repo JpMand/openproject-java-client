@@ -1,0 +1,477 @@
+{
+  "_type": "Collection",
+  "count": 50,
+  "total": 57,
+  "_links": {
+    "self": {
+      "href": "/api/v3/actions?filters=%5B%5D&offset=1&pageSize=50&select=%2A%2Celements%2F%2A"
+    },
+    "jumpTo": {
+      "href": "/api/v3/actions?filters=%5B%5D&offset=%7Boffset%7D&pageSize=50&select=%2A%2Celements%2F%2A",
+      "templated": true
+    },
+    "changeSize": {
+      "href": "/api/v3/actions?filters=%5B%5D&offset=1&pageSize=%7Bsize%7D&select=%2A%2Celements%2F%2A",
+      "templated": true
+    },
+    "nextByOffset": {
+      "href": "/api/v3/actions?filters=%5B%5D&offset=2&pageSize=50&select=%2A%2Celements%2F%2A"
+    }
+  },
+  "offset": 1,
+  "pageSize": 50,
+  "_embedded": {
+    "elements": [
+      {
+        "id": "activities/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/activities/read"
+          }
+        }
+      },
+      {
+        "id": "bcfs/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/bcfs/create"
+          }
+        }
+      },
+      {
+        "id": "bcfs/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/bcfs/destroy"
+          }
+        }
+      },
+      {
+        "id": "bcfs/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/bcfs/read"
+          }
+        }
+      },
+      {
+        "id": "bcfs/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/bcfs/update"
+          }
+        }
+      },
+      {
+        "id": "boards/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/boards/create"
+          }
+        }
+      },
+      {
+        "id": "boards/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/boards/destroy"
+          }
+        }
+      },
+      {
+        "id": "boards/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/boards/read"
+          }
+        }
+      },
+      {
+        "id": "boards/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/boards/update"
+          }
+        }
+      },
+      {
+        "id": "calendars/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/calendars/create"
+          }
+        }
+      },
+      {
+        "id": "calendars/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/calendars/destroy"
+          }
+        }
+      },
+      {
+        "id": "calendars/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/calendars/read"
+          }
+        }
+      },
+      {
+        "id": "calendars/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/calendars/read"
+          }
+        }
+      },
+      {
+        "id": "calendars/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/calendars/update"
+          }
+        }
+      },
+      {
+        "id": "file_links/manage",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/file_links/manage"
+          }
+        }
+      },
+      {
+        "id": "file_links/view",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/file_links/view"
+          }
+        }
+      },
+      {
+        "id": "ifc_models/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/ifc_models/create"
+          }
+        }
+      },
+      {
+        "id": "ifc_models/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/ifc_models/destroy"
+          }
+        }
+      },
+      {
+        "id": "ifc_models/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/ifc_models/read"
+          }
+        }
+      },
+      {
+        "id": "ifc_models/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/ifc_models/update"
+          }
+        }
+      },
+      {
+        "id": "internal_comments/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/internal_comments/create"
+          }
+        }
+      },
+      {
+        "id": "internal_comments/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/internal_comments/read"
+          }
+        }
+      },
+      {
+        "id": "internal_comments/update_others",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/internal_comments/update_others"
+          }
+        }
+      },
+      {
+        "id": "internal_comments/update_own",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/internal_comments/update_own"
+          }
+        }
+      },
+      {
+        "id": "meetings/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/meetings/create"
+          }
+        }
+      },
+      {
+        "id": "memberships/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/memberships/create"
+          }
+        }
+      },
+      {
+        "id": "memberships/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/memberships/destroy"
+          }
+        }
+      },
+      {
+        "id": "memberships/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/memberships/read"
+          }
+        }
+      },
+      {
+        "id": "memberships/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/memberships/update"
+          }
+        }
+      },
+      {
+        "id": "placeholder_users/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/placeholder_users/create"
+          }
+        }
+      },
+      {
+        "id": "placeholder_users/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/placeholder_users/read"
+          }
+        }
+      },
+      {
+        "id": "placeholder_users/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/placeholder_users/update"
+          }
+        }
+      },
+      {
+        "id": "projects/copy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/projects/copy"
+          }
+        }
+      },
+      {
+        "id": "projects/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/projects/create"
+          }
+        }
+      },
+      {
+        "id": "projects/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/projects/update"
+          }
+        }
+      },
+      {
+        "id": "projects/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/projects/update"
+          }
+        }
+      },
+      {
+        "id": "projects/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/projects/update"
+          }
+        }
+      },
+      {
+        "id": "queries/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/queries/create"
+          }
+        }
+      },
+      {
+        "id": "team_planners/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/team_planners/create"
+          }
+        }
+      },
+      {
+        "id": "team_planners/destroy",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/team_planners/destroy"
+          }
+        }
+      },
+      {
+        "id": "team_planners/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/team_planners/read"
+          }
+        }
+      },
+      {
+        "id": "team_planners/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/team_planners/update"
+          }
+        }
+      },
+      {
+        "id": "time_entries/create_own",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/time_entries/create_own"
+          }
+        }
+      },
+      {
+        "id": "time_entries/destroy_own",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/time_entries/destroy_own"
+          }
+        }
+      },
+      {
+        "id": "time_entries/edit_own",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/time_entries/edit_own"
+          }
+        }
+      },
+      {
+        "id": "time_entries/read_own",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/time_entries/read_own"
+          }
+        }
+      },
+      {
+        "id": "users/create",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/users/create"
+          }
+        }
+      },
+      {
+        "id": "users/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/users/read"
+          }
+        }
+      },
+      {
+        "id": "users/read",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/users/read"
+          }
+        }
+      },
+      {
+        "id": "users/update",
+        "_type": "Action",
+        "_links": {
+          "self": {
+            "href": "/api/v3/actions/users/update"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -2,10 +2,10 @@ package com.github.jpmand.openproject.client.api.services;
 
 import com.github.jpmand.openproject.client.api.models.OPWorkPackageModel;
 import com.github.jpmand.openproject.client.api.models.base.AbstractOPCollection;
+import com.github.jpmand.openproject.client.api.models.filters.OPQueryFilterInstance;
+import com.github.jpmand.openproject.client.api.models.forms.OPForm;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 /**
  * Retrofit service interface for OpenProject Work Package API endpoints.
@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  * </p>
  * 
  * @see OPWorkPackageModel
- * @see com.github.jpmand.openproject.client.api.models.filters.OPFilterObject
+ * @see OPQueryFilterInstance
  * @see com.github.jpmand.openproject.client.api.OpenProjectClient
  */
 public interface WorkPackageService {
@@ -30,27 +30,6 @@ public interface WorkPackageService {
     Call<OPWorkPackageModel> getWorkPackage(@Path("id") Long id);
 
     /**
-     * Lists all work packages with default parameters.
-     * 
-     * @return a Call object that can be executed to retrieve the work package collection
-     */
-    @GET("/api/v3/work_packages")
-    Call<AbstractOPCollection<OPWorkPackageModel>> listWorkPackages();
-
-    /**
-     * Lists work packages with pagination.
-     * 
-     * @param pageSize the number of elements per page
-     * @param offset the page number (starting from 1)
-     * @return a Call object that can be executed to retrieve the work package collection
-     */
-    @GET("/api/v3/work_packages")
-    Call<AbstractOPCollection<OPWorkPackageModel>> listWorkPackages(
-            @Query("pageSize") Integer pageSize,
-            @Query("offset") Integer offset
-    );
-
-    /**
      * Lists work packages with full query parameter support.
      * 
      * @param offset the page number (starting from 1)
@@ -60,7 +39,6 @@ public interface WorkPackageService {
      * @param groupBy the column to group by
      * @param showSums whether to show property sums
      * @param select comma-separated list of properties to include
-     * @param timestamps comma-separated timestamps for baseline comparisons
      * @return a Call object that can be executed to retrieve the work package collection
      */
     @GET("/api/v3/work_packages")
@@ -71,7 +49,88 @@ public interface WorkPackageService {
             @Query("sortBy") String sortBy,
             @Query("groupBy") String groupBy,
             @Query("showSums") Boolean showSums,
-            @Query("select") String select,
-            @Query("timestamps") String timestamps
+            @Query("select") String select
+    );
+
+    /**
+     * Creates a new work package in the system.
+     * 
+     * @param workPackage the work package to create
+     * @return a Call object that can be executed to create the work package
+     */
+    @POST("/api/v3/work_packages")
+    Call<OPWorkPackageModel> createWorkPackage(@Body OPWorkPackageModel workPackage);
+
+    /**
+     * Creates a new work package in a specific project.
+     * 
+     * @param projectId the project ID
+     * @param workPackage the work package to create
+     * @return a Call object that can be executed to create the work package
+     */
+    @POST("/api/v3/projects/{projectId}/work_packages")
+    Call<OPWorkPackageModel> createWorkPackageInProject(
+            @Path("projectId") Long projectId,
+            @Body OPWorkPackageModel workPackage
+    );
+
+    /**
+     * Updates an existing work package.
+     * 
+     * @param id the work package ID
+     * @param workPackage the updated work package data (must include lockVersion)
+     * @return a Call object that can be executed to update the work package
+     */
+    @PATCH("/api/v3/work_packages/{id}")
+    Call<OPWorkPackageModel> updateWorkPackage(
+            @Path("id") Long id,
+            @Body OPWorkPackageModel workPackage
+    );
+
+    /**
+     * Deletes a work package.
+     * 
+     * @param id the work package ID
+     * @return a Call object that can be executed to delete the work package
+     */
+    @DELETE("/api/v3/work_packages/{id}")
+    Call<Void> deleteWorkPackage(@Path("id") Long id);
+
+    /**
+     * Gets the form for validating work package changes.
+     * 
+     * @param id the work package ID
+     * @param workPackage the work package data to validate
+     * @return a Call object that can be executed to retrieve the validation form
+     */
+    @POST("/api/v3/work_packages/{id}/form")
+    Call<OPForm<OPWorkPackageModel>> getWorkPackageForm(
+            @Path("id") Long id,
+            @Body OPWorkPackageModel workPackage
+    );
+
+    /**
+     * Gets the form for validating a new work package.
+     * 
+     * @param workPackage the work package data to validate
+     * @return a Call object that can be executed to retrieve the validation form
+     */
+    @POST("/api/v3/work_packages/form")
+    Call<OPForm<OPWorkPackageModel>> getWorkPackageCreationForm(
+            @Body OPWorkPackageModel workPackage
+    );
+
+    /**
+     * Gets the form for validating a new work package in a specific project.
+     * 
+     * @param projectId the project ID
+     * @param workPackage the work package data to validate
+     * @return a Call object that can be executed to retrieve the validation form
+     */
+    @POST("/api/v3/projects/{projectId}/work_packages/form")
+    Call<OPForm<OPWorkPackageModel>> getWorkPackageCreationFormForProject(
+            @Path("projectId") Long projectId,
+            @Body OPWorkPackageModel workPackage
     );
 }
+

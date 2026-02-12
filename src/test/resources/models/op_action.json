@@ -1,0 +1,9 @@
+{
+  "id": "calendars/update",
+  "_type": "Action",
+  "_links": {
+    "self": {
+      "href": "/api/v3/actions/calendars/update"
+    }
+  }
+}

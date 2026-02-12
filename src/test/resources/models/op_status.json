@@ -1,0 +1,17 @@
+{
+  "_type": "Status",
+  "id": 7,
+  "name": "In progress",
+  "isClosed": false,
+  "color": "#CC5DE8",
+  "isDefault": false,
+  "isReadonly": false,
+  "defaultDoneRatio": 40,
+  "position": 7,
+  "_links": {
+    "self": {
+      "href": "/api/v3/statuses/7",
+      "title": "In progress"
+    }
+  }
+}

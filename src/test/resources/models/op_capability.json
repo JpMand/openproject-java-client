@@ -1,0 +1,9 @@
+{
+  "_type": "Capability",
+  "id": "work_packages/update",
+  "_links": {
+    "self": {
+      "href": "/api/v3/capabilities/work_packages/update"
+    }
+  }
+}

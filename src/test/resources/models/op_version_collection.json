@@ -1,0 +1,56 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Version",
+        "id": 1,
+        "name": "Version 1.0",
+        "description": {
+          "format": "markdown",
+          "raw": "Initial Release",
+          "html": "<p>Initial Release</p>"
+        },
+        "startDate": "2024-01-01",
+        "endDate": "2024-03-31",
+        "status": "open",
+        "sharing": "system",
+        "createdAt": "2024-01-01T12:00:00Z",
+        "updatedAt": "2024-01-05T08:00:00Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/versions/1"
+          }
+        }
+      },
+      {
+        "_type": "Version",
+        "id": 2,
+        "name": "Version 2.0",
+        "description": {
+          "format": "markdown",
+          "raw": "Major update",
+          "html": "<p>Major update</p>"
+        },
+        "startDate": "2024-04-01",
+        "endDate": "2024-06-30",
+        "status": "closed",
+        "sharing": "descendants",
+        "createdAt": "2024-04-01T12:00:00Z",
+        "updatedAt": "2024-07-01T10:00:00Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/versions/2"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/versions"
+    }
+  }
+}

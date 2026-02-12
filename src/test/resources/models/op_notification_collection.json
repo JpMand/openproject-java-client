@@ -1,0 +1,40 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Notification",
+        "id": 1,
+        "subject": "New work package created",
+        "reason": "mentioned",
+        "readIAN": false,
+        "_links": {
+          "self": {
+            "href": "/api/v3/notifications/1"
+          }
+        }
+      },
+      {
+        "_type": "Notification",
+        "id": 2,
+        "subject": "Work package updated",
+        "reason": "assigned",
+        "readIAN": true,
+        "_links": {
+          "self": {
+            "href": "/api/v3/notifications/2"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/notifications"
+    }
+  }
+}

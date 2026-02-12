@@ -1,0 +1,30 @@
+{
+  "_type": "Collection",
+  "total": 1,
+  "count": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Relation",
+        "id": 1,
+        "name": "precedes",
+        "type": "precedes",
+        "description": "This task precedes the other",
+        "lag": 2,
+        "reverseType": "follows",
+        "createdAt": "2023-03-15T10:00:00Z",
+        "updatedAt": "2023-03-15T10:00:00Z",
+        "_links": {
+          "self": {
+            "href": "/api/v3/relations/1"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/relations"
+    }
+  }
+}

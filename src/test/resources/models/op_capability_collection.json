@@ -1,0 +1,34 @@
+{
+  "_type": "Collection",
+  "total": 2,
+  "count": 2,
+  "pageSize": 30,
+  "offset": 1,
+  "_embedded": {
+    "elements": [
+      {
+        "_type": "Capability",
+        "id": "work_packages/update",
+        "_links": {
+          "self": {
+            "href": "/api/v3/capabilities/work_packages/update"
+          }
+        }
+      },
+      {
+        "_type": "Capability",
+        "id": "work_packages/delete",
+        "_links": {
+          "self": {
+            "href": "/api/v3/capabilities/work_packages/delete"
+          }
+        }
+      }
+    ]
+  },
+  "_links": {
+    "self": {
+      "href": "/api/v3/capabilities"
+    }
+  }
+}
